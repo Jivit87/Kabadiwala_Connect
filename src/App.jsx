@@ -6,24 +6,23 @@ import LanguageView from './components/LanguageView';
 import AuthView from './components/AuthView';
 import LocationView from './components/LocationView';
 import NotificationView from './components/NotificationView';
-import CompletionView from './components/CompletionView';
+import HomeView from './components/HomeView';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');
   const [currentLang, setCurrentLang] = useState('en');
-  const [user, setUser] = useState({ phone: '9876543210' });
+  const [user, setUser] = useState({ name: 'Rakesh', phone: '9876543210' });
 
   const t = translations[currentLang] || translations.en;
 
   const handleSplashNext = () => setCurrentScreen('language');
   const handleLanguageNext = () => setCurrentScreen('auth');
   const handleAuthAuthenticated = (userData) => {
-    setUser(userData);
+    setUser(prev => ({ ...prev, ...userData }));
     setCurrentScreen('location');
   };
   const handleLocationNext = () => setCurrentScreen('notification');
-  const handleNotificationNext = () => setCurrentScreen('completion');
-  const handleRestart = () => setCurrentScreen('splash');
+  const handleNotificationNext = () => setCurrentScreen('home');
 
   return (
     <DeviceFrameWrapper
@@ -71,11 +70,11 @@ export default function App() {
         />
       )}
 
-      {currentScreen === 'completion' && (
-        <CompletionView 
+      {currentScreen === 'home' && (
+        <HomeView 
           t={t} 
-          onRestart={handleRestart} 
-          onBack={() => setCurrentScreen('notification')}
+          user={user}
+          currentLang={currentLang}
         />
       )}
     </DeviceFrameWrapper>

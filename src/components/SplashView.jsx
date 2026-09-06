@@ -17,7 +17,7 @@ export default function SplashView({ t, onNext }) {
       <div className="splash-hero-container">
         <img 
           src="/assets/Kabadiwala_Connect_UI_Asset_Pack(1)/app/splash_hero_illustration_transparent.png" 
-          alt="E-waste Collection & Delivery Illustration" 
+          alt="E-waste Collection Illustration" 
           className="hero-illustration-img"
         />
       </div>
@@ -25,12 +25,15 @@ export default function SplashView({ t, onNext }) {
       {/* Main Content Section */}
       <div className="splash-content-section">
         <h1 className="splash-headline">{t.headline}</h1>
-        <p className="splash-subheadline">{t.subheadline}</p>
+        <p className="splash-subheadline">
+          A smart way to sell e-waste,<br />
+          earn better and build a cleaner future.
+        </p>
 
         {/* Primary CTA */}
         <button className="primary-button splash-cta-btn" onClick={onNext}>
           <span>{t.getStarted}</span>
-          <ArrowRight size={20} />
+          <ArrowRight size={22} color="#FFFFFF" strokeWidth={2.5} />
         </button>
 
         {/* Feature Badges Grid */}
@@ -38,7 +41,7 @@ export default function SplashView({ t, onNext }) {
           <div className="feature-badge-item">
             <div className="feature-icon-wrapper">
               <img 
-                src="/assets/Kabadiwala_Connect_UI_Asset_Pack(1)/app/icon_better_prices_transparent.png" 
+                src="/assets/Kabadiwala_Connect_UI_Asset_Pack(1)/app/badge_better_prices.png" 
                 alt="Better Prices" 
               />
             </div>
@@ -51,7 +54,7 @@ export default function SplashView({ t, onNext }) {
           <div className="feature-badge-item">
             <div className="feature-icon-wrapper">
               <img 
-                src="/assets/Kabadiwala_Connect_UI_Asset_Pack(1)/app/icon_easy_pickups_transparent.png" 
+                src="/assets/Kabadiwala_Connect_UI_Asset_Pack(1)/app/badge_easy_pickups.png" 
                 alt="Easy Pickups" 
               />
             </div>
@@ -64,7 +67,7 @@ export default function SplashView({ t, onNext }) {
           <div className="feature-badge-item">
             <div className="feature-icon-wrapper">
               <img 
-                src="/assets/Kabadiwala_Connect_UI_Asset_Pack(1)/app/icon_safe_trusted_transparent.png" 
+                src="/assets/Kabadiwala_Connect_UI_Asset_Pack(1)/app/badge_safe_trusted.png" 
                 alt="Safe & Trusted" 
               />
             </div>
@@ -81,8 +84,8 @@ export default function SplashView({ t, onNext }) {
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: 10px 20px 24px 20px;
-          min-height: 100%;
+          padding: 8px 24px 28px 24px;
+          height: 100%;
           justify-content: space-between;
           background-color: var(--surface-warm);
         }
@@ -92,11 +95,13 @@ export default function SplashView({ t, onNext }) {
           justify-content: center;
           align-items: center;
           margin-top: 4px;
-          margin-bottom: 12px;
+          margin-bottom: 6px;
+          width: 100%;
         }
 
         .brand-logo-img {
-          height: 64px;
+          height: 90px;
+          max-width: 85%;
           object-fit: contain;
         }
 
@@ -105,11 +110,12 @@ export default function SplashView({ t, onNext }) {
           display: flex;
           justify-content: center;
           align-items: center;
-          margin-bottom: 16px;
+          margin-bottom: 8px;
         }
 
         .hero-illustration-img {
-          max-width: 92%;
+          width: 100%;
+          max-width: 320px;
           height: auto;
           max-height: 220px;
           object-fit: contain;
@@ -124,31 +130,44 @@ export default function SplashView({ t, onNext }) {
         }
 
         .splash-headline {
-          font-size: 26px;
+          font-size: 24px;
           font-weight: 800;
           color: var(--brand-deep-green);
-          margin-bottom: 8px;
+          margin-bottom: 6px;
           letter-spacing: -0.3px;
+          white-space: nowrap;
         }
 
         .splash-subheadline {
-          font-size: 14px;
+          font-size: 13.5px;
           color: var(--text-secondary);
           max-width: 320px;
           line-height: 1.45;
-          margin-bottom: 24px;
+          margin-bottom: 20px;
         }
 
         .splash-cta-btn {
-          margin-bottom: 24px;
+          height: 56px;
+          width: 100%;
+          border-radius: 22px;
+          background-color: var(--brand-deep-green);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          font-size: 17px;
+          font-weight: 700;
+          color: #FFFFFF;
+          margin-bottom: 22px;
+          box-shadow: 0 6px 16px rgba(28, 82, 45, 0.25);
         }
 
         .feature-badges-grid {
           width: 100%;
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 8px;
-          margin-top: 4px;
+          gap: 10px;
+          margin-top: 2px;
         }
 
         .feature-badge-item {
@@ -162,7 +181,7 @@ export default function SplashView({ t, onNext }) {
           width: 52px;
           height: 52px;
           border-radius: 50%;
-          background: #E1E5CE;
+          background: transparent;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -170,22 +189,23 @@ export default function SplashView({ t, onNext }) {
         }
 
         .feature-icon-wrapper img {
-          width: 28px;
-          height: 28px;
+          width: 52px;
+          height: 52px;
           object-fit: contain;
         }
 
         .feature-title {
-          font-size: 13px;
+          font-size: 12.5px;
           font-weight: 700;
           color: var(--text-primary);
-          margin-bottom: 2px;
+          margin-bottom: 3px;
         }
 
         .feature-desc {
-          font-size: 11px;
+          font-size: 10.5px;
           color: var(--text-secondary);
-          line-height: 1.25;
+          line-height: 1.3;
+          white-space: pre-line;
         }
       `}</style>
     </div>

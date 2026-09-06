@@ -1,0 +1,51 @@
+{
+  "source": "Kabadiwala Connect location-permission reference supplied by user",
+  "brand_estimates": {
+    "primary_green": "#2E8B16",
+    "primary_green_dark": "#24700F",
+    "green_soft": "#EAF5DF",
+    "green_illustration": "#73B95B",
+    "warm_background": "#FBFAF7",
+    "primary_text": "#111111",
+    "secondary_text": "#6C6C6C",
+    "border_green": "#3E8C2A",
+    "white": "#FFFFFF"
+  },
+  "component_tokens": {
+    "mobile_screen_padding": 32,
+    "web_screen_padding": 40,
+    "button_height": 60,
+    "button_radius": 16,
+    "outline_button_height": 60,
+    "icon_circle": 64,
+    "minimum_touch_target": 48,
+    "hero_max_width_mobile": 600
+  },
+  "typography": {
+    "recommended_latin": "Inter / Noto Sans",
+    "recommended_devanagari": "Noto Sans Devanagari",
+    "title": "32-36px, 700",
+    "body": "20-22px, 400-500",
+    "button": "18-20px, 600-700",
+    "helper": "15-17px, 400"
+  },
+  "sampled_dominant_colors": [
+    "#FAF9F7",
+    "#FAF9F5",
+    "#F9F8F6",
+    "#2F7A15",
+    "#FAF9F6",
+    "#D9E9C5",
+    "#FBFAF8",
+    "#EBF2E3",
+    "#FEFFFD",
+    "#F9F8F4",
+    "#659F46",
+    "#EBF0E2",
+    "#A1AC9B",
+    "#B4D3A2",
+    "#FDFDFB",
+    "#E4EAD4"
+  ],
+  "production_note": "These colors are visual estimates from a JPEG screenshot. Confirm exact brand values against the original vector/logo source before production."
+}

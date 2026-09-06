@@ -31,7 +31,7 @@ export default function NotificationView({ t, onNext, onBack }) {
           <div className="bullet-item">
             <div className="bullet-icon-wrapper">
               <img 
-                src="/assets/Kabadiwala_Connect_Notification_UI_Asset_Pack/icons/partner_updates_transparent.png" 
+                src="/assets/Kabadiwala_Connect_Notification_UI_Asset_Pack/icons/notif_partner_badge.png" 
                 alt="Partner Updates" 
               />
             </div>
@@ -44,7 +44,7 @@ export default function NotificationView({ t, onNext, onBack }) {
           <div className="bullet-item">
             <div className="bullet-icon-wrapper">
               <img 
-                src="/assets/Kabadiwala_Connect_Notification_UI_Asset_Pack/icons/offers_news_transparent.png" 
+                src="/assets/Kabadiwala_Connect_Notification_UI_Asset_Pack/icons/notif_offers_badge.png" 
                 alt="Offers & News" 
               />
             </div>
@@ -128,7 +128,7 @@ export default function NotificationView({ t, onNext, onBack }) {
           width: 44px;
           height: 44px;
           border-radius: 50%;
-          background: #E1E5CE;
+          background: transparent;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -136,8 +136,8 @@ export default function NotificationView({ t, onNext, onBack }) {
         }
 
         .bullet-icon-wrapper img {
-          width: 24px;
-          height: 24px;
+          width: 44px;
+          height: 44px;
           object-fit: contain;
         }
 
@@ -163,10 +163,15 @@ export default function NotificationView({ t, onNext, onBack }) {
         }
 
         .notif-primary-btn {
+          height: 56px;
+          border-radius: 22px;
           background-color: var(--brand-deep-green);
+          box-shadow: 0 6px 16px rgba(28, 82, 45, 0.25);
         }
 
         .notif-secondary-btn {
+          height: 56px;
+          border-radius: 22px;
           background-color: var(--white);
           border: 1.5px solid var(--brand-green);
           color: var(--brand-deep-green);

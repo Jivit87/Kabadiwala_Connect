@@ -1,0 +1,29 @@
+{
+  "project": "Kabadiwala Connect",
+  "source_reference": "splash_reference.png",
+  "asset_groups": {
+    "brand": [
+      "kc_logo_lockup.png",
+      "kc_logo_mark.png",
+      "kc_wordmark_tagline.png",
+      "kc_logo_lockup_transparent.png",
+      "kc_logo_mark_transparent.png"
+    ],
+    "app": [
+      "splash_hero_illustration.png",
+      "splash_hero_illustration_transparent.png",
+      "splash_feature_icons.png",
+      "splash_cta.png",
+      "icon_better_prices.png",
+      "icon_easy_pickups.png",
+      "icon_safe_trusted.png",
+      "icon_better_prices_transparent.png",
+      "icon_easy_pickups_transparent.png",
+      "icon_safe_trusted_transparent.png"
+    ],
+    "web": [
+      "Use the same brand tokens/logo assets; web-specific UI icons should be SVG components from the recommended icon library rather than raster crops."
+    ]
+  },
+  "production_rule": "Do not upscale raster crops for production. Recreate the logo and hero illustration as vectors before final implementation."
+}

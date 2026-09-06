@@ -1,0 +1,34 @@
+{
+  "screen": "Location Permission",
+  "source_dimensions": "740x1600",
+  "assets": {
+    "illustration": [
+      "illustrations/location_map_hero.png",
+      "illustrations/location_map_hero_transparent.png"
+    ],
+    "icons": [
+      "icons/location_pin.png",
+      "icons/find_nearby.png",
+      "icons/faster_pickups.png",
+      "icons/secure_private.png",
+      "icons/current_location.png",
+      "icons/search_location.png"
+    ],
+    "app": [
+      "app/location_hero_3x.png",
+      "app/location_hero_transparent_3x.png",
+      "app/permission_benefits.png",
+      "app/current_location_cta.png",
+      "app/manual_location_cta.png"
+    ],
+    "web": [
+      "web/location_hero_1200.png",
+      "web/location_pin_256.png"
+    ]
+  },
+  "production_vectorization": {
+    "logo_and_simple_icons": "Rebuild as SVG/vector components.",
+    "watercolor_map_illustration": "Keep as optimized raster/WebP or professionally redraw as vector; naive auto-tracing can destroy the soft watercolor edges.",
+    "buttons_and_text": "Do not export as images; recreate as responsive Figma/code components."
+  }
+}

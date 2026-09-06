@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, ArrowLeft } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 
 export default function LanguageView({ t, currentLang, setLanguage, onNext, onBack }) {
   const languages = [
@@ -10,6 +10,7 @@ export default function LanguageView({ t, currentLang, setLanguage, onNext, onBa
 
   return (
     <div className="language-screen page-fade-enter">
+      {/* Header Bar */}
       <div className="top-nav-bar">
         {onBack && (
           <button className="back-arrow-btn" onClick={onBack} aria-label="Go Back">
@@ -47,7 +48,7 @@ export default function LanguageView({ t, currentLang, setLanguage, onNext, onBa
       </div>
 
       <div className="language-footer">
-        <button className="primary-button" onClick={onNext}>
+        <button className="primary-button continue-btn" onClick={onNext}>
           {t.continue}
         </button>
       </div>
@@ -69,31 +70,19 @@ export default function LanguageView({ t, currentLang, setLanguage, onNext, onBa
           height: 40px;
         }
 
-        .back-arrow-btn {
-          width: 38px;
-          height: 38px;
-          border-radius: 50%;
-          background: #E1E5CE;
-          border: none;
+        .language-container {
+          flex: 1;
           display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-
-        .back-arrow-btn:active {
-          transform: scale(0.92);
-          background: var(--accent-soft);
+          flex-direction: column;
+          margin-top: 16px;
         }
 
         .language-title {
-          font-size: 26px;
+          font-size: 28px;
           font-weight: 800;
           color: var(--brand-dark-text);
-          margin-bottom: 28px;
+          margin-bottom: 32px;
           text-align: center;
-          margin-top: 10px;
         }
 
         .language-list {
@@ -182,6 +171,13 @@ export default function LanguageView({ t, currentLang, setLanguage, onNext, onBa
         .language-footer {
           width: 100%;
           margin-top: auto;
+        }
+
+        .continue-btn {
+          height: 56px;
+          border-radius: 22px;
+          background-color: var(--brand-deep-green);
+          box-shadow: 0 6px 16px rgba(28, 82, 45, 0.25);
         }
       `}</style>
     </div>

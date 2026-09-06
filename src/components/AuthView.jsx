@@ -25,7 +25,6 @@ export default function AuthView({ t, onSkip, onAuthenticated, onBack }) {
     } else {
       if (val === 'backspace') {
         const nextOtp = [...otpCode];
-        // find last non-empty
         for (let i = 3; i >= 0; i--) {
           if (nextOtp[i] !== '') {
             nextOtp[i] = '';
@@ -49,12 +48,10 @@ export default function AuthView({ t, onSkip, onAuthenticated, onBack }) {
   const handleContinue = () => {
     if (step === 'phone') {
       if (phoneNumber.length < 10) {
-        // Auto-fill demo number for quick testing if empty
         setPhoneNumber('9876543210');
       }
       setStep('otp');
     } else {
-      // Complete OTP verify
       onAuthenticated({ phone: phoneNumber || '9876543210' });
     }
   };
@@ -206,7 +203,7 @@ export default function AuthView({ t, onSkip, onAuthenticated, onBack }) {
         .auth-subtitle {
           font-size: 14px;
           color: var(--text-secondary);
-          margin-bottom: 28px;
+          margin-bottom: 24px;
           line-height: 1.4;
         }
 
@@ -258,7 +255,11 @@ export default function AuthView({ t, onSkip, onAuthenticated, onBack }) {
         }
 
         .continue-btn {
+          height: 56px;
+          border-radius: 22px;
+          background-color: var(--brand-deep-green);
           margin-bottom: 16px;
+          box-shadow: 0 6px 16px rgba(28, 82, 45, 0.25);
         }
 
         .terms-disclaimer {

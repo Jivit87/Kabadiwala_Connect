@@ -1,0 +1,79 @@
+{
+  "source": "User-supplied 740x1600 home-screen screenshot",
+  "status": "Extracted raster references + production handoff guidance",
+  "critical_note": "Screenshot crops are faithful source references. For production, recreate text, buttons, cards, navigation, and simple icons as native Figma/vector components rather than shipping screenshot pixels.",
+  "assets": [
+    {
+      "id": "brand.logo_lockup",
+      "file": "01_brand/kc_logo_lockup_white.jpg",
+      "type": "raster_reference",
+      "use": "App/mobile header"
+    },
+    {
+      "id": "brand.logo_mark",
+      "file": "01_brand/kc_logo_mark_white.jpg",
+      "type": "raster_reference",
+      "use": "Compact mobile/web mark"
+    },
+    {
+      "id": "illustration.pickup_truck",
+      "file": "02_illustrations/pickup_truck_hero.jpg",
+      "type": "raster_reference",
+      "use": "Pickup hero/banner"
+    },
+    {
+      "id": "illustration.sell_scrap",
+      "file": "02_illustrations/sell_scrap_money_illustration.jpg",
+      "type": "raster_reference",
+      "use": "Sell Scrap card"
+    },
+    {
+      "id": "illustration.ewaste",
+      "file": "02_illustrations/ewaste_collection_devices_illustration.jpg",
+      "type": "raster_reference",
+      "use": "E-waste Collection card"
+    },
+    {
+      "id": "illustration.earnings",
+      "file": "02_illustrations/earnings_money_bag_illustration.jpg",
+      "type": "raster_reference",
+      "use": "My Earnings card"
+    },
+    {
+      "id": "illustration.history",
+      "file": "02_illustrations/history_document_clock_illustration.jpg",
+      "type": "raster_reference",
+      "use": "View History card"
+    },
+    {
+      "id": "icon.notification",
+      "file": "03_icons/notification_bell.jpg",
+      "type": "raster_reference",
+      "use": "Header notification"
+    },
+    {
+      "id": "icon.location",
+      "file": "03_icons/location_pin.jpg",
+      "type": "raster_reference",
+      "use": "Location selector"
+    },
+    {
+      "id": "icon.market",
+      "file": "03_icons/market_trends.jpg",
+      "type": "raster_reference",
+      "use": "Market Trends"
+    },
+    {
+      "id": "nav.*",
+      "file": "03_icons/nav_*.jpg",
+      "type": "raster_reference",
+      "use": "Navigation reference"
+    },
+    {
+      "id": "tokens",
+      "file": "06_design_tokens/kc_home_design_tokens.json",
+      "type": "tokens",
+      "use": "Figma/web/app reconstruction"
+    }
+  ]
+}

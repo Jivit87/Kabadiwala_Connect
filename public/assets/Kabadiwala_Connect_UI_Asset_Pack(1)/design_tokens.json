@@ -1,0 +1,53 @@
+{
+  "source": "Supplied Kabadiwala Connect splash reference",
+  "note": "Colors are extracted/approximated from the supplied raster. Re-check exact brand values against the original vector logo before production.",
+  "colors": {
+    "brand_deep_green": "#1C522D",
+    "brand_green": "#538A46",
+    "brand_dark_text": "#1B3C2A",
+    "surface_warm": "#FAF7F2",
+    "surface_green_tint": "#E1E5CE",
+    "accent_soft": "#CAE0B8",
+    "white": "#FFFFFF",
+    "text_primary": "#1B1B1B",
+    "text_secondary": "#5F6361",
+    "border_soft": "#DDE2D7",
+    "warning_amber": "#D89B2B",
+    "error_red": "#C94C4C"
+  },
+  "typography": {
+    "latin_recommendation": "Inter or Noto Sans",
+    "devanagari_recommendation": "Noto Sans Devanagari",
+    "display_weight": 700,
+    "body_weight": 400,
+    "button_weight": 700
+  },
+  "radius": {
+    "button": 22,
+    "card": 18,
+    "pill": 999
+  },
+  "spacing": {
+    "base": 4,
+    "screen_padding_mobile": 20,
+    "screen_padding_web": 32,
+    "touch_target_min": 48
+  },
+  "elevation": {
+    "card": "0 4px 16px rgba(27,60,42,0.08)"
+  },
+  "dominant_sampled_colors": [
+    "#FAF7F2",
+    "#FAF6F1",
+    "#FAF7F1",
+    "#FBF7F2",
+    "#FAF6F2",
+    "#1D522D",
+    "#F9F6F1",
+    "#FBF8F3",
+    "#E0E0C7",
+    "#1E532E",
+    "#1A4B2B",
+    "#FBF6F1"
+  ]
+}

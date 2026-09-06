@@ -1,0 +1,32 @@
+{
+  "brand": {
+    "primary_green": "#0B6B4A",
+    "primary_green_dark": "#07583D",
+    "accent_yellow": "#F7C53B",
+    "background_warm": "#F8F6EE",
+    "surface_mint": "#E7F3EC",
+    "surface_cream": "#FBF6E9",
+    "text_primary": "#111816",
+    "text_secondary": "#58635F",
+    "border_soft": "#DDE5DD"
+  },
+  "shape": {
+    "card_radius_mobile": 22,
+    "button_radius": 18,
+    "icon_circle_radius": 999
+  },
+  "spacing": {
+    "mobile_page_padding": 24,
+    "card_gap": 16,
+    "section_gap": 20,
+    "touch_target_min": 48
+  },
+  "typography_reference": {
+    "body": "Inter / Noto Sans",
+    "devanagari_fallback": "Noto Sans Devanagari",
+    "hero_heading_weight": 700,
+    "body_weight": 400,
+    "button_weight": 700
+  },
+  "note": "Values are visual reconstruction references sampled/estimated from the supplied screenshot, not official brand specifications."
+}

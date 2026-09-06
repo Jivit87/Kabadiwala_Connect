@@ -16,7 +16,7 @@ export default function LocationView({ t, onNext, onBack }) {
       {/* Hero Illustration */}
       <div className="location-hero-container">
         <img 
-          src="/assets/Kabadiwala_Connect_Location_UI_Asset_Pack/illustrations/location_map_hero_transparent.png" 
+          src="/assets/Kabadiwala_Connect_Location_UI_Asset_Pack/illustrations/location_hero_transparent_clean.png" 
           alt="Map Location Hero" 
           className="location-hero-img"
         />
@@ -32,7 +32,7 @@ export default function LocationView({ t, onNext, onBack }) {
           <div className="bullet-item">
             <div className="bullet-icon-wrapper">
               <img 
-                src="/assets/Kabadiwala_Connect_Location_UI_Asset_Pack/icons/find_nearby_transparent.png" 
+                src="/assets/Kabadiwala_Connect_Location_UI_Asset_Pack/icons/bullet_nearby_badge.png" 
                 alt="Find Nearby" 
               />
             </div>
@@ -45,7 +45,7 @@ export default function LocationView({ t, onNext, onBack }) {
           <div className="bullet-item">
             <div className="bullet-icon-wrapper">
               <img 
-                src="/assets/Kabadiwala_Connect_Location_UI_Asset_Pack/icons/faster_pickups_transparent.png" 
+                src="/assets/Kabadiwala_Connect_Location_UI_Asset_Pack/icons/bullet_faster_badge.png" 
                 alt="Faster Pickups" 
               />
             </div>
@@ -58,7 +58,7 @@ export default function LocationView({ t, onNext, onBack }) {
           <div className="bullet-item">
             <div className="bullet-icon-wrapper">
               <img 
-                src="/assets/Kabadiwala_Connect_Location_UI_Asset_Pack/icons/secure_private_transparent.png" 
+                src="/assets/Kabadiwala_Connect_Location_UI_Asset_Pack/icons/bullet_secure_badge.png" 
                 alt="Secure & Private" 
               />
             </div>
@@ -74,7 +74,7 @@ export default function LocationView({ t, onNext, onBack }) {
       <div className="location-actions">
         <button className="primary-button loc-primary-btn" onClick={onNext}>
           <img 
-            src="/assets/Kabadiwala_Connect_Location_UI_Asset_Pack/icons/current_location_transparent.png" 
+            src="/assets/Kabadiwala_Connect_Location_UI_Asset_Pack/icons/current_location_clean.png" 
             alt="Current Location" 
             className="btn-icon-img"
           />
@@ -83,7 +83,7 @@ export default function LocationView({ t, onNext, onBack }) {
 
         <button className="secondary-button loc-secondary-btn" onClick={onNext}>
           <img 
-            src="/assets/Kabadiwala_Connect_Location_UI_Asset_Pack/icons/search_location_transparent.png" 
+            src="/assets/Kabadiwala_Connect_Location_UI_Asset_Pack/icons/search_location_clean.png" 
             alt="Search Location" 
             className="btn-icon-img"
           />
@@ -159,7 +159,7 @@ export default function LocationView({ t, onNext, onBack }) {
           width: 44px;
           height: 44px;
           border-radius: 50%;
-          background: #E1E5CE;
+          background: transparent;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -167,8 +167,8 @@ export default function LocationView({ t, onNext, onBack }) {
         }
 
         .bullet-icon-wrapper img {
-          width: 24px;
-          height: 24px;
+          width: 44px;
+          height: 44px;
           object-fit: contain;
         }
 
@@ -194,19 +194,38 @@ export default function LocationView({ t, onNext, onBack }) {
         }
 
         .btn-icon-img {
-          width: 20px;
-          height: 20px;
+          width: 22px;
+          height: 22px;
           object-fit: contain;
+          flex-shrink: 0;
         }
 
         .loc-primary-btn {
+          height: 56px;
+          border-radius: 22px;
           background-color: var(--brand-deep-green);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          font-size: 16px;
+          font-weight: 700;
+          color: #FFFFFF;
+          box-shadow: 0 6px 16px rgba(28, 82, 45, 0.25);
         }
 
         .loc-secondary-btn {
+          height: 56px;
+          border-radius: 22px;
           background-color: var(--white);
           border: 1.5px solid var(--brand-green);
           color: var(--brand-deep-green);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          font-size: 16px;
+          font-weight: 700;
         }
       `}</style>
     </div>
