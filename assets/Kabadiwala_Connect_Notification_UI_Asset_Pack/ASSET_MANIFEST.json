@@ -1,0 +1,33 @@
+{
+  "screen": "Notification & Pickup Alerts Permission",
+  "source_dimensions": "740x1600",
+  "asset_groups": {
+    "hero": [
+      "illustrations/notification_permission_hero.png",
+      "illustrations/notification_permission_hero_transparent.png"
+    ],
+    "icons": [
+      "icons/partner_updates.png",
+      "icons/offers_news.png",
+      "icons/allow_permission.png",
+      "icons/maybe_later.png"
+    ],
+    "app": [
+      "app/notification_hero_crop.png",
+      "app/notification_hero_transparent_3x.png",
+      "app/permission_benefits.png",
+      "app/allow_permission_cta.png",
+      "app/maybe_later_cta.png"
+    ],
+    "web": [
+      "web/notification_hero_1200.png",
+      "web/partner_updates_256.png",
+      "web/offers_news_256.png"
+    ]
+  },
+  "do_not_rasterize": {
+    "text": "Recreate as live text",
+    "buttons": "Recreate as responsive components",
+    "benefit_rows": "Recreate as reusable components"
+  }
+}

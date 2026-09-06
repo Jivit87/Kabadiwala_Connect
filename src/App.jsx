@@ -4,7 +4,9 @@ import DeviceFrameWrapper from './components/DeviceFrameWrapper';
 import SplashView from './components/SplashView';
 import LanguageView from './components/LanguageView';
 import AuthView from './components/AuthView';
-import MainPortalView from './components/MainPortalView';
+import LocationView from './components/LocationView';
+import NotificationView from './components/NotificationView';
+import CompletionView from './components/CompletionView';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');
@@ -17,8 +19,11 @@ export default function App() {
   const handleLanguageNext = () => setCurrentScreen('auth');
   const handleAuthAuthenticated = (userData) => {
     setUser(userData);
-    setCurrentScreen('portal');
+    setCurrentScreen('location');
   };
+  const handleLocationNext = () => setCurrentScreen('notification');
+  const handleNotificationNext = () => setCurrentScreen('completion');
+  const handleRestart = () => setCurrentScreen('splash');
 
   return (
     <DeviceFrameWrapper
@@ -44,19 +49,33 @@ export default function App() {
       {currentScreen === 'auth' && (
         <AuthView 
           t={t} 
-          onSkip={() => setCurrentScreen('portal')}
+          onSkip={() => setCurrentScreen('location')}
           onAuthenticated={handleAuthAuthenticated} 
           onBack={() => setCurrentScreen('language')}
         />
       )}
 
-      {currentScreen === 'portal' && (
-        <MainPortalView 
+      {currentScreen === 'location' && (
+        <LocationView 
           t={t} 
-          user={user} 
-          currentLang={currentLang} 
-          setLanguage={setCurrentLang} 
+          onNext={handleLocationNext} 
           onBack={() => setCurrentScreen('auth')}
+        />
+      )}
+
+      {currentScreen === 'notification' && (
+        <NotificationView 
+          t={t} 
+          onNext={handleNotificationNext} 
+          onBack={() => setCurrentScreen('location')}
+        />
+      )}
+
+      {currentScreen === 'completion' && (
+        <CompletionView 
+          t={t} 
+          onRestart={handleRestart} 
+          onBack={() => setCurrentScreen('notification')}
         />
       )}
     </DeviceFrameWrapper>

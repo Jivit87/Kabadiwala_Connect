@@ -13,8 +13,9 @@ export default function DeviceFrameWrapper({
   const screens = [
     { id: 'splash', label: '1. Splash' },
     { id: 'language', label: '2. Language' },
-    { id: 'auth', label: '3. Auth & Keypad' },
-    { id: 'portal', label: '4. Collector App' }
+    { id: 'auth', label: '3. Mobile & OTP' },
+    { id: 'location', label: '4. Location' },
+    { id: 'notification', label: '5. Notifications' }
   ];
 
   return (

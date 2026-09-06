@@ -1,0 +1,39 @@
+{
+  "source": "Kabadiwala Connect notification permission reference",
+  "brand_estimates": {
+    "primary_green": "#2F8D16",
+    "primary_green_dark": "#24740F",
+    "soft_green": "#EAF5DF",
+    "illustration_green": "#72B95C",
+    "accent_yellow": "#F2CC35",
+    "background": "#FBFAF7",
+    "text_primary": "#111111",
+    "text_secondary": "#6B6B6B",
+    "white": "#FFFFFF"
+  },
+  "mobile": {
+    "screen_padding": 32,
+    "hero_top_spacing": 140,
+    "title_size": 34,
+    "title_weight": 700,
+    "body_size": 19,
+    "body_line_height": 28,
+    "button_height": 60,
+    "button_radius": 15,
+    "outline_width": 1.5,
+    "benefit_icon_circle": 64,
+    "minimum_touch_target": 48
+  },
+  "web": {
+    "content_max_width": 1120,
+    "page_padding": 40,
+    "hero_max_width": 520,
+    "button_height": 52,
+    "card_radius": 18
+  },
+  "typography": {
+    "latin": "Inter / Noto Sans",
+    "devanagari": "Noto Sans Devanagari"
+  },
+  "production_note": "Colors are visual estimates from the JPEG. Confirm exact brand tokens against original vector/brand source."
+}
