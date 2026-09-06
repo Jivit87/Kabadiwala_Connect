@@ -1,0 +1,42 @@
+{
+  "colors": {
+    "brand.primary": "#0B6B4A",
+    "brand.primary.dark": "#07583D",
+    "safety.orange": "#F47A00",
+    "safety.orange.soft": "#FFF0DE",
+    "safety.red": "#E84E23",
+    "safety.red.soft": "#FFF0EB",
+    "safety.green": "#139447",
+    "safety.green.soft": "#EAF7EF",
+    "page": "#FCFBF7",
+    "text.primary": "#101A24",
+    "text.secondary": "#6E7A86",
+    "divider": "#DDE1DF"
+  },
+  "typography": {
+    "primary": "Inter / Noto Sans",
+    "devanagari": "Noto Sans Devanagari",
+    "hero.heading.weight": 800,
+    "body.weight": 400,
+    "cta.weight": 700
+  },
+  "shape": {
+    "hero.radius": 26,
+    "badge.radius": 999,
+    "listen.radius": 999,
+    "cta.radius": 18
+  },
+  "spacing": {
+    "mobile.page.padding": 24,
+    "section.gap": 24,
+    "min.touch.target": 48
+  },
+  "interaction": {
+    "listen": "audio playback",
+    "gotIt": "acknowledge safety tip",
+    "remindLater": "defer tip",
+    "close": "dismiss",
+    "pagination": "education-carousel state"
+  },
+  "note": "Visual values are reconstructed from the supplied screenshot and are not official brand specifications."
+}

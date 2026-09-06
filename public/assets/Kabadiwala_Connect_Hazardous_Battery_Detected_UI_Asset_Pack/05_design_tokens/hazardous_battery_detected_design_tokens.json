@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "screen": "Hazardous Battery Detected",
+    "source_dimensions": [
+      853,
+      1844
+    ],
+    "note": "Screenshot crops are visual references. Camera content and detection values are runtime data."
+  },
+  "colors": {
+    "brand.primary": "#0B6B4A",
+    "brand.dark": "#07583D",
+    "hazard.orange": "#FF7200",
+    "hazard.red": "#F32635",
+    "hazard.surface": "#FFF5E8",
+    "hazard.border": "#FFD9AA",
+    "surface.page": "#FCFBF7",
+    "surface.sheet": "#FFFFFF",
+    "text.primary": "#102330",
+    "text.secondary": "#66737F",
+    "step.inactive": "#D7DADF",
+    "step.active": "#0B6B4A"
+  },
+  "typography": {
+    "font.primary": "Inter",
+    "font.devanagari_fallback": "Noto Sans Devanagari",
+    "screen.title": {
+      "size": 34,
+      "weight": 700
+    },
+    "screen.subtitle": {
+      "size": 22,
+      "weight": 400
+    },
+    "step.label": {
+      "size": 20,
+      "weight": 500
+    },
+    "sheet.title": {
+      "size": 28,
+      "weight": 700
+    },
+    "sheet.body": {
+      "size": 21,
+      "weight": 400
+    },
+    "card.title": {
+      "size": 21,
+      "weight": 700
+    },
+    "guideline.title": {
+      "size": 18,
+      "weight": 700
+    },
+    "guideline.body": {
+      "size": 17,
+      "weight": 400
+    },
+    "cta": {
+      "size": 22,
+      "weight": 700
+    }
+  },
+  "radii": {
+    "cameraFrame": 18,
+    "sheet": 28,
+    "detectedCard": 16,
+    "guidelineCard": 16,
+    "iconCircle": 48,
+    "cta": 28,
+    "badge": 18
+  },
+  "spacing": {
+    "pagePadding": 24,
+    "sheetPadding": 24,
+    "sectionGap": 18,
+    "touchTargetMin": 48
+  },
+  "components": {
+    "HazardDetectionBadge": {
+      "severity": "high",
+      "label": "Battery detected",
+      "icon": "battery"
+    },
+    "HazardBottomSheet": {
+      "dismissible": true,
+      "severity": "high"
+    },
+    "SafetyGuidelineRow": {
+      "types": [
+        "heat_fire",
+        "handle_care",
+        "dispose_safely"
+      ]
+    }
+  },
+  "production_rules": {
+    "camera_preview": "live camera or selected gallery image; screenshot image is a test fixture only",
+    "detection": "AI/ML output must be runtime and confidence-aware; do not imply perfect detection",
+    "safety": "show hazard guidance before allowing user to continue when policy requires it",
+    "color": "never rely on red/orange alone; pair with icon + text"
+  }
+}

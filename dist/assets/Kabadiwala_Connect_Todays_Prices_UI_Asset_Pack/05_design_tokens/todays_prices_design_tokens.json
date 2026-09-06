@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "screen": "Today's Prices",
+    "source_dimensions": [
+      853,
+      1844
+    ],
+    "note": "Screenshot crops are visual references; rebuild production UI natively."
+  },
+  "colors": {
+    "brand.primary": "#0B6B4A",
+    "brand.blueHeading": "#1558A7",
+    "brand.blueAudio": "#1760B8",
+    "surface.page": "#FCFBF7",
+    "surface.card": "#FFFFFF",
+    "surface.location": "#EDF6F1",
+    "surface.info": "#EDF7F2",
+    "border.subtle": "#E1E5E3",
+    "text.primary": "#102330",
+    "text.secondary": "#6D7983",
+    "positive": "#0B7C4F",
+    "negative": "#E33D32",
+    "stable": "#9AA2A8"
+  },
+  "typography": {
+    "font.primary": "Inter",
+    "font.devanagari_fallback": "Noto Sans Devanagari",
+    "screen.title": {
+      "size": 55,
+      "weight": 700
+    },
+    "screen.subtitle": {
+      "size": 27,
+      "weight": 400
+    },
+    "location.label": {
+      "size": 27,
+      "weight": 600
+    },
+    "context": {
+      "size": 21,
+      "weight": 400
+    },
+    "material.title": {
+      "size": 25,
+      "weight": 700
+    },
+    "material.subtitle": {
+      "size": 21,
+      "weight": 400
+    },
+    "price": {
+      "size": 36,
+      "weight": 750
+    },
+    "change": {
+      "size": 19,
+      "weight": 500
+    },
+    "info.title": {
+      "size": 20,
+      "weight": 500
+    },
+    "info.subtitle": {
+      "size": 18,
+      "weight": 400
+    },
+    "bottom.nav": {
+      "size": 18,
+      "weight": 500
+    }
+  },
+  "radii": {
+    "locationPill": 28,
+    "priceCard": 20,
+    "infoBanner": 18,
+    "thumbnail": 16,
+    "navActive": 50
+  },
+  "spacing": {
+    "pagePadding": 24,
+    "sectionGap": 20,
+    "rowPadding": 18,
+    "touchTargetMin": 48
+  },
+  "data_model": {
+    "location": "Rohini, Delhi",
+    "updatedText": "Updated today \u2022 Based on recent local transactions",
+    "prices": [
+      {
+        "material": "PCB",
+        "subtitle": "Circuit Board",
+        "pricePerKg": 128,
+        "trend": "up",
+        "changePct": 12
+      },
+      {
+        "material": "Cables & Wires",
+        "pricePerKg": 72,
+        "trend": "down",
+        "changePct": 8
+      },
+      {
+        "material": "Car Battery",
+        "pricePerKg": 62,
+        "trend": "up",
+        "changePct": 5
+      },
+      {
+        "material": "CRT TV",
+        "pricePerKg": 18,
+        "trend": "down",
+        "changePct": 6
+      },
+      {
+        "material": "LCD Display",
+        "pricePerKg": 42,
+        "trend": "stable"
+      },
+      {
+        "material": "Motor & Magnet",
+        "pricePerKg": 95,
+        "trend": "up",
+        "changePct": 9
+      }
+    ],
+    "transactionBasis": 42
+  }
+}

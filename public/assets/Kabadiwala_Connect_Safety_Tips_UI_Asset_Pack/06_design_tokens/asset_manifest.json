@@ -1,0 +1,41 @@
+{
+  "source": "safety_tips.png",
+  "source_dimensions": [
+    853,
+    1844
+  ],
+  "production_note": "Use extracted artwork as reference/source raster where appropriate; rebuild text, controls and simple icons as native/vector components.",
+  "assets": [
+    "02_safety_icons/battery_badge_icon.jpg",
+    "02_safety_icons/pagination_active.jpg",
+    "02_safety_icons/positive_check.jpg",
+    "02_safety_icons/negative_x.jpg",
+    "02_safety_icons/pagination_inactive.jpg",
+    "02_safety_icons/no_flames_symbol.jpg",
+    "02_safety_icons/listen_speaker_icon.jpg",
+    "02_safety_icons/close_x.jpg",
+    "03_ui_regions/listen_button.jpg",
+    "03_ui_regions/battery_hero_clean_reference.jpg",
+    "03_ui_regions/heat_flames_negative.jpg",
+    "03_ui_regions/got_it_cta.jpg",
+    "03_ui_regions/safety_tip_title_block.jpg",
+    "03_ui_regions/remind_me_later.jpg",
+    "03_ui_regions/safety_explanation.jpg",
+    "03_ui_regions/pagination_dots.jpg",
+    "03_ui_regions/cool_dry_positive.jpg",
+    "03_ui_regions/battery_detected_badge.jpg",
+    "03_ui_regions/keep_batteries_away_title.jpg",
+    "05_web_exports/battery_detected_badge_800.jpg",
+    "05_web_exports/battery_safety_illustration_1200.jpg",
+    "05_web_exports/safety_web_reference_board.jpg",
+    "05_web_exports/safety_cta_1200.jpg",
+    "04_app_exports/safety_tips_900px.jpg",
+    "04_app_exports/safety_tips_3x_reference.jpg",
+    "06_design_tokens/safety_tips_design_tokens.json",
+    "01_safety_illustrations/battery_symbol.jpg",
+    "01_safety_illustrations/battery_safety_hero.jpg",
+    "01_safety_illustrations/battery_handling_illustration.jpg",
+    "00_reference/safety_tips_exact_reference.png",
+    "00_reference/safety_tips_screen_without_bezel.jpg"
+  ]
+}

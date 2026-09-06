@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "screen_source": "853x1844 PNG",
+    "note": "Values are visually sampled/approximated from the screenshot for reconstruction. Recreate text and layout as native Figma/code components."
+  },
+  "colors": {
+    "brand.primary": "#0B6B4A",
+    "brand.primaryDark": "#07583D",
+    "brand.greenStrong": "#0B8F39",
+    "surface.page": "#FCFBF7",
+    "surface.card": "#FFFFFF",
+    "surface.hero": "#EDF7F1",
+    "surface.soft": "#F2F8F4",
+    "surface.pending": "#FFF1DE",
+    "border.subtle": "#E0E5E2",
+    "text.primary": "#102330",
+    "text.secondary": "#65727D",
+    "text.muted": "#7A8790",
+    "status.received": "#0B6B4A",
+    "status.pending": "#E67E00"
+  },
+  "typography": {
+    "font.primary": "Inter",
+    "font.devanagari_fallback": "Noto Sans Devanagari",
+    "screen.title": {
+      "size": 54,
+      "weight": 700,
+      "lineHeight": 1.05
+    },
+    "screen.subtitle": {
+      "size": 25,
+      "weight": 400,
+      "lineHeight": 1.25
+    },
+    "hero.period": {
+      "size": 28,
+      "weight": 500
+    },
+    "hero.amount": {
+      "size": 66,
+      "weight": 800
+    },
+    "hero.comparison": {
+      "size": 22,
+      "weight": 500
+    },
+    "section.title": {
+      "size": 28,
+      "weight": 700
+    },
+    "transaction.title": {
+      "size": 23,
+      "weight": 600
+    },
+    "transaction.meta": {
+      "size": 21,
+      "weight": 400
+    },
+    "transaction.amount": {
+      "size": 25,
+      "weight": 700
+    },
+    "status.label": {
+      "size": 18,
+      "weight": 500
+    },
+    "bottom.nav": {
+      "size": 18,
+      "weight": 500
+    }
+  },
+  "radii": {
+    "heroCard": 22,
+    "transactionCard": 20,
+    "statusPill": 28,
+    "viewAllCard": 18,
+    "navActive": 50
+  },
+  "spacing": {
+    "pagePadding": 24,
+    "sectionGap": 24,
+    "cardPadding": 24,
+    "transactionRowGap": 12,
+    "touchTargetMin": 48
+  },
+  "elevation": {
+    "transactionCard": "0 2px 12px rgba(16,35,48,0.08)"
+  },
+  "contentModel": {
+    "period": "This Week",
+    "weeklyEarnings": 1240,
+    "comparison": "+18% compared to last week",
+    "transactions": [
+      {
+        "material": "PCB",
+        "date": "12 Aug 2026",
+        "amount": 312,
+        "status": "Received"
+      },
+      {
+        "material": "Cables & Wires",
+        "date": "10 Aug 2026",
+        "amount": 180,
+        "status": "Received"
+      },
+      {
+        "material": "Car Battery",
+        "date": "08 Aug 2026",
+        "amount": 220,
+        "status": "Pending"
+      },
+      {
+        "material": "CRT TV",
+        "date": "05 Aug 2026",
+        "amount": 85,
+        "status": "Received"
+      },
+      {
+        "material": "LCD Display",
+        "date": "02 Aug 2026",
+        "amount": 160,
+        "status": "Received"
+      }
+    ]
+  }
+}

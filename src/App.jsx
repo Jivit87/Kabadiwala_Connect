@@ -7,11 +7,40 @@ import AuthView from './components/AuthView';
 import LocationView from './components/LocationView';
 import NotificationView from './components/NotificationView';
 import HomeView from './components/HomeView';
+import Step1TakePhoto from './components/sell_flow/Step1TakePhoto';
+import Step2Category from './components/sell_flow/Step2Category';
+import Step3Weight from './components/sell_flow/Step3Weight';
+import Step4EstimatedValue from './components/sell_flow/Step4EstimatedValue';
+import Step5ChooseBuyer from './components/sell_flow/Step5ChooseBuyer';
+import PaymentView from './components/sell_flow/PaymentView';
+import TodaysPricesView from './components/tabs/TodaysPricesView';
+import MyEarningsView from './components/tabs/MyEarningsView';
+import HistoryTab from './components/tabs/HistoryTab';
+import SyncStatusView from './components/SyncStatusView';
+import SafetyTipsView from './components/SafetyTipsView';
+import Step1HazardousDetectedView from './components/sell_flow/Step1HazardousDetectedView';
+import TransactionReceiptView from './components/sell_flow/TransactionReceiptView';
+import ProfileTab from './components/tabs/ProfileTab';
+import BookPickupView from './components/tabs/BookPickupView';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');
   const [currentLang, setCurrentLang] = useState('en');
-  const [user, setUser] = useState({ name: 'Rakesh', phone: '9876543210' });
+  const [user, setUser] = useState({ name: 'Rakesh', phone: '7015363695' });
+  const [sellFlowData, setSellFlowData] = useState({
+    photoUrl: '/assets/Kabadiwala_Connect_Step1_TakePhoto_UI_Asset_Pack/01_camera_illustration/scrap_photo_reference.jpg',
+    categoryId: 'pcb',
+    categoryName: 'PCB (Circuit Board)',
+    weight: 2.5,
+    estimatedTotal: 312,
+    ratePerKg: 125,
+    streetBonus: 18,
+    buyer: {
+      id: 'buyer_1',
+      name: 'GreenCycle Recycling',
+      rate: 128
+    }
+  });
 
   const t = translations[currentLang] || translations.en;
 
@@ -23,6 +52,40 @@ export default function App() {
   };
   const handleLocationNext = () => setCurrentScreen('notification');
   const handleNotificationNext = () => setCurrentScreen('home');
+
+  const handleStep1PhotoNext = (photoData) => {
+    setSellFlowData(prev => ({ ...prev, ...photoData }));
+    setCurrentScreen('step1_hazardous_battery_detected');
+  };
+
+  const handleStep2CategoryNext = (catData) => {
+    setSellFlowData(prev => ({ ...prev, ...catData }));
+    if (catData.categoryId === 'car_battery') {
+      setCurrentScreen('safety_tips');
+    } else {
+      setCurrentScreen('step3_weight');
+    }
+  };
+
+  const handleStep3WeightNext = (weightData) => {
+    setSellFlowData(prev => ({ ...prev, ...weightData }));
+    setCurrentScreen('step4_value');
+  };
+
+  const handleStep4ValueNext = (valueData) => {
+    setSellFlowData(prev => ({ ...prev, ...valueData }));
+    setCurrentScreen('step5_buyer');
+  };
+
+  const handleStep5BuyerNext = (buyerData) => {
+    setSellFlowData(prev => ({ ...prev, ...buyerData }));
+    setCurrentScreen('payment');
+  };
+
+  const handlePaymentConfirmed = (paymentData) => {
+    setSellFlowData(prev => ({ ...prev, ...paymentData }));
+    setCurrentScreen('receipt');
+  };
 
   return (
     <DeviceFrameWrapper
@@ -75,8 +138,199 @@ export default function App() {
           t={t} 
           user={user}
           currentLang={currentLang}
+          onNavigate={(screen) => setCurrentScreen(screen)}
+        />
+      )}
+
+      {currentScreen === 'step1_photo' && (
+        <Step1TakePhoto
+          t={t}
+          onNext={handleStep1PhotoNext}
+          onBack={() => setCurrentScreen('home')}
+        />
+      )}
+
+      {currentScreen === 'step1_hazardous_battery_detected' && (
+        <Step1HazardousDetectedView
+          t={t}
+          onNext={(data) => {
+            setSellFlowData(prev => ({ ...prev, ...data }));
+            setCurrentScreen('step2_category');
+          }}
+          onBack={() => setCurrentScreen('step1_photo')}
+        />
+      )}
+
+      {currentScreen === 'step2_category' && (
+        <Step2Category
+          t={t}
+          photoUrl={sellFlowData.photoUrl}
+          initialCategory={sellFlowData.categoryId}
+          onNext={handleStep2CategoryNext}
+          onBack={() => setCurrentScreen('step1_photo')}
+          onRetake={() => setCurrentScreen('step1_photo')}
+        />
+      )}
+
+      {currentScreen === 'step3_weight' && (
+        <Step3Weight
+          t={t}
+          categoryData={sellFlowData}
+          initialWeight={sellFlowData.weight}
+          onNext={handleStep3WeightNext}
+          onBack={() => setCurrentScreen('step2_category')}
+          onChangeCategory={() => setCurrentScreen('step2_category')}
+        />
+      )}
+
+      {currentScreen === 'step4_value' && (
+        <Step4EstimatedValue
+          t={t}
+          sellFlowData={sellFlowData}
+          onNext={handleStep4ValueNext}
+          onBack={() => setCurrentScreen('step3_weight')}
+        />
+      )}
+
+      {currentScreen === 'step5_buyer' && (
+        <Step5ChooseBuyer
+          t={t}
+          sellFlowData={sellFlowData}
+          onNext={handleStep5BuyerNext}
+          onBack={() => setCurrentScreen('step4_value')}
+        />
+      )}
+
+      {currentScreen === 'payment' && (
+        <PaymentView
+          t={t}
+          sellFlowData={sellFlowData}
+          onNext={handlePaymentConfirmed}
+          onBack={() => setCurrentScreen('step5_buyer')}
+        />
+      )}
+
+      {currentScreen === 'receipt' && (
+        <TransactionReceiptView
+          t={t}
+          sellFlowData={sellFlowData}
+          onDone={() => setCurrentScreen('home')}
+          onBack={() => setCurrentScreen('payment')}
+        />
+      )}
+
+      {currentScreen === 'book_pickup' && (
+        <BookPickupView
+          t={t}
+          currentLocation="Rohini, Delhi"
+          onNavigateTab={(tab) => {
+            if (tab === 'home') setCurrentScreen('home');
+            if (tab === 'step1_photo') setCurrentScreen('step1_photo');
+            if (tab === 'todays_prices') setCurrentScreen('todays_prices');
+            if (tab === 'history') setCurrentScreen('history');
+            if (tab === 'my_earnings') setCurrentScreen('my_earnings');
+            if (tab === 'profile') setCurrentScreen('profile');
+          }}
+          onBack={() => setCurrentScreen('home')}
+        />
+      )}
+
+      {currentScreen === 'todays_prices' && (
+        <TodaysPricesView
+          t={t}
+          currentLocation="Rohini, Delhi"
+          onBack={() => setCurrentScreen('home')}
+          onSelectCategory={(categoryId) => {
+            setSellFlowData(prev => ({ ...prev, categoryId }));
+            setCurrentScreen('step1_photo');
+          }}
+          onNavigateTab={(tab) => {
+            if (tab === 'home') setCurrentScreen('home');
+            if (tab === 'step1_photo') setCurrentScreen('step1_photo');
+            if (tab === 'history' || tab === 'bookings' || tab === 'book_pickup') setCurrentScreen('book_pickup');
+            if (tab === 'my_earnings') setCurrentScreen('my_earnings');
+            if (tab === 'profile') setCurrentScreen('profile');
+          }}
+        />
+      )}
+
+      {currentScreen === 'my_earnings' && (
+        <MyEarningsView
+          t={t}
+          onBack={() => setCurrentScreen('home')}
+          onNavigateTab={(tab) => {
+            if (tab === 'home') setCurrentScreen('home');
+            if (tab === 'step1_photo') setCurrentScreen('step1_photo');
+            if (tab === 'todays_prices') setCurrentScreen('todays_prices');
+            if (tab === 'history' || tab === 'bookings' || tab === 'book_pickup') setCurrentScreen('book_pickup');
+            if (tab === 'profile') setCurrentScreen('profile');
+          }}
+        />
+      )}
+
+      {currentScreen === 'history' && (
+        <HistoryTab
+          t={t}
+          onBack={() => setCurrentScreen('home')}
+          onNavigateTab={(tab) => {
+            if (tab === 'home') setCurrentScreen('home');
+            if (tab === 'step1_photo') setCurrentScreen('step1_photo');
+            if (tab === 'todays_prices') setCurrentScreen('todays_prices');
+            if (tab === 'my_earnings') setCurrentScreen('my_earnings');
+            if (tab === 'profile') setCurrentScreen('profile');
+          }}
+        />
+      )}
+
+      {currentScreen === 'sync_status' && (
+        <SyncStatusView
+          t={t}
+          onBack={() => setCurrentScreen('home')}
+          onNavigateTab={(tab) => {
+            if (tab === 'home') setCurrentScreen('home');
+            if (tab === 'step1_photo') setCurrentScreen('step1_photo');
+            if (tab === 'todays_prices') setCurrentScreen('todays_prices');
+            if (tab === 'history' || tab === 'bookings' || tab === 'book_pickup') setCurrentScreen('book_pickup');
+            if (tab === 'my_earnings') setCurrentScreen('my_earnings');
+            if (tab === 'profile') setCurrentScreen('profile');
+          }}
+        />
+      )}
+
+      {currentScreen === 'profile' && (
+        <ProfileTab
+          t={t}
+          user={user}
+          onUpdateUser={(updated) => setUser(prev => ({ ...prev, ...updated }))}
+          onNavigateTab={(tab) => {
+            if (tab === 'home') setCurrentScreen('home');
+            if (tab === 'step1_photo') setCurrentScreen('step1_photo');
+            if (tab === 'todays_prices') setCurrentScreen('todays_prices');
+            if (tab === 'history' || tab === 'bookings' || tab === 'book_pickup') setCurrentScreen('book_pickup');
+            if (tab === 'my_earnings') setCurrentScreen('my_earnings');
+            if (tab === 'sync_status') setCurrentScreen('sync_status');
+            if (tab === 'safety_tips') setCurrentScreen('safety_tips');
+            if (tab === 'language') setCurrentScreen('language');
+          }}
+          onBack={() => setCurrentScreen('home')}
+        />
+      )}
+
+      {currentScreen === 'safety_tips' && (
+        <SafetyTipsView
+          t={t}
+          onClose={() => setCurrentScreen('step2_category')}
+          onProceed={() => setCurrentScreen('step3_weight')}
+          onBack={() => setCurrentScreen('step2_category')}
         />
       )}
     </DeviceFrameWrapper>
   );
 }
+
+
+
+
+
+
+

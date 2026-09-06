@@ -1,0 +1,39 @@
+{
+  "colors": {
+    "brand.primary": "#0B6B4A",
+    "brand.primaryDark": "#07583D",
+    "brand.accent": "#F7C53B",
+    "surface.page": "#FCFBF7",
+    "surface.success": "#EAF5EE",
+    "text.primary": "#101A24",
+    "text.secondary": "#6E7A86",
+    "border.default": "#D6D9D7",
+    "border.selected": "#0B6B4A"
+  },
+  "typography": {
+    "primary": "Inter / Noto Sans",
+    "devanagari": "Noto Sans Devanagari",
+    "amountWeight": 800,
+    "headingWeight": 700,
+    "buttonWeight": 700
+  },
+  "shape": {
+    "summaryRadius": 24,
+    "methodRadius": 18,
+    "qrPanelRadius": 20,
+    "ctaRadius": 18
+  },
+  "spacing": {
+    "pagePadding": 24,
+    "methodGap": 20,
+    "sectionGap": 24,
+    "touchTargetMin": 48
+  },
+  "states": {
+    "cash": "unselected",
+    "upi": "selected",
+    "qr": "visible",
+    "confirm": "primary-action"
+  },
+  "note": "Visual values are reconstructed from the supplied screenshot and are not official brand specifications."
+}

@@ -1,0 +1,37 @@
+{
+  "source": "step1_take_photo.png",
+  "source_dimensions": [
+    853,
+    1844
+  ],
+  "production_note": "Rebuild text, stepper, camera controls and navigation as native/vector components. The central photograph is content/reference and should be runtime camera/gallery media.",
+  "assets": [
+    "03_ui_regions/stepper_photo_active.jpg",
+    "03_ui_regions/camera_instruction_overlay.jpg",
+    "03_ui_regions/camera_controls.jpg",
+    "03_ui_regions/camera_viewfinder_reference.jpg",
+    "03_ui_regions/clear_photo_tip.jpg",
+    "03_ui_regions/top_bar.jpg",
+    "03_ui_regions/android_navigation_reference.jpg",
+    "05_web_exports/clear_photo_tip_1200.jpg",
+    "05_web_exports/camera_viewfinder_1200.jpg",
+    "05_web_exports/step1_web_reference_board.jpg",
+    "04_app_exports/step1_take_photo_3x_reference.jpg",
+    "04_app_exports/step1_take_photo_900px.jpg",
+    "06_design_tokens/step1_take_photo_design_tokens.json",
+    "02_ui_icons/shutter_button.jpg",
+    "02_ui_icons/stepper_2_category.jpg",
+    "02_ui_icons/gallery_icon.jpg",
+    "02_ui_icons/tip_lightbulb.jpg",
+    "02_ui_icons/stepper_1_photo.jpg",
+    "02_ui_icons/back_arrow.jpg",
+    "02_ui_icons/camera_hint_icon.jpg",
+    "02_ui_icons/stepper_4_value.jpg",
+    "02_ui_icons/stepper_5_buyer.jpg",
+    "02_ui_icons/flash_icon.jpg",
+    "02_ui_icons/stepper_3_weight.jpg",
+    "01_camera_illustration/scrap_photo_reference.jpg",
+    "00_reference/step1_take_photo_exact_reference.png",
+    "00_reference/step1_take_photo_screen_without_bezel.jpg"
+  ]
+}

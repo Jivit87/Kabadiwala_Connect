@@ -1,0 +1,89 @@
+{
+  "screen": "Book a Pickup",
+  "screen_id": "C_BookPickup",
+  "primary_flow": "Choose a kabadiwala and convenient pickup time",
+  "location": "Rohini, Delhi",
+  "next_pickup": {
+    "name": "Rakesh Kumar",
+    "date_label": "Today",
+    "time": "4:00 PM"
+  },
+  "date_options": [
+    {
+      "label": "Today",
+      "date": "07 Sep",
+      "selected": true
+    },
+    {
+      "label": "Tomorrow",
+      "date": "08 Sep",
+      "selected": false
+    },
+    {
+      "label": "Wed",
+      "date": "09 Sep",
+      "selected": false
+    },
+    {
+      "label": "Thu",
+      "date": "10 Sep",
+      "selected": false
+    }
+  ],
+  "kabadiwalas": [
+    {
+      "name": "Rakesh Kumar",
+      "initials": "R",
+      "rating": 4.8,
+      "reviews": 124,
+      "distance_km": 1.8,
+      "status": "Available Today",
+      "materials": [
+        "E-waste",
+        "Electronics",
+        "Cables",
+        "Plastic"
+      ],
+      "verified": true,
+      "cta": "Book Pickup"
+    },
+    {
+      "name": "Suresh Kumar",
+      "initials": "SK",
+      "rating": 4.6,
+      "reviews": 98,
+      "distance_km": 2.4,
+      "status": "Few slots left",
+      "materials": [
+        "Paper",
+        "Plastic",
+        "Metal",
+        "Electronic"
+      ],
+      "verified": false,
+      "cta": "Book Pickup"
+    },
+    {
+      "name": "Amit Sharma",
+      "initials": "AM",
+      "rating": 4.4,
+      "reviews": 76,
+      "distance_km": 3.2,
+      "status": "Fully booked",
+      "materials": [
+        "Metal",
+        "Plastic",
+        "Paper"
+      ],
+      "verified": false,
+      "cta": "Fully Booked"
+    }
+  ],
+  "bottom_nav": [
+    "Home",
+    "Bookings",
+    "Camera",
+    "Rates",
+    "Profile"
+  ]
+}

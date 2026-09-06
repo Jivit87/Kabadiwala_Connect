@@ -1,0 +1,60 @@
+{
+  "colors": {
+    "brand.primary": "#0B6B4A",
+    "brand.primary.dark": "#07583D",
+    "surface.page": "#FCFBF7",
+    "surface.card": "#FFFFFF",
+    "surface.selected": "#EAF7EF",
+    "border.default": "#E0E2E1",
+    "border.selected": "#0B6B4A",
+    "text.primary": "#101A24",
+    "text.secondary": "#6E7782"
+  },
+  "typography": {
+    "primary": "Inter / Noto Sans",
+    "devanagari": "Noto Sans Devanagari",
+    "title.weight": 700,
+    "section.heading.weight": 700,
+    "category.label.weight": 700,
+    "body.weight": 400,
+    "button.weight": 700
+  },
+  "shape": {
+    "photo_card.radius": 22,
+    "category_card.radius": 18,
+    "button.radius": 18,
+    "selected_border_width": 2
+  },
+  "spacing": {
+    "mobile.page.padding": 24,
+    "category.grid.gap": 16,
+    "section.gap": 24,
+    "min.touch.target": 48
+  },
+  "workflow": {
+    "current_step": 2,
+    "steps": [
+      "Photo",
+      "Category",
+      "Weight",
+      "Value",
+      "Buyer"
+    ],
+    "selected_category": "PCB (Circuit Board)"
+  },
+  "category_component": {
+    "variant_property": "category",
+    "state_property": "selected",
+    "supported_categories": [
+      "CRT TV",
+      "LCD Display",
+      "PCB (Circuit Board)",
+      "Cables & Wires",
+      "Car Battery",
+      "Motor & Magnet",
+      "Mixed Plastic",
+      "Other Items"
+    ]
+  },
+  "note": "Visual values are reconstructed from the supplied screenshot and are not official brand specifications."
+}

@@ -1,0 +1,32 @@
+{
+  "colors": {
+    "primary": "#0B6B4A",
+    "primaryDark": "#07583D",
+    "accent": "#F7C53B",
+    "page": "#FCFBF7",
+    "successSurface": "#EAF5EE",
+    "text": "#101A24",
+    "secondaryText": "#6E7A86",
+    "border": "#D6D9D7"
+  },
+  "typography": {
+    "primary": "Inter / Noto Sans",
+    "devanagari": "Noto Sans Devanagari",
+    "amountWeight": 800,
+    "headingWeight": 700,
+    "buttonWeight": 700
+  },
+  "shape": {
+    "summaryRadius": 24,
+    "optionRadius": 18,
+    "bannerRadius": 20,
+    "ctaRadius": 18
+  },
+  "spacing": {
+    "pagePadding": 24,
+    "optionGap": 20,
+    "sectionGap": 24,
+    "minTouchTarget": 48
+  },
+  "note": "Reconstructed from the supplied screenshot; not an official source-of-truth brand spec."
+}

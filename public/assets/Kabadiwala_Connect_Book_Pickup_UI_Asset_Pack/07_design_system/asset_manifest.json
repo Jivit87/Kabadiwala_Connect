@@ -1,0 +1,74 @@
+{
+  "source": {
+    "file": "Image 7.png",
+    "dimensions": [
+      853,
+      1844
+    ],
+    "note": "Screenshot supplied by user; crops are reference assets."
+  },
+  "app_exports": [
+    "05_app_exports/book_pickup_app_1x.png",
+    "05_app_exports/book_pickup_app_3x.png"
+  ],
+  "web_assets": [
+    "06_web_assets/web_book_pickup_reference_board.png"
+  ],
+  "production_vector_assets": [
+    "04_icons_svg/icon_back_arrow.svg",
+    "04_icons_svg/icon_location_pin.svg",
+    "04_icons_svg/icon_chevron_right.svg",
+    "04_icons_svg/icon_chevron_down.svg",
+    "04_icons_svg/icon_calendar_check.svg",
+    "04_icons_svg/icon_star.svg",
+    "04_icons_svg/icon_verified_badge.svg",
+    "04_icons_svg/icon_status_available.svg",
+    "04_icons_svg/icon_status_few_slots.svg",
+    "04_icons_svg/icon_status_full.svg",
+    "04_icons_svg/icon_radio_selected.svg",
+    "04_icons_svg/icon_radio_unselected.svg",
+    "04_icons_svg/icon_home.svg",
+    "04_icons_svg/icon_bookings.svg",
+    "04_icons_svg/icon_rates_tag.svg",
+    "04_icons_svg/icon_profile.svg",
+    "04_icons_svg/icon_camera.svg"
+  ],
+  "ui_crops": [
+    "02_ui_crops/amit_avatar.png",
+    "02_ui_crops/amit_book_button.png",
+    "02_ui_crops/amit_kabadiwala_card.png",
+    "02_ui_crops/amit_material_chips.png",
+    "02_ui_crops/amit_status.png",
+    "02_ui_crops/available_kabadiwalas_header.png",
+    "02_ui_crops/bottom_nav_bookings.png",
+    "02_ui_crops/bottom_nav_home.png",
+    "02_ui_crops/bottom_nav_profile.png",
+    "02_ui_crops/bottom_nav_rates.png",
+    "02_ui_crops/bottom_navigation.png",
+    "02_ui_crops/camera_fab.png",
+    "02_ui_crops/date_selector.png",
+    "02_ui_crops/location_selector.png",
+    "02_ui_crops/next_pickup_card.png",
+    "02_ui_crops/next_pickup_icon.png",
+    "02_ui_crops/rakesh_avatar.png",
+    "02_ui_crops/rakesh_book_button.png",
+    "02_ui_crops/rakesh_kabadiwala_card.png",
+    "02_ui_crops/rakesh_material_chips.png",
+    "02_ui_crops/rakesh_status.png",
+    "02_ui_crops/suresh_avatar.png",
+    "02_ui_crops/suresh_book_button.png",
+    "02_ui_crops/suresh_kabadiwala_card.png",
+    "02_ui_crops/suresh_material_chips.png",
+    "02_ui_crops/suresh_status.png",
+    "02_ui_crops/top_bar.png"
+  ],
+  "reference_assets": [
+    "03_illustration_and_photo_refs/avatar_amit_reference.png",
+    "03_illustration_and_photo_refs/avatar_rakesh_reference.png",
+    "03_illustration_and_photo_refs/avatar_suresh_reference.png",
+    "03_illustration_and_photo_refs/date_thu_reference.png",
+    "03_illustration_and_photo_refs/date_today_reference.png",
+    "03_illustration_and_photo_refs/date_tomorrow_reference.png",
+    "03_illustration_and_photo_refs/date_wed_reference.png"
+  ]
+}

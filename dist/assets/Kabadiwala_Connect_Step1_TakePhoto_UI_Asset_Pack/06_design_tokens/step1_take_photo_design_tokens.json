@@ -1,0 +1,43 @@
+{
+  "colors": {
+    "brand.primary": "#0B6B4A",
+    "brand.primary.dark": "#07583D",
+    "surface.page": "#FCFBF7",
+    "surface.step.inactive": "#E9EAEB",
+    "text.primary": "#101A24",
+    "text.secondary": "#6E7782",
+    "camera.overlay": "#3A332C",
+    "tip.surface": "#EAF5EE",
+    "white": "#FFFFFF"
+  },
+  "typography": {
+    "primary": "Inter / Noto Sans",
+    "devanagari": "Noto Sans Devanagari",
+    "screen.title.weight": 700,
+    "step.active.weight": 700,
+    "body.weight": 400,
+    "button.weight": 700
+  },
+  "shape": {
+    "camera.frame.radius": 18,
+    "tip.radius": 20,
+    "control.circle": 999
+  },
+  "spacing": {
+    "mobile.page.padding": 24,
+    "stepper.gap": 16,
+    "camera.gap": 24,
+    "min.touch.target": 48
+  },
+  "workflow": {
+    "current_step": 1,
+    "steps": [
+      "Photo",
+      "Category",
+      "Weight",
+      "Value",
+      "Buyer"
+    ]
+  },
+  "note": "Visual values are reconstructed from the supplied screenshot and are not official brand specifications."
+}

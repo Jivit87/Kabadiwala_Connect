@@ -1,0 +1,126 @@
+{
+  "source": {
+    "file": "sync_status.png",
+    "dimensions_px": [
+      853,
+      1844
+    ],
+    "note": "Screenshot-derived reference; production UI should be native components."
+  },
+  "colors": {
+    "brand.primary": "#0B6B4A",
+    "brand.primary_dark": "#07583D",
+    "surface.page": "#FCFBF7",
+    "surface.card": "#FFFFFF",
+    "surface.info": "#EDF8F3",
+    "surface.warning": "#FFF0E2",
+    "surface.nav": "#FFFFFF",
+    "accent.offline": "#F29B00",
+    "text.primary": "#101A24",
+    "text.secondary": "#6E7782",
+    "text.success": "#0B6B4A",
+    "border.default": "#E0E2E1"
+  },
+  "typography": {
+    "font_primary": "Inter",
+    "font_devanagari": "Noto Sans Devanagari",
+    "screen_title": {
+      "size_px": 55,
+      "weight": 700
+    },
+    "section_heading": {
+      "size_px": 31,
+      "weight": 700
+    },
+    "lot_title": {
+      "size_px": 25,
+      "weight": 700
+    },
+    "lot_meta": {
+      "size_px": 20,
+      "weight": 400
+    },
+    "lot_amount": {
+      "size_px": 30,
+      "weight": 700
+    },
+    "status": {
+      "size_px": 20,
+      "weight": 400
+    },
+    "button": {
+      "size_px": 25,
+      "weight": 700
+    },
+    "helper": {
+      "size_px": 18,
+      "weight": 400
+    },
+    "nav_label": {
+      "size_px": 18,
+      "weight": 400
+    }
+  },
+  "shape": {
+    "card_radius_px": 18,
+    "banner_radius_px": 18,
+    "pill_radius_px": 999,
+    "button_radius_px": 999
+  },
+  "spacing": {
+    "page_padding_px": 24,
+    "section_gap_px": 24,
+    "card_gap_px": 12,
+    "touch_target_min_px": 48,
+    "bottom_nav_height_px": 150
+  },
+  "components": {
+    "SyncStatusPill": {
+      "properties": [
+        "connectionState",
+        "pendingCount"
+      ]
+    },
+    "OfflineInfoBanner": {
+      "properties": [
+        "state",
+        "message",
+        "autoSyncEnabled"
+      ]
+    },
+    "SyncQueueCard": {
+      "properties": [
+        "thumbnail",
+        "material",
+        "weight",
+        "createdAt",
+        "lotId",
+        "amount",
+        "syncState"
+      ]
+    },
+    "SyncSafetyIllustration": {
+      "properties": [
+        "state"
+      ]
+    },
+    "SyncAction": {
+      "properties": [
+        "enabled",
+        "loading"
+      ]
+    },
+    "BottomNavigation": {
+      "properties": [
+        "activeTab"
+      ]
+    }
+  },
+  "sync_states": [
+    "offline",
+    "waiting",
+    "syncing",
+    "synced",
+    "failed"
+  ]
+}

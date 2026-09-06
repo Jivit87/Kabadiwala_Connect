@@ -1,0 +1,35 @@
+{
+  "source": "payment_upi_qr.png",
+  "source_dimensions": [
+    853,
+    1844
+  ],
+  "critical_qr_note": "The QR image is only a visual reference from the screenshot. Do not reuse it for real payments unless its payload is independently generated and verified.",
+  "production_note": "Rebuild UI as native/vector components; use source artwork or redraw distinctive illustrations.",
+  "assets": [
+    "02_qr_assets/qr_reference.jpg",
+    "02_qr_assets/upi_brand_mark_reference.jpg",
+    "01_payment_artwork/upi_method_selected_card.jpg",
+    "01_payment_artwork/payment_summary_card.jpg",
+    "01_payment_artwork/share_payment_request_reference.jpg",
+    "01_payment_artwork/confirm_payment_cta.jpg",
+    "01_payment_artwork/cash_method_card.jpg",
+    "01_payment_artwork/scan_to_pay_card.jpg",
+    "01_payment_artwork/payment_amount_row.jpg",
+    "05_web_exports/payment_upi_web_reference_board.jpg",
+    "05_web_exports/scan_to_pay_panel_1200.jpg",
+    "05_web_exports/payment_summary_panel_1200.jpg",
+    "05_web_exports/confirm_payment_cta_1200.jpg",
+    "04_app_exports/payment_upi_screen_3x_reference.jpg",
+    "04_app_exports/payment_upi_screen_900px.jpg",
+    "06_design_tokens/payment_upi_design_tokens.json",
+    "03_icons/edit_reference.jpg",
+    "03_icons/back_arrow.jpg",
+    "03_icons/share_icon.jpg",
+    "03_icons/forward_arrow_reference.jpg",
+    "03_icons/upi_selected_check.jpg",
+    "03_icons/cash_radio_unselected.jpg",
+    "00_reference/payment_upi_qr_exact_reference.png",
+    "00_reference/payment_upi_screen_without_bezel.jpg"
+  ]
+}

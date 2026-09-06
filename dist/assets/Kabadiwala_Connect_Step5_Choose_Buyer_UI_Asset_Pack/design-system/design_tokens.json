@@ -1,0 +1,91 @@
+{
+  "source": {
+    "file": "step5_choose_buyer.png",
+    "dimensions_px": [
+      900,
+      1747
+    ],
+    "note": "Screenshot-derived reference. Rebuild production UI as native responsive components."
+  },
+  "colors": {
+    "brand.primary": "#0B6B4A",
+    "brand.primary_dark": "#07583D",
+    "surface.page": "#FCFBF7",
+    "surface.card": "#FFFFFF",
+    "surface.selected": "#EEF8F2",
+    "surface.verified": "#EDF7F1",
+    "accent.best_match": "#FFC533",
+    "border.default": "#E0E2E1",
+    "border.selected": "#4C9B7C",
+    "text.primary": "#101A24",
+    "text.secondary": "#6E7782",
+    "text.on_primary": "#FFFFFF",
+    "workflow.inactive": "#DDE0DE"
+  },
+  "typography": {
+    "font_primary": "Inter",
+    "font_devanagari": "Noto Sans Devanagari",
+    "screen_title": {
+      "size_px": 38,
+      "weight": 700
+    },
+    "page_heading": {
+      "size_px": 38,
+      "weight": 700
+    },
+    "body": {
+      "size_px": 24,
+      "weight": 400
+    },
+    "buyer_name": {
+      "size_px": 29,
+      "weight": 700
+    },
+    "price": {
+      "size_px": 39,
+      "weight": 700
+    },
+    "meta": {
+      "size_px": 22,
+      "weight": 400
+    },
+    "button": {
+      "size_px": 30,
+      "weight": 700
+    }
+  },
+  "shape": {
+    "buyer_card_radius_px": 22,
+    "summary_pill_radius_px": 999,
+    "button_radius_px": 18,
+    "badge_radius_px": 999
+  },
+  "spacing": {
+    "page_padding_px": 24,
+    "section_gap_px": 24,
+    "card_gap_px": 16,
+    "touch_target_min_px": 48
+  },
+  "buyer_card": {
+    "properties": [
+      "buyerName",
+      "pricePerKg",
+      "distanceKm",
+      "verified",
+      "rating",
+      "bestMatch",
+      "selected"
+    ],
+    "states": [
+      "default",
+      "selected",
+      "best-match"
+    ]
+  },
+  "selection_logic": {
+    "default_selected": "Best Match",
+    "display_price": "buyer-specific price per kg",
+    "total_value": "weight \u00d7 selected buyer price",
+    "best_match": "Use transparent ranking criteria; screenshot is visual reference only."
+  }
+}

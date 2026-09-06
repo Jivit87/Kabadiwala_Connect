@@ -1,0 +1,64 @@
+{
+  "colors": {
+    "brand.primary": "#0B6B4A",
+    "brand.dark": "#07583D",
+    "brand.green": "#0B8F39",
+    "surface.page": "#FCFBF7",
+    "surface.receipt": "#FFFFFF",
+    "surface.softGreen": "#EDF7F1",
+    "border.subtle": "#DCE3DF",
+    "text.primary": "#102330",
+    "text.secondary": "#5F6C79",
+    "status.success": "#0B8F39"
+  },
+  "typography": {
+    "font.primary": "Inter",
+    "font.devanagari_fallback": "Noto Sans Devanagari",
+    "screen.title": [
+      30,
+      700
+    ],
+    "section.heading": [
+      21,
+      700
+    ],
+    "body": [
+      17,
+      400
+    ],
+    "amount": [
+      30,
+      700
+    ],
+    "button": [
+      18,
+      600
+    ]
+  },
+  "radii": {
+    "receipt": 16,
+    "softCard": 16,
+    "actionButton": 20,
+    "doneButton": 28,
+    "badge": 22
+  },
+  "spacing": {
+    "pagePadding": 24,
+    "receiptPadding": 24,
+    "sectionGap": 20,
+    "touchTargetMin": 48
+  },
+  "data_model": {
+    "transactionId": "TXN7843291",
+    "datetime": "12 Mar 2025, 10:24 AM",
+    "recyclerName": "Rohini Recycling Centre",
+    "location": "Rohini, Delhi",
+    "authorizationId": "K2-DL-0891",
+    "material": "PCB / Circuit Board",
+    "weightKg": 2.5,
+    "ratePerKg": 125,
+    "totalAmount": 312,
+    "paymentMethod": "UPI (Google Pay)",
+    "paymentStatus": "Payment Received"
+  }
+}

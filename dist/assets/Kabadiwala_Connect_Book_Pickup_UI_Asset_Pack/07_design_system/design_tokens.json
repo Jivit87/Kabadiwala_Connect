@@ -1,0 +1,78 @@
+{
+  "colors": {
+    "primary": "#0B6B4A",
+    "primary_dark": "#07583D",
+    "page": "#FCFBF7",
+    "card": "#FFFFFF",
+    "surface_green": "#EDF7F1",
+    "selected": "#EAF7EF",
+    "border": "#E0E2E1",
+    "text": "#101A24",
+    "secondary": "#6E7782",
+    "success": "#0B8F39",
+    "warning": "#E5A000",
+    "warning_surface": "#FFF5DC",
+    "danger": "#E33D2F",
+    "danger_surface": "#FDECEC",
+    "disabled": "#E9EBED"
+  },
+  "typography": {
+    "font_primary": "Inter",
+    "font_devanagari": "Noto Sans Devanagari",
+    "page_title": {
+      "size": 36,
+      "weight": 700
+    },
+    "section_heading": {
+      "size": 30,
+      "weight": 700
+    },
+    "body": {
+      "size": 20,
+      "weight": 400
+    },
+    "body_medium": {
+      "size": 20,
+      "weight": 500
+    },
+    "button": {
+      "size": 21,
+      "weight": 700
+    },
+    "nav_label": {
+      "size": 18,
+      "weight": 500
+    },
+    "card_title": {
+      "size": 24,
+      "weight": 700
+    },
+    "card_meta": {
+      "size": 18,
+      "weight": 400
+    }
+  },
+  "spacing": {
+    "page_padding": 24,
+    "section_gap": 24,
+    "card_gap": 12,
+    "chip_gap": 10,
+    "touch_target_min": 48
+  },
+  "radius": {
+    "large": 22,
+    "medium": 18,
+    "chip": 20,
+    "button": 18,
+    "avatar": 999
+  },
+  "shadow": {
+    "card": "0 2px 12px rgba(16,26,36,0.06)",
+    "fab": "0 5px 18px rgba(11,107,74,0.20)"
+  },
+  "breakpoints": {
+    "mobile": 360,
+    "tablet": 768,
+    "desktop": 1440
+  }
+}

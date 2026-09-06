@@ -1,0 +1,65 @@
+{
+  "screen": "My Earnings",
+  "source_dimensions": [
+    853,
+    1844
+  ],
+  "asset_policy": {
+    "reference_assets": "faithful screenshot crops for visual matching",
+    "production_assets": "recreate UI text/layout as native Figma/code; use SVG icons; use runtime data for earnings/transactions"
+  },
+  "app_assets": [
+    "02_app_assets/audio_button_reference.png",
+    "02_app_assets/audio_speaker_reference.png",
+    "02_app_assets/bottom_navigation_reference.png",
+    "02_app_assets/cables_wires_thumbnail_reference.png",
+    "02_app_assets/car_battery_thumbnail_reference.png",
+    "02_app_assets/crt_tv_thumbnail_reference.png",
+    "02_app_assets/earnings_chart_only_reference.png",
+    "02_app_assets/earnings_comparison_reference.png",
+    "02_app_assets/earnings_growth_plant_transparent_reference.png",
+    "02_app_assets/earnings_hero_card_reference.png",
+    "02_app_assets/earnings_illustration_reference.png",
+    "02_app_assets/earnings_value_reference.png",
+    "02_app_assets/growth_arrow_reference.png",
+    "02_app_assets/lcd_display_thumbnail_reference.png",
+    "02_app_assets/my_earnings_screen_1x.png",
+    "02_app_assets/my_earnings_screen_3x.png",
+    "02_app_assets/pcb_thumbnail_reference.png",
+    "02_app_assets/recent_transactions_header_reference.png",
+    "02_app_assets/small_steps_big_impact_badge_reference.png",
+    "02_app_assets/top_header_reference.png",
+    "02_app_assets/transaction_cables_wires_row_reference.png",
+    "02_app_assets/transaction_car_battery_row_reference.png",
+    "02_app_assets/transaction_crt_tv_row_reference.png",
+    "02_app_assets/transaction_lcd_display_row_reference.png",
+    "02_app_assets/transaction_pcb_row_reference.png",
+    "02_app_assets/transactions_card_reference.png",
+    "02_app_assets/view_all_transactions_reference.png",
+    "02_app_assets/week_selector_reference.png"
+  ],
+  "web_assets": [
+    "03_web_assets/earnings_summary_hero_web_reference_1200.png",
+    "03_web_assets/my_earnings_web_reference_board.png",
+    "03_web_assets/recent_transactions_web_reference_1200.png",
+    "03_web_assets/view_all_transactions_web_reference_1200.png"
+  ],
+  "svg_icons": [
+    "04_icons_svg/icon_back_arrow.svg",
+    "04_icons_svg/icon_calendar.svg",
+    "04_icons_svg/icon_camera.svg",
+    "04_icons_svg/icon_chevron_down.svg",
+    "04_icons_svg/icon_chevron_right.svg",
+    "04_icons_svg/icon_home.svg",
+    "04_icons_svg/icon_profile.svg",
+    "04_icons_svg/icon_status_pending.svg",
+    "04_icons_svg/icon_status_received.svg",
+    "04_icons_svg/icon_tag.svg",
+    "04_icons_svg/icon_transaction_document.svg",
+    "04_icons_svg/icon_trend_up.svg",
+    "04_icons_svg/icon_volume.svg"
+  ],
+  "tokens": [
+    "05_design_tokens/my_earnings_design_tokens.json"
+  ]
+}

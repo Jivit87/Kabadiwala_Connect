@@ -1,0 +1,76 @@
+{
+  "source": "Screenshot-derived visual reference. Rebuild UI natively for production.",
+  "canvas": {
+    "source_width_px": 853,
+    "source_height_px": 1844,
+    "screen_reference": "853x1844"
+  },
+  "colors": {
+    "brand.primary": "#0B6B4A",
+    "brand.primary_dark": "#07583D",
+    "surface.page": "#FCFBF7",
+    "surface.card": "#FFFFFF",
+    "surface.selected": "#EAF7EF",
+    "border.default": "#E0E2E1",
+    "text.primary": "#101A24",
+    "text.secondary": "#6E7782",
+    "text.on_primary": "#FFFFFF",
+    "workflow.inactive": "#E2E4E6",
+    "weight.panel": "#EDF6F2"
+  },
+  "typography": {
+    "font_primary": "Inter",
+    "font_devanagari": "Noto Sans Devanagari",
+    "screen_title": {
+      "size_px": 38,
+      "weight": 700
+    },
+    "section_heading": {
+      "size_px": 34,
+      "weight": 700
+    },
+    "body": {
+      "size_px": 24,
+      "weight": 400
+    },
+    "body_emphasis": {
+      "size_px": 24,
+      "weight": 700
+    },
+    "weight_value": {
+      "size_px": 76,
+      "weight": 700
+    },
+    "button": {
+      "size_px": 30,
+      "weight": 700
+    },
+    "helper": {
+      "size_px": 20,
+      "weight": 400
+    }
+  },
+  "shape": {
+    "card_radius_px": 20,
+    "large_panel_radius_px": 22,
+    "button_radius_px": 18,
+    "pill_radius_px": 999
+  },
+  "spacing": {
+    "page_padding_px": 24,
+    "section_gap_px": 24,
+    "card_gap_px": 16,
+    "touch_target_min_px": 48,
+    "grid_gap_px": 16
+  },
+  "weight_control": {
+    "default_value_kg": 2.5,
+    "step_kg": 0.5,
+    "min_value_kg": "define in product logic",
+    "max_value_kg": "define in product logic"
+  },
+  "responsive": {
+    "mobile": "single-column, touch-first",
+    "web": "two-column or card-grid adaptation; keep weight control dominant"
+  }
+}

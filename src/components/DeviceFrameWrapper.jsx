@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Smartphone, Monitor, Layers, Wifi } from 'lucide-react';
 
-const SCREEN_ORDER = ['splash', 'language', 'auth', 'location', 'notification', 'home'];
+const SCREEN_ORDER = ['splash', 'language', 'auth', 'location', 'notification', 'home', 'book_pickup', 'step1_photo', 'step1_hazardous_battery_detected', 'step2_category', 'safety_tips', 'step3_weight', 'step4_value', 'step5_buyer', 'payment', 'receipt', 'todays_prices', 'my_earnings', 'history', 'sync_status', 'profile'];
 
 function StatusBar({ light, background }) {
   const [time, setTime] = useState(() => formatTime(new Date()));
@@ -83,7 +83,22 @@ export default function DeviceFrameWrapper({
     { id: 'auth', label: '3. Mobile & OTP' },
     { id: 'location', label: '4. Location' },
     { id: 'notification', label: '5. Notifications' },
-    { id: 'home', label: '6. Home' }
+    { id: 'home', label: '6. Home' },
+    { id: 'book_pickup', label: '7. Book Pickup' },
+    { id: 'step1_photo', label: '8. Step 1: Photo' },
+    { id: 'step1_hazardous_battery_detected', label: '9. AI Hazard Alert' },
+    { id: 'step2_category', label: '10. Step 2: Category' },
+    { id: 'safety_tips', label: '11. Safety Tips' },
+    { id: 'step3_weight', label: '12. Step 3: Weight' },
+    { id: 'step4_value', label: '13. Step 4: Value' },
+    { id: 'step5_buyer', label: '14. Step 5: Buyer' },
+    { id: 'payment', label: '15. Payment' },
+    { id: 'receipt', label: '16. Receipt' },
+    { id: 'todays_prices', label: "17. Today's Prices" },
+    { id: 'my_earnings', label: '18. My Earnings' },
+    { id: 'history', label: '19. History' },
+    { id: 'sync_status', label: '20. Sync Status' },
+    { id: 'profile', label: '21. Profile' }
   ];
 
   const isDarkHeaderScreen = currentScreen === 'home';

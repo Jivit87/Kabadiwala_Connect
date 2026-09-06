@@ -1,0 +1,100 @@
+{
+  "colors": {
+    "brand.primary": "#0B6B4A",
+    "brand.dark": "#07583D",
+    "surface.page": "#FCFBF7",
+    "surface.card": "#FFFFFF",
+    "surface.softGreen": "#EDF7F1",
+    "surface.iconCircle": "#E8F6EC",
+    "border.subtle": "#DFE5E2",
+    "text.primary": "#102330",
+    "text.secondary": "#6B7783",
+    "status.verified": "#0B6B4A"
+  },
+  "typography": {
+    "font.primary": "Inter",
+    "font.devanagari_fallback": "Noto Sans Devanagari",
+    "name": {
+      "size": 40,
+      "weight": 700
+    },
+    "phone": {
+      "size": 22,
+      "weight": 400
+    },
+    "verified": {
+      "size": 18,
+      "weight": 500
+    },
+    "banner.title": {
+      "size": 20,
+      "weight": 700
+    },
+    "banner.body": {
+      "size": 18,
+      "weight": 400
+    },
+    "row.title": {
+      "size": 26,
+      "weight": 600
+    },
+    "row.subtitle": {
+      "size": 20,
+      "weight": 400
+    },
+    "nav": {
+      "size": 18,
+      "weight": 500
+    }
+  },
+  "radii": {
+    "avatar": 90,
+    "banner": 18,
+    "settingsRow": 18,
+    "iconCircle": 46,
+    "editButton": 28,
+    "navActive": 28
+  },
+  "spacing": {
+    "pagePadding": 24,
+    "sectionGap": 18,
+    "rowHeight": 130,
+    "touchTargetMin": 48
+  },
+  "component_model": {
+    "ProfileHeader": {
+      "avatar": "initials/photo",
+      "name": "string",
+      "phone": "string",
+      "verified": true,
+      "editable": true
+    },
+    "ProfileMenuRow": {
+      "icon": "asset",
+      "title": "string",
+      "description": "string",
+      "destination": "route"
+    },
+    "ProfileMotivationBanner": {
+      "title": "string",
+      "subtitle": "string",
+      "actionable": true
+    },
+    "BottomNavigation": {
+      "items": [
+        "Home",
+        "Bookings",
+        "Camera",
+        "Rates",
+        "Profile"
+      ],
+      "active": "Profile"
+    }
+  },
+  "production_rules": {
+    "identity": "user data must be runtime; do not flatten name/phone into artwork",
+    "navigation": "every row is an accessible tappable target",
+    "icons": "pair icon + text; don't rely on green tint alone",
+    "language": "row content must support longer localized strings"
+  }
+}

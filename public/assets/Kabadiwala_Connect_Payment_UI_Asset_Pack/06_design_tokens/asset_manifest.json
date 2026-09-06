@@ -1,0 +1,29 @@
+{
+  "source": "payment_cash.png",
+  "source_dimensions": [
+    853,
+    1844
+  ],
+  "production_note": "Use crops as references; rebuild UI as native/vector components.",
+  "assets": [
+    "05_web_exports/payment_web_reference_board.jpg",
+    "04_app_exports/payment_screen_3x_reference.jpg",
+    "04_app_exports/payment_screen_900px.jpg",
+    "06_design_tokens/payment_design_tokens.json",
+    "03_state_icons/edit_reference.jpg",
+    "03_state_icons/success_check_circle.jpg",
+    "03_state_icons/back_arrow.jpg",
+    "03_state_icons/forward_arrow_reference.jpg",
+    "03_state_icons/cash_received_check_circle.jpg",
+    "02_payment_icons/upi_qr_illustration.jpg",
+    "02_payment_icons/cash_money_illustration.jpg",
+    "00_reference/payment_cash_exact_reference.png",
+    "00_reference/payment_screen_without_bezel.jpg",
+    "01_ui_artwork/payment_amount_card.jpg",
+    "01_ui_artwork/cash_received_banner.jpg",
+    "01_ui_artwork/upi_payment_option.jpg",
+    "01_ui_artwork/confirm_payment_cta.jpg",
+    "01_ui_artwork/payment_amount_row.jpg",
+    "01_ui_artwork/cash_payment_option.jpg"
+  ]
+}

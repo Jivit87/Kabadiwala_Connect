@@ -1,0 +1,133 @@
+{
+  "source": {
+    "file": "tab_history.png",
+    "dimensions_px": [
+      853,
+      1844
+    ],
+    "note": "Screenshot-derived reference; production UI should be rebuilt as native components."
+  },
+  "colors": {
+    "brand.primary": "#0B6B4A",
+    "brand.primary_dark": "#07583D",
+    "surface.page": "#FCFBF7",
+    "surface.card": "#FFFFFF",
+    "surface.selected": "#DFF3E8",
+    "surface.summary": "#EDF8F3",
+    "border.default": "#E0E2E1",
+    "text.primary": "#101A24",
+    "text.secondary": "#6E7782",
+    "status.completed": "#0B8F39",
+    "status.handed_over": "#E67E00",
+    "status.listed": "#1D62D8",
+    "status.disputed": "#E33D2F"
+  },
+  "typography": {
+    "font_primary": "Inter",
+    "font_devanagari": "Noto Sans Devanagari",
+    "screen_title": {
+      "size_px": 58,
+      "weight": 700
+    },
+    "screen_subtitle": {
+      "size_px": 28,
+      "weight": 400
+    },
+    "tab": {
+      "size_px": 25,
+      "weight": 400
+    },
+    "transaction_title": {
+      "size_px": 28,
+      "weight": 700
+    },
+    "transaction_meta": {
+      "size_px": 21,
+      "weight": 400
+    },
+    "amount": {
+      "size_px": 34,
+      "weight": 700
+    },
+    "status": {
+      "size_px": 20,
+      "weight": 400
+    },
+    "summary_title": {
+      "size_px": 25,
+      "weight": 700
+    },
+    "nav_label": {
+      "size_px": 18,
+      "weight": 400
+    }
+  },
+  "shape": {
+    "transaction_card_radius_px": 20,
+    "filter_tab_radius_px": 20,
+    "summary_radius_px": 18,
+    "icon_container_radius_px": 999
+  },
+  "spacing": {
+    "page_padding_px": 24,
+    "section_gap_px": 24,
+    "transaction_row_gap_px": 12,
+    "touch_target_min_px": 48,
+    "bottom_nav_height_px": 150
+  },
+  "components": {
+    "HistoryHeader": {
+      "properties": [
+        "title",
+        "subtitle",
+        "filterAction"
+      ]
+    },
+    "HistoryFilterTabs": {
+      "properties": [
+        "selectedTab"
+      ],
+      "values": [
+        "all",
+        "active",
+        "completed"
+      ]
+    },
+    "TransactionCard": {
+      "properties": [
+        "thumbnail",
+        "material",
+        "weight",
+        "date",
+        "lotId",
+        "amount",
+        "status",
+        "clickable"
+      ],
+      "states": [
+        "completed",
+        "handed-over",
+        "listed",
+        "disputed"
+      ]
+    },
+    "EarningsSummaryCard": {
+      "properties": [
+        "title",
+        "subtitle",
+        "destination"
+      ]
+    },
+    "BottomNavigation": {
+      "properties": [
+        "activeTab"
+      ]
+    }
+  },
+  "status_semantics": {
+    "completed": "green",
+    "handed-over": "orange",
+    "listed": "blue",
+    "disputed": "red"
+  }
+}

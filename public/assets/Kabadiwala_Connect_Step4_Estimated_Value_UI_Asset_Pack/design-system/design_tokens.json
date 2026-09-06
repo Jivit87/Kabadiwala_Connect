@@ -1,0 +1,100 @@
+{
+  "source": {
+    "file": "step4_estimated_value.png",
+    "dimensions_px": [
+      853,
+      1844
+    ],
+    "note": "Screenshot-derived reference; production UI should be rebuilt natively."
+  },
+  "colors": {
+    "brand.primary": "#0B6B4A",
+    "brand.primary_dark": "#07583D",
+    "surface.page": "#FCFBF7",
+    "surface.card": "#FFFFFF",
+    "surface.value": "#EDF7F1",
+    "surface.rate": "#FFF7E4",
+    "border.default": "#E0E2E1",
+    "text.primary": "#101A24",
+    "text.secondary": "#6E7782",
+    "accent.rate": "#F4D98C",
+    "workflow.inactive": "#DDE0DE"
+  },
+  "typography": {
+    "font_primary": "Inter",
+    "font_devanagari": "Noto Sans Devanagari",
+    "screen_title": {
+      "size_px": 38,
+      "weight": 700
+    },
+    "step_label": {
+      "size_px": 24,
+      "weight": 400
+    },
+    "section_title": {
+      "size_px": 34,
+      "weight": 700
+    },
+    "value_amount": {
+      "size_px": 86,
+      "weight": 700
+    },
+    "value_basis": {
+      "size_px": 24,
+      "weight": 400
+    },
+    "button": {
+      "size_px": 30,
+      "weight": 700
+    },
+    "helper": {
+      "size_px": 21,
+      "weight": 400
+    }
+  },
+  "shape": {
+    "card_radius_px": 22,
+    "button_radius_px": 18,
+    "icon_radius_px": 10
+  },
+  "spacing": {
+    "page_padding_px": 24,
+    "section_gap_px": 24,
+    "card_gap_px": 16,
+    "touch_target_min_px": 48
+  },
+  "components": {
+    "ValueHero": {
+      "properties": [
+        "material",
+        "estimatedValue",
+        "weight",
+        "listenEnabled"
+      ]
+    },
+    "BreakdownCard": {
+      "properties": [
+        "expanded",
+        "formula",
+        "unitPrice"
+      ]
+    },
+    "StreetRateInsight": {
+      "properties": [
+        "deltaAmount",
+        "direction",
+        "message"
+      ]
+    },
+    "PrimaryCTA": {
+      "properties": [
+        "label",
+        "destination"
+      ]
+    }
+  },
+  "data_behavior": {
+    "estimated_value": "computed at runtime from weight \u00d7 applicable price; screenshot values are reference data only",
+    "street_rate_delta": "computed at runtime from current street-rate/reference-price data; do not hard-code screenshot value"
+  }
+}

@@ -6,7 +6,7 @@ import {
   Search, SlidersHorizontal, Award, ChevronLeft, Volume2
 } from 'lucide-react';
 
-export default function HomeView({ t, user, currentLang }) {
+export default function HomeView({ t, user, currentLang, onNavigate }) {
   const [activeTab, setActiveTab] = useState('home'); // 'home' | 'bookings' | 'rates' | 'profile'
   const [selectedLocation, setSelectedLocation] = useState('Rohini, Delhi');
   const [showLocationPicker, setShowLocationPicker] = useState(false);
@@ -17,9 +17,6 @@ export default function HomeView({ t, user, currentLang }) {
   
   // Hero Carousel State
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  // Live price ticker
-  const [tickerIndex, setTickerIndex] = useState(0);
 
   const heroSlides = [
     {
@@ -46,13 +43,6 @@ export default function HomeView({ t, user, currentLang }) {
       image: "/assets/home/icon_sell_scrap.png",
       tag: "Best Rates"
     }
-  ];
-
-  const marketTickers = [
-    "🔥 Copper Wire surged to ₹420/kg in Delhi NCR",
-    "📈 PCB Motherboard Grade A buying at ₹340/kg",
-    "⚡ Lithium-Ion Battery scrap steady at ₹185/kg",
-    "✨ 14.5 kg e-waste recycled by Suresh today"
   ];
 
   const rateList = [
@@ -101,14 +91,6 @@ export default function HomeView({ t, user, currentLang }) {
     return () => clearInterval(slideTimer);
   }, [heroSlides.length]);
 
-  // Live ticker rotation
-  useEffect(() => {
-    const tickerTimer = setInterval(() => {
-      setTickerIndex(prev => (prev + 1) % marketTickers.length);
-    }, 4000);
-    return () => clearInterval(tickerTimer);
-  }, [marketTickers.length]);
-
   // Camera scan simulation trigger
   const handleOpenScanner = () => {
     setCameraActive(true);
@@ -130,14 +112,6 @@ export default function HomeView({ t, user, currentLang }) {
     <div className="home-screen page-fade-enter">
       {/* Scrollable Main Area (Entire screen content scrolls smoothly together) */}
       <div className="home-scroll-container">
-        {/* Live Market Marquee Bar */}
-        <div className="live-ticker-bar">
-          <span className="live-badge">LIVE</span>
-          <div className="ticker-text page-fade-enter" key={tickerIndex}>
-            {marketTickers[tickerIndex]}
-          </div>
-        </div>
-
         {/* Top Banner Header (Deep Forest Green) */}
         <div className="home-header">
           <div className="header-top-row">
@@ -157,14 +131,25 @@ export default function HomeView({ t, user, currentLang }) {
               </div>
             </div>
 
-            <button 
-              className="notif-btn ring-animation" 
-              onClick={() => setActiveModal('notifications')} 
-              aria-label="Notifications"
-            >
-              <Bell size={19} color="#FFFFFF" />
-              <span className="notif-dot pulse-dot" />
-            </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <button 
+                className="header-sync-pill"
+                onClick={() => onNavigate ? onNavigate('sync_status') : null}
+                title="Offline Sync Status"
+              >
+                <span className="pulsing-dot amber" style={{ width: '6px', height: '6px' }} />
+                <span>Sync (3)</span>
+              </button>
+
+              <button 
+                className="notif-btn ring-animation" 
+                onClick={() => setActiveModal('notifications')} 
+                aria-label="Notifications"
+              >
+                <Bell size={19} color="#FFFFFF" />
+                <span className="notif-dot pulse-dot" />
+              </button>
+            </div>
           </div>
 
           {/* Greeting & Location Selector */}
@@ -253,7 +238,7 @@ export default function HomeView({ t, user, currentLang }) {
               {/* Card 1: Sell Scrap */}
               <div 
                 className="grid-card card-mint hover-lift" 
-                onClick={() => setActiveModal('pickup')}
+                onClick={() => onNavigate ? onNavigate('step1_photo') : setActiveModal('pickup')}
               >
                 <div className="card-header-icon">
                   <img 
@@ -295,7 +280,7 @@ export default function HomeView({ t, user, currentLang }) {
               {/* Card 3: My Earnings */}
               <div 
                 className="grid-card card-warm hover-lift" 
-                onClick={() => setActiveModal('earnings')}
+                onClick={() => onNavigate ? onNavigate('my_earnings') : setActiveModal('earnings')}
               >
                 <div className="card-header-icon">
                   <img 
@@ -316,7 +301,7 @@ export default function HomeView({ t, user, currentLang }) {
               {/* Card 4: View History */}
               <div 
                 className="grid-card card-mint hover-lift" 
-                onClick={() => setActiveModal('history')}
+                onClick={() => onNavigate ? onNavigate('history') : setActiveModal('history')}
               >
                 <div className="card-header-icon">
                   <img 
@@ -338,7 +323,7 @@ export default function HomeView({ t, user, currentLang }) {
             {/* Full-Width Market Trends Card */}
             <div 
               className="market-trends-card hover-lift" 
-              onClick={() => setActiveTab('rates')}
+              onClick={() => onNavigate ? onNavigate('todays_prices') : setActiveTab('rates')}
             >
               <div className="mt-left">
                 <div className="mt-icon-wrapper pulse-soft">
@@ -690,7 +675,7 @@ export default function HomeView({ t, user, currentLang }) {
 
         <button 
           className={`nav-tab ${activeTab === 'bookings' ? 'active' : ''}`}
-          onClick={() => setActiveTab('bookings')}
+          onClick={() => onNavigate ? onNavigate('book_pickup') : setActiveTab('bookings')}
         >
           <Calendar size={22} className="tab-icon" />
           <span>Bookings</span>
@@ -699,7 +684,7 @@ export default function HomeView({ t, user, currentLang }) {
         {/* Center Floating Camera FAB with Pulse Ring */}
         <button 
           className="nav-fab-camera camera-glow-btn" 
-          onClick={handleOpenScanner}
+          onClick={() => onNavigate ? onNavigate('step1_photo') : handleOpenScanner()}
           aria-label="Camera Scan"
         >
           <Camera size={26} color="#FFFFFF" />
@@ -708,7 +693,7 @@ export default function HomeView({ t, user, currentLang }) {
 
         <button 
           className={`nav-tab ${activeTab === 'rates' ? 'active' : ''}`}
-          onClick={() => setActiveTab('rates')}
+          onClick={() => onNavigate ? onNavigate('todays_prices') : setActiveTab('rates')}
         >
           <Tag size={22} className="tab-icon" />
           <span>Rates</span>
@@ -716,7 +701,7 @@ export default function HomeView({ t, user, currentLang }) {
 
         <button 
           className={`nav-tab ${activeTab === 'profile' ? 'active' : ''}`}
-          onClick={() => setActiveTab('profile')}
+          onClick={() => onNavigate ? onNavigate('profile') : setActiveTab('profile')}
         >
           <User size={22} className="tab-icon" />
           <span>Profile</span>
