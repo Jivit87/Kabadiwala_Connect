@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Check, Minus, Plus, Bluetooth, ChevronRight, ArrowRight, RefreshCw, CheckCircle2 } from 'lucide-react';
+import { haptics } from '../../utils/haptics';
 
 export default function Step3Weight({ 
   t, 
@@ -18,28 +19,33 @@ export default function Step3Weight({
   const categoryImage = categoryData?.categoryImage || '/assets/Kabadiwala_Connect_Step3_Weight_UI_Asset_Pack/app/illustrations/pcb_selected_category_reference.png';
 
   const handleMinus = () => {
+    haptics.tapTick();
     setWeight(prev => Math.max(0.5, parseFloat((prev - 0.5).toFixed(1))));
     setSelectedQuick(null);
   };
 
   const handlePlus = () => {
+    haptics.tapTick();
     setWeight(prev => parseFloat((prev + 0.5).toFixed(1)));
     setSelectedQuick(null);
   };
 
   const handleQuickSelect = (val) => {
+    haptics.tapTick();
     setWeight(val);
     setSelectedQuick(val);
   };
 
   const handleConnectScale = () => {
     if (isScaleConnected) return;
+    haptics.tapTick();
     setIsScaleConnecting(true);
     setTimeout(() => {
       setIsScaleConnecting(false);
       setIsScaleConnected(true);
       setWeight(4.8);
       setSelectedQuick(null);
+      haptics.successChime();
     }, 1200);
   };
 

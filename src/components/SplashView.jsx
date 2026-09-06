@@ -88,6 +88,8 @@ export default function SplashView({ t, onNext }) {
           height: 100%;
           justify-content: space-between;
           background-color: var(--surface-warm);
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
         }
 
         .splash-header {
@@ -100,7 +102,7 @@ export default function SplashView({ t, onNext }) {
         }
 
         .brand-logo-img {
-          height: 90px;
+          height: clamp(60px, 12vh, 90px);
           max-width: 85%;
           object-fit: contain;
         }
@@ -111,13 +113,15 @@ export default function SplashView({ t, onNext }) {
           justify-content: center;
           align-items: center;
           margin-bottom: 8px;
+          flex: 1 1 auto;
+          min-height: 0;
         }
 
         .hero-illustration-img {
           width: 100%;
           max-width: 320px;
           height: auto;
-          max-height: 220px;
+          max-height: clamp(140px, 28vh, 220px);
           object-fit: contain;
         }
 
@@ -127,23 +131,24 @@ export default function SplashView({ t, onNext }) {
           flex-direction: column;
           align-items: center;
           text-align: center;
+          flex-shrink: 0;
         }
 
         .splash-headline {
-          font-size: 24px;
+          font-size: clamp(20px, 5.5vw, 24px);
           font-weight: 800;
           color: var(--brand-deep-green);
           margin-bottom: 6px;
           letter-spacing: -0.3px;
-          white-space: nowrap;
+          line-height: 1.25;
         }
 
         .splash-subheadline {
-          font-size: 13.5px;
+          font-size: clamp(12px, 3.5vw, 13.5px);
           color: var(--text-secondary);
           max-width: 320px;
           line-height: 1.45;
-          margin-bottom: 20px;
+          margin-bottom: 16px;
         }
 
         .splash-cta-btn {
@@ -158,7 +163,7 @@ export default function SplashView({ t, onNext }) {
           font-size: 17px;
           font-weight: 700;
           color: #FFFFFF;
-          margin-bottom: 22px;
+          margin-bottom: 18px;
           box-shadow: 0 6px 16px rgba(28, 82, 45, 0.25);
         }
 

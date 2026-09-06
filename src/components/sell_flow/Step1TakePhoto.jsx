@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { ArrowLeft, Zap, ZapOff, Image as ImageIcon, Camera, Lightbulb } from 'lucide-react';
+import { haptics } from '../../utils/haptics';
 
 export default function Step1TakePhoto({ t, onNext, onBack }) {
   const [flashMode, setFlashMode] = useState(false);
@@ -16,6 +17,7 @@ export default function Step1TakePhoto({ t, onNext, onBack }) {
   ];
 
   const handleCapture = () => {
+    haptics.cameraShutter();
     setIsCapturing(true);
     setTimeout(() => {
       setIsCapturing(false);
@@ -30,6 +32,7 @@ export default function Step1TakePhoto({ t, onNext, onBack }) {
   };
 
   const handleGalleryClick = () => {
+    haptics.tapTick();
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }

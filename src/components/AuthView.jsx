@@ -176,6 +176,8 @@ export default function AuthView({ t, onSkip, onAuthenticated, onBack }) {
           padding: 16px 20px 20px 20px;
           height: 100%;
           background-color: var(--surface-warm);
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
         }
 
         .auth-header {

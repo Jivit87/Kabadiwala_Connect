@@ -4,6 +4,7 @@ import {
   ChevronRight, ArrowUpRight, ArrowDownRight, Minus, 
   Info, Home, Calendar, Camera, Tag, User, X
 } from 'lucide-react';
+import { haptics } from '../../utils/haptics';
 
 export default function TodaysPricesView({ 
   t, 
@@ -79,19 +80,10 @@ export default function TodaysPricesView({
   ];
 
   const handleSpeakPrices = () => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      setIsPlayingAudio(true);
-      const text = `Today's scrap rates in ${currentLocation}: PCB is 128 rupees per kilogram, Cables and wires are 72 rupees, Car Battery is 62 rupees, LCD Display is 42 rupees, and Motor magnet is 95 rupees per kilogram.`;
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.95;
-      utterance.onend = () => setIsPlayingAudio(false);
-      utterance.onerror = () => setIsPlayingAudio(false);
-      window.speechSynthesis.speak(utterance);
-    } else {
-      setIsPlayingAudio(true);
-      setTimeout(() => setIsPlayingAudio(false), 2000);
-    }
+    haptics.tapTick();
+    setIsPlayingAudio(true);
+    const text = `Today's scrap rates in ${currentLocation}: PCB is 128 rupees per kg, Cables are 72 rupees, Car Battery is 62 rupees, LCD Display is 42 rupees, and Motor magnet is 95 rupees per kg.`;
+    haptics.speak(text, 'en', () => setIsPlayingAudio(true), () => setIsPlayingAudio(false));
   };
 
   return (

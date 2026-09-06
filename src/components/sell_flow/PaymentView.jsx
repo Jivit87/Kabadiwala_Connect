@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Check, Share2, ArrowRight, Banknote, QrCode } from 'lucide-react';
+import { haptics } from '../../utils/haptics';
 
 export default function PaymentView({ 
   t, 
@@ -16,6 +17,7 @@ export default function PaymentView({
   const buyerName = sellFlowData?.buyer?.name || 'GreenCycle Recycling';
 
   const handleShare = () => {
+    haptics.tapTick();
     if (navigator.share) {
       navigator.share({
         title: 'Kabadiwala Connect Payment Request',
@@ -29,6 +31,7 @@ export default function PaymentView({
   };
 
   const handleConfirm = () => {
+    haptics.successChime();
     if (onNext) {
       onNext({
         paymentMode,

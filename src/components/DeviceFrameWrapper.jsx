@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Smartphone, Monitor, Layers, Wifi } from 'lucide-react';
+import { Smartphone, Monitor, Layers, Wifi, BatteryCharging } from 'lucide-react';
+import { haptics } from '../utils/haptics';
 
 const SCREEN_ORDER = ['splash', 'language', 'auth', 'location', 'notification', 'home', 'book_pickup', 'step1_photo', 'step1_hazardous_battery_detected', 'step2_category', 'safety_tips', 'step3_weight', 'step4_value', 'step5_buyer', 'payment', 'receipt', 'todays_prices', 'my_earnings', 'history', 'sync_status', 'profile'];
 
@@ -19,30 +20,40 @@ function StatusBar({ light, background }) {
     return `${h}:${m.toString().padStart(2, '0')}`;
   }
 
-  const iconColor = light ? '#FFFFFF' : 'var(--brand-dark-text)';
+  const iconColor = light ? '#FFFFFF' : '#101A24';
 
   return (
     <div
       className={`status-bar ${light ? 'status-bar-light' : 'status-bar-dark'}`}
       style={{ background }}
     >
-      <span className="time-display">{time}</span>
-      <div className="dynamic-island" />
+      <div className="status-bar-left">
+        <span className="time-display">{time}</span>
+        <span className="carrier-badge">Jio 5G</span>
+      </div>
+
+      <div className="dynamic-island">
+        <div className="island-camera-dot" />
+      </div>
+
       <div className="status-bar-icons">
         {/* Cellular signal bars */}
-        <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
-          <rect x="0" y="7" width="3" height="5" rx="0.8" fill={iconColor} />
-          <rect x="5" y="5" width="3" height="7" rx="0.8" fill={iconColor} />
-          <rect x="10" y="3" width="3" height="9" rx="0.8" fill={iconColor} />
-          <rect x="15" y="0" width="3" height="12" rx="0.8" fill={iconColor} />
+        <svg width="17" height="11" viewBox="0 0 17 11" fill="none">
+          <rect x="0" y="7" width="2.8" height="4" rx="0.8" fill={iconColor} />
+          <rect x="4.5" y="5" width="2.8" height="6" rx="0.8" fill={iconColor} />
+          <rect x="9" y="2.5" width="2.8" height="8.5" rx="0.8" fill={iconColor} />
+          <rect x="13.5" y="0" width="2.8" height="11" rx="0.8" fill={iconColor} />
         </svg>
-        <Wifi size={14} color={iconColor} strokeWidth={2.5} />
-        {/* Battery with fill */}
-        <svg width="25" height="13" viewBox="0 0 25 13" fill="none">
-          <rect x="0.75" y="0.75" width="20" height="11.5" rx="3.25" stroke={iconColor} strokeOpacity="0.4" strokeWidth="1" />
-          <rect x="2.25" y="2.25" width="16" height="8.5" rx="2" fill={iconColor} />
-          <path d="M22.5 4.5V8.5C23.3 8.1 23.8 7.3 23.8 6.5C23.8 5.7 23.3 4.9 22.5 4.5Z" fill={iconColor} fillOpacity="0.4" />
-        </svg>
+        <Wifi size={13} color={iconColor} strokeWidth={2.6} />
+        {/* Battery with percentage & level */}
+        <div className="battery-level-wrap">
+          <span className="battery-pct-text">92%</span>
+          <svg width="24" height="12" viewBox="0 0 24 12" fill="none">
+            <rect x="0.75" y="0.75" width="19" height="10.5" rx="3" stroke={iconColor} strokeOpacity="0.4" strokeWidth="1" />
+            <rect x="2" y="2" width="15" height="8" rx="2" fill={light ? '#4ADE80' : '#0B6B4A'} />
+            <path d="M21.5 4V8C22.2 7.6 22.6 6.8 22.6 6C22.6 5.2 22.2 4.4 21.5 4Z" fill={iconColor} fillOpacity="0.4" />
+          </svg>
+        </div>
       </div>
     </div>
   );
@@ -55,9 +66,10 @@ export default function DeviceFrameWrapper({
   setLanguage,
   children
 }) {
-  const [isNarrowViewport, setIsNarrowViewport] = useState(
-    () => typeof window !== 'undefined' && window.innerWidth <= 520
-  );
+  const [isNarrowViewport, setIsNarrowViewport] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth <= 768 || window.matchMedia('(max-width: 768px)').matches;
+  });
   // null = no manual override yet; follow the viewport (real phone → fullscreen automatically)
   const [manualFullScreen, setManualFullScreen] = useState(null);
   const isFullScreen = manualFullScreen !== null ? manualFullScreen : isNarrowViewport;
@@ -65,9 +77,35 @@ export default function DeviceFrameWrapper({
   const prevScreenRef = useRef(currentScreen);
 
   useEffect(() => {
-    const onResize = () => setIsNarrowViewport(window.innerWidth <= 520);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const handleViewportChange = (e) => {
+      const narrow = e.matches !== undefined ? e.matches : window.innerWidth <= 768;
+      setIsNarrowViewport(narrow);
+      // Reset manual override if transitioning across major viewport thresholds
+      if (narrow) {
+        setManualFullScreen(null);
+      }
+    };
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleViewportChange);
+    } else {
+      mediaQuery.addListener(handleViewportChange);
+    }
+
+    window.addEventListener('resize', handleViewportChange);
+    window.addEventListener('orientationchange', handleViewportChange);
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleViewportChange);
+      } else {
+        mediaQuery.removeListener(handleViewportChange);
+      }
+      window.removeEventListener('resize', handleViewportChange);
+      window.removeEventListener('orientationchange', handleViewportChange);
+    };
   }, []);
 
   useEffect(() => {
@@ -284,17 +322,54 @@ export default function DeviceFrameWrapper({
           gap: 6px;
         }
 
+        .status-bar-left {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+        }
+
+        .carrier-badge {
+          font-size: 10px;
+          font-weight: 700;
+          opacity: 0.75;
+          letter-spacing: 0.1px;
+        }
+
+        .battery-level-wrap {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+
+        .battery-pct-text {
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: -0.2px;
+        }
+
         .dynamic-island {
           position: absolute;
           top: 10px;
           left: 50%;
           transform: translateX(-50%);
-          width: 100px;
+          width: 105px;
           height: 26px;
           background: #000000;
           border-radius: 16px;
           z-index: 60;
           pointer-events: none;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          padding-right: 12px;
+        }
+
+        .island-camera-dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: #1A1A1A;
+          border: 1.5px solid #0D0D0D;
         }
 
         .full-screen-mode .dynamic-island {
@@ -383,14 +458,14 @@ export default function DeviceFrameWrapper({
           bottom: max(8px, env(safe-area-inset-bottom, 8px));
         }
 
-        /* Fullscreen mode: hide prototype chrome, let the app fill the real viewport */
+        /* Fullscreen mode & Mobile Media Query */
         .fullscreen-active .control-toolbar,
         .fullscreen-active .stepper-nav-bar {
-          display: none;
+          display: none !important;
         }
 
         .fullscreen-active {
-          padding: 0;
+          padding: 0 !important;
         }
 
         .exit-fullscreen-btn {
@@ -416,6 +491,59 @@ export default function DeviceFrameWrapper({
         .exit-fullscreen-btn:hover,
         .exit-fullscreen-btn:active {
           opacity: 1;
+        }
+
+        /* Pure Native Mobile Viewport (<= 768px) */
+        @media (max-width: 768px) {
+          .control-toolbar,
+          .stepper-nav-bar,
+          .exit-fullscreen-btn {
+            display: none !important;
+          }
+
+          .app-viewport-wrapper {
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 100% !important;
+            min-height: 100dvh !important;
+            background-color: var(--surface-warm) !important;
+            justify-content: flex-start !important;
+          }
+
+          .phone-frame {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 100dvh !important;
+            min-height: 100dvh !important;
+            border-radius: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            margin: 0 !important;
+            background: var(--surface-warm) !important;
+          }
+
+          .dynamic-island {
+            display: none !important;
+          }
+
+          .phone-home-indicator {
+            display: none !important;
+          }
+
+          .status-bar {
+            padding-top: env(safe-area-inset-top, 0px) !important;
+            height: calc(44px + env(safe-area-inset-top, 0px)) !important;
+            padding-left: max(16px, env(safe-area-inset-left, 16px)) !important;
+            padding-right: max(16px, env(safe-area-inset-right, 16px)) !important;
+          }
+
+          .screen-container {
+            width: 100% !important;
+            height: 100% !important;
+            flex: 1 !important;
+          }
         }
       `}</style>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Check, Volume2, ChevronDown, ChevronUp, ArrowUp, ArrowRight } from 'lucide-react';
+import { haptics } from '../../utils/haptics';
 
 export default function Step4EstimatedValue({ 
   t, 
@@ -17,22 +18,14 @@ export default function Step4EstimatedValue({
   const streetBonus = 18;
 
   const handleSpeakValue = () => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      setIsPlayingAudio(true);
-      const text = `Your estimated scrap value is ${estimatedTotal} rupees, based on ${weight} kilograms of ${categoryName}. You are getting 18 rupees above street rate.`;
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.95;
-      utterance.onend = () => setIsPlayingAudio(false);
-      utterance.onerror = () => setIsPlayingAudio(false);
-      window.speechSynthesis.speak(utterance);
-    } else {
-      setIsPlayingAudio(true);
-      setTimeout(() => setIsPlayingAudio(false), 2000);
-    }
+    haptics.tapTick();
+    setIsPlayingAudio(true);
+    const text = `Estimated value is ₹${estimatedTotal}, based on ${weight} kg of ${categoryName}. You are getting ₹${streetBonus} above regular street rate.`;
+    haptics.speak(text, 'en', () => setIsPlayingAudio(true), () => setIsPlayingAudio(false));
   };
 
   const handleContinue = () => {
+    haptics.tapTick();
     if (onNext) {
       onNext({
         estimatedTotal,

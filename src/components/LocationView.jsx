@@ -99,6 +99,8 @@ export default function LocationView({ t, onNext, onBack }) {
           padding: 16px 20px 24px 20px;
           height: 100%;
           background-color: var(--surface-warm);
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
         }
 
         .top-nav-bar {

@@ -3,6 +3,7 @@ import {
   ArrowLeft, Volume2, ChevronDown, ChevronRight, 
   ArrowUpRight, FileText, Home, Calendar, Camera, Tag, User, X, CheckCircle2
 } from 'lucide-react';
+import { haptics } from '../../utils/haptics';
 
 export default function MyEarningsView({ 
   t, 
@@ -78,19 +79,10 @@ export default function MyEarningsView({
   ];
 
   const handleSpeakEarnings = () => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      setIsPlayingAudio(true);
-      const text = `Your total earnings this week are 1240 rupees, which is 18 percent higher than last week. Highest earning day was Saturday with 420 rupees.`;
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.95;
-      utterance.onend = () => setIsPlayingAudio(false);
-      utterance.onerror = () => setIsPlayingAudio(false);
-      window.speechSynthesis.speak(utterance);
-    } else {
-      setIsPlayingAudio(true);
-      setTimeout(() => setIsPlayingAudio(false), 2000);
-    }
+    haptics.tapTick();
+    setIsPlayingAudio(true);
+    const text = `Your total earnings this week are ₹1,240, up 18 percent compared to last week. Your peak earning day was Saturday with ₹420.`;
+    haptics.speak(text, 'en', () => setIsPlayingAudio(true), () => setIsPlayingAudio(false));
   };
 
   return (

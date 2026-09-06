@@ -61,6 +61,8 @@ export default function LanguageView({ t, currentLang, setLanguage, onNext, onBa
           padding: 16px 24px 32px 24px;
           height: 100%;
           background-color: var(--surface-warm);
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
         }
 
         .top-nav-bar {

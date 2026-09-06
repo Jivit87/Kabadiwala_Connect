@@ -3,6 +3,7 @@ import {
   X, Volume2, CheckCircle2, XCircle, ChevronLeft, ChevronRight, 
   Flame, Droplets, ShieldAlert, ArrowLeft, ArrowRight, BatteryCharging
 } from 'lucide-react';
+import { haptics } from '../utils/haptics';
 
 export default function SafetyTipsView({
   t,
@@ -52,21 +53,13 @@ export default function SafetyTipsView({
   const currentTip = tips[currentSlide];
 
   const handleSpeak = () => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      setIsPlayingAudio(true);
-      const utterance = new SpeechSynthesisUtterance(currentTip.audioText);
-      utterance.rate = 0.95;
-      utterance.onend = () => setIsPlayingAudio(false);
-      utterance.onerror = () => setIsPlayingAudio(false);
-      window.speechSynthesis.speak(utterance);
-    } else {
-      setIsPlayingAudio(true);
-      setTimeout(() => setIsPlayingAudio(false), 2000);
-    }
+    haptics.tapTick();
+    setIsPlayingAudio(true);
+    haptics.speak(currentTip.audioText, 'en', () => setIsPlayingAudio(true), () => setIsPlayingAudio(false));
   };
 
   const handleNextSlide = () => {
+    haptics.tapTick();
     if (currentSlide < tips.length - 1) {
       setCurrentSlide(currentSlide + 1);
     } else if (onProceed) {
@@ -77,6 +70,7 @@ export default function SafetyTipsView({
   };
 
   const handlePrevSlide = () => {
+    haptics.tapTick();
     if (currentSlide > 0) {
       setCurrentSlide(currentSlide - 1);
     }
