@@ -1,0 +1,54 @@
+{
+  "brand": [
+    "logo_mark_512.png",
+    "logo_mark_192.png",
+    "favicon_64.png",
+    "favicon_32.png"
+  ],
+  "illustration": [
+    "hero_illustration_wide.png"
+  ],
+  "ui_icon_families_to_build_as_svg": {
+    "navigation": [
+      "dashboard",
+      "incoming_lots",
+      "transactions",
+      "recyclers",
+      "prices",
+      "analytics",
+      "settings"
+    ],
+    "lot_management": [
+      "lot",
+      "camera",
+      "weight",
+      "location",
+      "calendar",
+      "quote",
+      "handover",
+      "payment"
+    ],
+    "trust": [
+      "verified",
+      "authorization",
+      "document",
+      "expiry",
+      "shield",
+      "warning"
+    ],
+    "analytics": [
+      "trend_up",
+      "trend_down",
+      "filter",
+      "download",
+      "search"
+    ],
+    "communication": [
+      "phone",
+      "message",
+      "notification",
+      "audio"
+    ]
+  },
+  "rule": "Use a single SVG icon family at 20/24 px for web; do not mix screenshot-ripped icons with production UI icons."
+}
