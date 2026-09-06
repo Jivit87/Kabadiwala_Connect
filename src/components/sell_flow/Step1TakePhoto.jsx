@@ -9,11 +9,11 @@ export default function Step1TakePhoto({ t, onNext, onBack }) {
   const fileInputRef = useRef(null);
 
   const steps = [
-    { num: 1, label: 'Photo', active: true },
-    { num: 2, label: 'Category', active: false },
-    { num: 3, label: 'Weight', active: false },
-    { num: 4, label: 'Value', active: false },
-    { num: 5, label: 'Buyer', active: false }
+    { num: 1, label: t.stepPhoto || 'Photo', active: true },
+    { num: 2, label: t.stepCategory || 'Category', active: false },
+    { num: 3, label: t.stepWeight || 'Weight', active: false },
+    { num: 4, label: t.stepValue || 'Value', active: false },
+    { num: 5, label: t.stepBuyer || 'Buyer', active: false }
   ];
 
   const handleCapture = () => {
@@ -72,8 +72,8 @@ export default function Step1TakePhoto({ t, onNext, onBack }) {
           <ArrowLeft size={22} color="#101A24" strokeWidth={2.2} />
         </button>
         <div className="step-header-text">
-          <h1 className="step-title">Take a photo of your scrap</h1>
-          <p className="step-subtitle">Make sure the item is clearly visible</p>
+          <h1 className="step-title">{t.takePhotoTitle || 'Take a photo of your scrap'}</h1>
+          <p className="step-subtitle">{t.takePhotoSub || 'Make sure the item is clearly visible'}</p>
         </div>
       </div>
 
@@ -114,7 +114,7 @@ export default function Step1TakePhoto({ t, onNext, onBack }) {
           {/* Frosted Glass Overlay Hint */}
           <div className="viewfinder-pill-overlay">
             <Camera size={16} color="#FFFFFF" strokeWidth={2.2} />
-            <span>Position your scrap within the frame</span>
+            <span>{t.positionScrapHint || 'Position your scrap within the frame'}</span>
           </div>
 
           {/* Flash screen overlay during capture */}
@@ -137,8 +137,8 @@ export default function Step1TakePhoto({ t, onNext, onBack }) {
               <ZapOff size={22} color="#101A24" strokeWidth={2.2} />
             )}
           </div>
-          <span className="control-label-title">Flash</span>
-          <span className="control-label-sub">{flashMode ? 'On' : 'Off'}</span>
+          <span className="control-label-title">{t.flashLabel || 'Flash'}</span>
+          <span className="control-label-sub">{flashMode ? (t.flashOn || 'On') : (t.flashOff || 'Off')}</span>
         </button>
 
         {/* Central Shutter Button */}
@@ -159,8 +159,8 @@ export default function Step1TakePhoto({ t, onNext, onBack }) {
           <div className="control-icon-circle">
             <ImageIcon size={22} color="#101A24" strokeWidth={2.2} />
           </div>
-          <span className="control-label-title">Gallery</span>
-          <span className="control-label-sub">Choose from photos</span>
+          <span className="control-label-title">{t.galleryLabel || 'Gallery'}</span>
+          <span className="control-label-sub">{t.gallerySub || 'Choose from photos'}</span>
         </button>
       </div>
 
@@ -170,8 +170,8 @@ export default function Step1TakePhoto({ t, onNext, onBack }) {
           <Lightbulb size={20} color="#FFFFFF" strokeWidth={2.2} />
         </div>
         <div className="tip-text-content">
-          <h4 className="tip-heading">Take a clear photo</h4>
-          <p className="tip-body">Good lighting and a clear view helps get a better price.</p>
+          <h4 className="tip-heading">{t.tipClearPhotoTitle || 'Take a clear photo'}</h4>
+          <p className="tip-body">{t.tipClearPhotoDesc || 'Good lighting and a clear view helps get a better price.'}</p>
         </div>
       </div>
     </div>

@@ -61,7 +61,7 @@ export default function Step5ChooseBuyer({
           <ArrowLeft size={22} color="#101A24" strokeWidth={2.2} />
         </button>
         <div className="step-header-text">
-          <h1 className="step-title">Choose a Buyer</h1>
+          <h1 className="step-title">{t.chooseBuyerTitle || 'Choose a Buyer'}</h1>
         </div>
       </div>
 
@@ -75,7 +75,7 @@ export default function Step5ChooseBuyer({
             <div className="stepper-circle completed">
               <Check size={14} color="#FFFFFF" strokeWidth={3} />
             </div>
-            <span className="stepper-label active-text">Photo</span>
+            <span className="stepper-label active-text">{t.stepPhoto || 'Photo'}</span>
           </div>
 
           {/* Step 2: Category (Done) */}
@@ -83,7 +83,7 @@ export default function Step5ChooseBuyer({
             <div className="stepper-circle completed">
               <Check size={14} color="#FFFFFF" strokeWidth={3} />
             </div>
-            <span className="stepper-label active-text">Category</span>
+            <span className="stepper-label active-text">{t.stepCategory || 'Category'}</span>
           </div>
 
           {/* Step 3: Weight (Done) */}
@@ -91,7 +91,7 @@ export default function Step5ChooseBuyer({
             <div className="stepper-circle completed">
               <Check size={14} color="#FFFFFF" strokeWidth={3} />
             </div>
-            <span className="stepper-label active-text">Weight</span>
+            <span className="stepper-label active-text">{t.stepWeight || 'Weight'}</span>
           </div>
 
           {/* Step 4: Value (Done) */}
@@ -99,7 +99,7 @@ export default function Step5ChooseBuyer({
             <div className="stepper-circle completed">
               <Check size={14} color="#FFFFFF" strokeWidth={3} />
             </div>
-            <span className="stepper-label active-text">Value</span>
+            <span className="stepper-label active-text">{t.stepValue || 'Value'}</span>
           </div>
 
           {/* Step 5: Buyer (Active) */}
@@ -107,15 +107,15 @@ export default function Step5ChooseBuyer({
             <div className="stepper-circle active">
               <span>5</span>
             </div>
-            <span className="stepper-label active-text">Buyer</span>
+            <span className="stepper-label active-text">{t.stepBuyer || 'Buyer'}</span>
           </div>
         </div>
       </div>
 
       {/* Intro Heading */}
       <div className="buyer-intro-header">
-        <h2 className="buyer-intro-title">Best buyers for you</h2>
-        <p className="buyer-intro-sub">Compared by price, distance and reliability.</p>
+        <h2 className="buyer-intro-title">{t.bestBuyersTitle || 'Best buyers for you'}</h2>
+        <p className="buyer-intro-sub">{t.bestBuyersSub || 'Compared by price, distance and reliability.'}</p>
       </div>
 
       {/* Lot Summary Pill */}
@@ -144,7 +144,7 @@ export default function Step5ChooseBuyer({
               {buyer.isBestMatch && (
                 <div className="best-match-badge">
                   <Star size={12} fill="#101A24" color="#101A24" />
-                  <span>BEST MATCH</span>
+                  <span>{t.bestMatchBadge || 'BEST MATCH'}</span>
                 </div>
               )}
 
@@ -157,7 +157,7 @@ export default function Step5ChooseBuyer({
                 <div className="buyer-price-radio-wrap">
                   <div className="buyer-rate-box">
                     <span className="buyer-rate-price">₹{buyer.rate}/kg</span>
-                    {buyer.isBestMatch && <span className="buyer-rate-best-label">Best price</span>}
+                    {buyer.isBestMatch && <span className="buyer-rate-best-label">{t.bestPriceLabel || 'Best price'}</span>}
                   </div>
 
                   <div className={`buyer-radio-circle ${isSelected ? 'checked' : ''}`}>
@@ -177,7 +177,7 @@ export default function Step5ChooseBuyer({
 
                 <div className="meta-item">
                   <ShieldCheck size={13} color="#0B6B4A" strokeWidth={2.4} />
-                  <span className="verified-text">{buyer.verified}</span>
+                  <span className="verified-text">{t.cpcbVerified || buyer.verified}</span>
                 </div>
 
                 <span className="meta-divider">|</span>
@@ -195,13 +195,13 @@ export default function Step5ChooseBuyer({
       {/* Verified Recyclers Trust Banner */}
       <div className="verified-recyclers-trust-banner">
         <ShieldCheck size={16} color="#0B6B4A" strokeWidth={2.4} />
-        <span>All listed buyers are verified recyclers.</span>
+        <span>{t.verifiedRecyclersNotice || 'All listed buyers are verified recyclers.'}</span>
       </div>
 
       {/* Sticky Bottom Action Button */}
       <div className="step-bottom-cta buyer-cta-wrap">
         <div className="selected-buyer-indicator">
-          <span>Selected: </span>
+          <span>{t.selectedLabel || 'Selected:'} </span>
           <strong>{selectedBuyer.name}</strong>
         </div>
 
@@ -209,7 +209,7 @@ export default function Step5ChooseBuyer({
           className="step-primary-cta-btn"
           onClick={handleSelectAndSell}
         >
-          <span>Select & Sell</span>
+          <span>{t.selectAndSellBtn || 'Select & Sell'}</span>
           <ArrowRight size={18} strokeWidth={2.5} />
         </button>
       </div>

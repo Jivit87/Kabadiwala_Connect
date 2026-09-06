@@ -24,10 +24,9 @@ export default function SplashView({ t, onNext }) {
 
       {/* Main Content Section */}
       <div className="splash-content-section">
-        <h1 className="splash-headline">{t.headline}</h1>
+        <h1 className="splash-headline">{t.headline || "Connect. Collect. Recycle."}</h1>
         <p className="splash-subheadline">
-          A smart way to sell e-waste,<br />
-          earn better and build a cleaner future.
+          {t.subheadline || "A smart way to sell e-waste, earn better and build a cleaner future."}
         </p>
 
         {/* Primary CTA */}

@@ -62,19 +62,19 @@ export default function Step3Weight({
     {
       val: 5,
       label: '~ 5 kg',
-      sub: 'Lightly filled',
+      sub: t.lightlyFilled || 'Lightly filled',
       image: '/assets/Kabadiwala_Connect_Step3_Weight_UI_Asset_Pack/app/illustrations/quick_select_5kg_illustration_derived_transparent.png'
     },
     {
       val: 10,
       label: '~ 10 kg',
-      sub: 'Half filled',
+      sub: t.halfFilled || 'Half filled',
       image: '/assets/Kabadiwala_Connect_Step3_Weight_UI_Asset_Pack/app/illustrations/quick_select_10kg_illustration_derived_transparent.png'
     },
     {
       val: 15,
       label: '~ 15 kg',
-      sub: 'Fully filled',
+      sub: t.fullyFilled || 'Fully filled',
       image: '/assets/Kabadiwala_Connect_Step3_Weight_UI_Asset_Pack/app/illustrations/quick_select_15kg_illustration_derived_transparent.png'
     }
   ];
@@ -87,7 +87,7 @@ export default function Step3Weight({
           <ArrowLeft size={22} color="#101A24" strokeWidth={2.2} />
         </button>
         <div className="step-header-text">
-          <h1 className="step-title">Enter Weight</h1>
+          <h1 className="step-title">{t.enterWeightTitle || 'Enter Weight'}</h1>
         </div>
       </div>
 
@@ -101,7 +101,7 @@ export default function Step3Weight({
             <div className="stepper-circle completed">
               <Check size={14} color="#FFFFFF" strokeWidth={3} />
             </div>
-            <span className="stepper-label active-text">Photo</span>
+            <span className="stepper-label active-text">{t.stepPhoto || 'Photo'}</span>
           </div>
 
           {/* Step 2: Category (Done) */}
@@ -109,7 +109,7 @@ export default function Step3Weight({
             <div className="stepper-circle completed">
               <Check size={14} color="#FFFFFF" strokeWidth={3} />
             </div>
-            <span className="stepper-label active-text">Category</span>
+            <span className="stepper-label active-text">{t.stepCategory || 'Category'}</span>
           </div>
 
           {/* Step 3: Weight (Active) */}
@@ -117,7 +117,7 @@ export default function Step3Weight({
             <div className="stepper-circle active">
               <span>3</span>
             </div>
-            <span className="stepper-label active-text">Weight</span>
+            <span className="stepper-label active-text">{t.stepWeight || 'Weight'}</span>
           </div>
 
           {/* Step 4: Value */}
@@ -125,7 +125,7 @@ export default function Step3Weight({
             <div className="stepper-circle">
               <span>4</span>
             </div>
-            <span className="stepper-label">Value</span>
+            <span className="stepper-label">{t.stepValue || 'Value'}</span>
           </div>
 
           {/* Step 5: Buyer */}
@@ -133,7 +133,7 @@ export default function Step3Weight({
             <div className="stepper-circle">
               <span>5</span>
             </div>
-            <span className="stepper-label">Buyer</span>
+            <span className="stepper-label">{t.stepBuyer || 'Buyer'}</span>
           </div>
         </div>
       </div>
@@ -148,7 +148,7 @@ export default function Step3Weight({
           />
         </div>
         <div className="selected-category-info">
-          <span className="selected-category-label">Selected Category</span>
+          <span className="selected-category-label">{t.selectedCategoryLabel || 'Selected Category'}</span>
           <h4 className="selected-category-title">{categoryName}</h4>
         </div>
         <button 
@@ -156,14 +156,14 @@ export default function Step3Weight({
           onClick={onChangeCategory || onBack}
           aria-label="Change Category"
         >
-          Change
+          {t.changeBtn || 'Change'}
         </button>
       </div>
 
       {/* Section Header */}
       <div className="weight-section-header">
-        <h2 className="weight-heading">How much does it weigh?</h2>
-        <p className="weight-subheading">Enter the weight of your scrap</p>
+        <h2 className="weight-heading">{t.howMuchWeigh || 'How much does it weigh?'}</h2>
+        <p className="weight-subheading">{t.enterWeightSub || 'Enter the weight of your scrap'}</p>
       </div>
 
       {/* Weight Stepper Big Card */}
@@ -190,13 +190,13 @@ export default function Step3Weight({
             <Plus size={22} color="#FFFFFF" strokeWidth={3} />
           </button>
         </div>
-        <span className="weight-step-hint">in 0.5 kg steps</span>
+        <span className="weight-step-hint">{t.inStepsHint || 'in 0.5 kg steps'}</span>
       </div>
 
       {/* OR Divider */}
       <div className="or-divider-container">
         <div className="or-line" />
-        <span className="or-pill">OR</span>
+        <span className="or-pill">{t.orDivider || 'OR'}</span>
         <div className="or-line" />
       </div>
 
@@ -216,10 +216,10 @@ export default function Step3Weight({
         </div>
         <div className="scale-info">
           <h4 className="scale-title">
-            {isScaleConnecting ? 'Searching for scale...' : isScaleConnected ? 'Smart Scale Connected' : 'Connect Scale'}
+            {isScaleConnecting ? (t.searchingScale || 'Searching for scale...') : isScaleConnected ? (t.scalePairedTitle || 'Smart Scale Connected') : (t.connectScaleTitle || 'Connect Scale')}
           </h4>
           <p className="scale-subtitle">
-            {isScaleConnecting ? 'Pairing via Bluetooth...' : isScaleConnected ? 'Live auto-synced: 4.8 kg' : 'Pair your Bluetooth weighing scale'}
+            {isScaleConnecting ? (t.pairingBluetooth || 'Pairing via Bluetooth...') : isScaleConnected ? (t.scalePairedLive || 'Live auto-synced: 4.8 kg') : (t.connectScaleSub || 'Pair your Bluetooth weighing scale')}
           </p>
         </div>
         <ChevronRight size={18} color="#6E7782" />
@@ -227,8 +227,8 @@ export default function Step3Weight({
 
       {/* Quick Select Section */}
       <div className="quick-select-header">
-        <h3 className="quick-select-title">Quick Select</h3>
-        <span className="quick-select-hint">Choose an approximate weight</span>
+        <h3 className="quick-select-title">{t.quickSelectTitle || 'Quick Select'}</h3>
+        <span className="quick-select-hint">{t.quickSelectSub || 'Choose an approximate weight'}</span>
       </div>
 
       <div className="quick-select-grid">
@@ -260,7 +260,7 @@ export default function Step3Weight({
           className="step-primary-cta-btn"
           onClick={handleContinue}
         >
-          <span>Continue</span>
+          <span>{t.continueBtn || 'Continue'}</span>
           <ArrowRight size={18} strokeWidth={2.5} />
         </button>
       </div>

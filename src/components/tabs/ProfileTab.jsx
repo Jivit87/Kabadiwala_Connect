@@ -37,13 +37,13 @@ export default function ProfileTab({
       onUpdateUser({ name: editName, phone: editPhone });
     }
     setActiveModal(null);
-    showToast('Profile details updated!');
+    showToast(t.profileSaved || 'Profile details updated!');
   };
 
   const handleSaveAddress = (e) => {
     e?.preventDefault();
     setActiveModal(null);
-    showToast('Pickup address saved successfully!');
+    showToast(t.addressSaved || 'Pickup address saved successfully!');
   };
 
   const showToast = (msg) => {
@@ -55,50 +55,50 @@ export default function ProfileTab({
     {
       id: 'profile_details',
       icon: User,
-      title: 'Profile Details',
-      subtitle: 'View and update your personal details',
+      title: t.profileDetails || 'Profile Details',
+      subtitle: t.profileDetailsDesc || 'View and update your personal details',
       action: () => setActiveModal('edit_profile')
     },
     {
       id: 'address',
       icon: MapPin,
-      title: 'Address',
-      subtitle: 'Manage your delivery and pickup address',
+      title: t.address || 'Address',
+      subtitle: t.addressDesc || 'Manage your delivery and pickup address',
       action: () => setActiveModal('address')
     },
     {
       id: 'language',
       icon: Globe,
-      title: 'Language',
-      subtitle: 'Choose your preferred language (English / हिंदी)',
+      title: t.language || 'Language',
+      subtitle: t.languageDesc || 'Choose your preferred language',
       action: () => onNavigateTab ? onNavigateTab('language') : null
     },
     {
       id: 'sync_details',
       icon: RefreshCw,
-      title: 'Sync Details',
-      subtitle: 'Sync your data across devices',
+      title: t.syncDetails || 'Sync Details',
+      subtitle: t.syncDetailsDesc || 'Sync your data across devices',
       action: () => onNavigateTab ? onNavigateTab('sync_status') : null
     },
     {
       id: 'safety_hazards',
       icon: ShieldAlert,
-      title: 'Safety & Hazards',
-      subtitle: 'Learn about safety guidelines for e-waste',
+      title: t.safetyHazards || 'Safety & Hazards',
+      subtitle: t.safetyHazardsDesc || 'Learn about safety guidelines for e-waste',
       action: () => onNavigateTab ? onNavigateTab('safety_tips') : null
     },
     {
       id: 'app_settings',
       icon: Settings,
-      title: 'App Settings',
-      subtitle: 'Notifications, sound effects and privacy',
+      title: t.appSettings || 'App Settings',
+      subtitle: t.appSettingsDesc || 'Notifications, sound effects and privacy',
       action: () => setActiveModal('settings')
     },
     {
       id: 'help_support',
       icon: HelpCircle,
-      title: 'Help & Support',
-      subtitle: 'Get help or contact our 24/7 team',
+      title: t.helpSupport || 'Help & Support',
+      subtitle: t.helpSupportDesc || 'Get help or contact our 24/7 team',
       action: () => setActiveModal('help')
     }
   ];
@@ -193,7 +193,7 @@ export default function ProfileTab({
         <div className="profile-modal-backdrop" onClick={() => setActiveModal(null)}>
           <div className="profile-modal-sheet" onClick={(e) => e.stopPropagation()}>
             <div className="modal-sheet-header">
-              <h3>Edit Profile</h3>
+              <h3>{t.editProfile || 'Edit Profile'}</h3>
               <button className="modal-close-btn" onClick={() => setActiveModal(null)}>
                 <X size={18} color="#6B7280" />
               </button>
@@ -201,19 +201,19 @@ export default function ProfileTab({
 
             <form onSubmit={handleSaveProfile} className="profile-form">
               <div className="form-group">
-                <label>Full Name</label>
+                <label>{t.name || 'Full Name'}</label>
                 <input 
                   type="text" 
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
-                  placeholder="Enter your name"
+                  placeholder={t.name || 'Enter your name'}
                   className="profile-input"
                   required
                 />
               </div>
 
               <div className="form-group">
-                <label>Mobile Number</label>
+                <label>{t.phone || 'Mobile Number'}</label>
                 <input 
                   type="tel" 
                   value={editPhone}
@@ -226,7 +226,7 @@ export default function ProfileTab({
               </div>
 
               <button type="submit" className="profile-save-btn">
-                Save Changes
+                {t.save || 'Save Changes'}
               </button>
             </form>
           </div>
@@ -238,7 +238,7 @@ export default function ProfileTab({
         <div className="profile-modal-backdrop" onClick={() => setActiveModal(null)}>
           <div className="profile-modal-sheet" onClick={(e) => e.stopPropagation()}>
             <div className="modal-sheet-header">
-              <h3>Manage Pickup Address</h3>
+              <h3>{t.address || 'Manage Pickup Address'}</h3>
               <button className="modal-close-btn" onClick={() => setActiveModal(null)}>
                 <X size={18} color="#6B7280" />
               </button>
@@ -246,7 +246,7 @@ export default function ProfileTab({
 
             <form onSubmit={handleSaveAddress} className="profile-form">
               <div className="form-group">
-                <label>Shop / House & Street</label>
+                <label>{t.addressLine1 || 'Shop / House & Street'}</label>
                 <input 
                   type="text" 
                   value={address.line1}
@@ -258,7 +258,7 @@ export default function ProfileTab({
               </div>
 
               <div className="form-group">
-                <label>Area / Locality & City</label>
+                <label>{t.area || 'Area / Locality & City'}</label>
                 <input 
                   type="text" 
                   value={address.area}
@@ -270,7 +270,7 @@ export default function ProfileTab({
               </div>
 
               <div className="form-group">
-                <label>Pincode</label>
+                <label>{t.pincode || 'Pincode'}</label>
                 <input 
                   type="text" 
                   value={address.pincode}
@@ -283,7 +283,7 @@ export default function ProfileTab({
               </div>
 
               <button type="submit" className="profile-save-btn">
-                Save Address
+                {t.save || 'Save Address'}
               </button>
             </form>
           </div>
@@ -295,7 +295,7 @@ export default function ProfileTab({
         <div className="profile-modal-backdrop" onClick={() => setActiveModal(null)}>
           <div className="profile-modal-sheet" onClick={(e) => e.stopPropagation()}>
             <div className="modal-sheet-header">
-              <h3>App Settings</h3>
+              <h3>{t.appSettings || 'App Settings'}</h3>
               <button className="modal-close-btn" onClick={() => setActiveModal(null)}>
                 <X size={18} color="#6B7280" />
               </button>
@@ -304,7 +304,7 @@ export default function ProfileTab({
             <div className="settings-toggles-list">
               <div className="setting-toggle-row">
                 <div className="st-info">
-                  <strong>Push Notifications</strong>
+                  <strong>{t.notifications || 'Push Notifications'}</strong>
                   <span>Get real-time pickup & rate alerts</span>
                 </div>
                 <input 
@@ -317,7 +317,7 @@ export default function ProfileTab({
 
               <div className="setting-toggle-row">
                 <div className="st-info">
-                  <strong>Audio Voice Guidance</strong>
+                  <strong>{t.audioGuidance || 'Audio Voice Guidance'}</strong>
                   <span>Read aloud scrap valuations and safety tips</span>
                 </div>
                 <input 
@@ -330,7 +330,7 @@ export default function ProfileTab({
 
               <div className="setting-toggle-row">
                 <div className="st-info">
-                  <strong>Auto-Sync on Wi-Fi</strong>
+                  <strong>{t.autoSync || 'Auto-Sync on Wi-Fi'}</strong>
                   <span>Sync offline lots automatically</span>
                 </div>
                 <input 
@@ -343,7 +343,7 @@ export default function ProfileTab({
 
               <div className="setting-toggle-row">
                 <div className="st-info">
-                  <strong>SMS Transaction Receipts</strong>
+                  <strong>{t.smsAlerts || 'SMS Transaction Receipts'}</strong>
                   <span>Receive bill receipts via SMS link</span>
                 </div>
                 <input 

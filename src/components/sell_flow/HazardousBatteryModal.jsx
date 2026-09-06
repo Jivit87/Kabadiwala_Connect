@@ -4,6 +4,7 @@ import {
 } from 'lucide-react';
 
 export default function HazardousBatteryModal({
+  t = {},
   onClose,
   onGotIt
 }) {
@@ -24,9 +25,9 @@ export default function HazardousBatteryModal({
             <AlertTriangle size={28} color="#EA580C" strokeWidth={2.4} />
           </div>
           
-          <h2 className="hazard-title">Hazardous item detected</h2>
+          <h2 className="hazard-title">{t.hazardDetectedTitle || 'Hazardous item detected'}</h2>
           <p className="hazard-sub">
-            A battery has been detected in your image. Please follow the safety guidelines below.
+            {t.hazardDetectedDesc || 'A battery has been detected in your image. Please follow the safety guidelines below.'}
           </p>
         </div>
 
@@ -40,9 +41,9 @@ export default function HazardousBatteryModal({
             />
           </div>
           <div className="detected-item-info">
-            <span className="detected-item-tag">Detected item</span>
-            <h3 className="detected-item-name">Lithium-ion Battery</h3>
-            <p className="detected-item-desc">Common in laptops, phones and other electronics.</p>
+            <span className="detected-item-tag">{t.detectedItemTag || 'Detected item'}</span>
+            <h3 className="detected-item-name">{t.lithiumIonBattery || 'Lithium-ion Battery'}</h3>
+            <p className="detected-item-desc">{t.lithiumBatteryDesc || 'Common in laptops, phones and other electronics.'}</p>
           </div>
         </div>
 
@@ -52,7 +53,7 @@ export default function HazardousBatteryModal({
             <div className="shield-icon-circle">
               <Shield size={14} color="#EA580C" strokeWidth={2.5} />
             </div>
-            <h4 className="guidelines-heading">Safety guidelines</h4>
+            <h4 className="guidelines-heading">{t.safetyGuidelinesTitle || 'Safety guidelines'}</h4>
           </div>
 
           <div className="guidelines-list">
@@ -62,8 +63,8 @@ export default function HazardousBatteryModal({
                 <Flame size={16} color="#EA580C" strokeWidth={2.4} />
               </div>
               <div className="guideline-text">
-                <strong>Keep away from heat and fire</strong>
-                <p>Do not expose batteries to high temperatures.</p>
+                <strong>{t.keepAwayHeatTitle || 'Keep away from heat and fire'}</strong>
+                <p>{t.keepAwayHeatDesc || 'Do not expose batteries to high temperatures.'}</p>
               </div>
             </div>
 
@@ -73,8 +74,8 @@ export default function HazardousBatteryModal({
                 <Hand size={16} color="#D97706" strokeWidth={2.4} />
               </div>
               <div className="guideline-text">
-                <strong>Handle with care</strong>
-                <p>Avoid handling damaged or leaking batteries directly.</p>
+                <strong>{t.handleCareTitle || 'Handle with care'}</strong>
+                <p>{t.handleCareDesc || 'Avoid handling damaged or leaking batteries directly.'}</p>
               </div>
             </div>
 
@@ -84,8 +85,8 @@ export default function HazardousBatteryModal({
                 <Recycle size={16} color="#0B6B4A" strokeWidth={2.4} />
               </div>
               <div className="guideline-text">
-                <strong>Dispose safely</strong>
-                <p>Keep in a dry place and hand over to a verified collector or recycler.</p>
+                <strong>{t.disposeSafelyTitle || 'Dispose safely'}</strong>
+                <p>{t.disposeSafelyDesc || 'Keep in a dry place and hand over to a verified collector or recycler.'}</p>
               </div>
             </div>
           </div>
@@ -96,7 +97,7 @@ export default function HazardousBatteryModal({
           className="hazard-primary-cta"
           onClick={onGotIt || onClose}
         >
-          <span>Got it</span>
+          <span>{t.gotItBtn || 'Got it'}</span>
         </button>
       </div>
     </div>

@@ -14,49 +14,49 @@ export default function Step2Category({
   const categories = [
     {
       id: 'crt_tv',
-      title: 'CRT TV',
+      title: t.itemCrtTv || 'CRT TV',
       sub: null,
       image: '/assets/Kabadiwala_Connect_Step2_Category_UI_Asset_Pack/01_category_illustrations/crt_tv_reference.jpg'
     },
     {
       id: 'lcd_display',
-      title: 'LCD Display',
+      title: t.itemLcd || 'LCD Display',
       sub: null,
       image: '/assets/Kabadiwala_Connect_Step2_Category_UI_Asset_Pack/01_category_illustrations/lcd_display_reference.jpg'
     },
     {
       id: 'pcb',
-      title: 'PCB',
-      sub: '(Circuit Board)',
+      title: t.itemPcb || 'PCB',
+      sub: t.itemPcbSub ? `(${t.itemPcbSub})` : '(Circuit Board)',
       image: '/assets/Kabadiwala_Connect_Step2_Category_UI_Asset_Pack/01_category_illustrations/pcb_circuit_board_reference.jpg'
     },
     {
       id: 'cables_wires',
-      title: 'Cables & Wires',
+      title: t.itemCables || 'Cables & Wires',
       sub: null,
       image: '/assets/Kabadiwala_Connect_Step2_Category_UI_Asset_Pack/01_category_illustrations/cables_wires_reference.jpg'
     },
     {
       id: 'car_battery',
-      title: 'Car Battery',
+      title: t.itemBattery || 'Car Battery',
       sub: null,
       image: '/assets/Kabadiwala_Connect_Step2_Category_UI_Asset_Pack/01_category_illustrations/car_battery_reference.jpg'
     },
     {
       id: 'motor_magnet',
-      title: 'Motor & Magnet',
+      title: t.itemMotor || 'Motor & Magnet',
       sub: null,
       image: '/assets/Kabadiwala_Connect_Step2_Category_UI_Asset_Pack/01_category_illustrations/motor_magnet_reference.jpg'
     },
     {
       id: 'mixed_plastic',
-      title: 'Mixed Plastic',
+      title: t.itemPlastic || 'Mixed Plastic',
       sub: null,
       image: '/assets/Kabadiwala_Connect_Step2_Category_UI_Asset_Pack/01_category_illustrations/mixed_plastic_reference.jpg'
     },
     {
       id: 'other_items',
-      title: 'Other Items',
+      title: t.itemOther || 'Other Items',
       sub: null,
       image: '/assets/Kabadiwala_Connect_Step2_Category_UI_Asset_Pack/01_category_illustrations/other_items_reference.jpg'
     }
@@ -67,7 +67,7 @@ export default function Step2Category({
     if (onNext) {
       onNext({
         categoryId: selectedCategory,
-        categoryName: selectedItem ? selectedItem.title : 'PCB',
+        categoryName: selectedItem ? selectedItem.title : (t.itemPcb || 'PCB'),
         categorySub: selectedItem?.sub || '',
         categoryImage: selectedItem?.image
       });
@@ -84,7 +84,7 @@ export default function Step2Category({
           <ArrowLeft size={22} color="#101A24" strokeWidth={2.2} />
         </button>
         <div className="step-header-text">
-          <h1 className="step-title">Select Scrap Category</h1>
+          <h1 className="step-title">{t.selectCategoryTitle || 'Select Scrap Category'}</h1>
         </div>
       </div>
 
@@ -98,7 +98,7 @@ export default function Step2Category({
             <div className="stepper-circle completed">
               <Check size={14} color="#FFFFFF" strokeWidth={3} />
             </div>
-            <span className="stepper-label active-text">Photo</span>
+            <span className="stepper-label active-text">{t.stepPhoto || 'Photo'}</span>
           </div>
 
           {/* Step 2: Category (Active) */}
@@ -106,7 +106,7 @@ export default function Step2Category({
             <div className="stepper-circle active">
               <span>2</span>
             </div>
-            <span className="stepper-label active-text">Category</span>
+            <span className="stepper-label active-text">{t.stepCategory || 'Category'}</span>
           </div>
 
           {/* Step 3: Weight */}
@@ -114,7 +114,7 @@ export default function Step2Category({
             <div className="stepper-circle">
               <span>3</span>
             </div>
-            <span className="stepper-label">Weight</span>
+            <span className="stepper-label">{t.stepWeight || 'Weight'}</span>
           </div>
 
           {/* Step 4: Value */}
@@ -122,7 +122,7 @@ export default function Step2Category({
             <div className="stepper-circle">
               <span>4</span>
             </div>
-            <span className="stepper-label">Value</span>
+            <span className="stepper-label">{t.stepValue || 'Value'}</span>
           </div>
 
           {/* Step 5: Buyer */}
@@ -130,7 +130,7 @@ export default function Step2Category({
             <div className="stepper-circle">
               <span>5</span>
             </div>
-            <span className="stepper-label">Buyer</span>
+            <span className="stepper-label">{t.stepBuyer || 'Buyer'}</span>
           </div>
         </div>
       </div>
@@ -143,22 +143,22 @@ export default function Step2Category({
           className="captured-thumbnail-img"
         />
         <div className="captured-info">
-          <h4 className="captured-title">Captured Photo</h4>
-          <p className="captured-subtitle">Tap to retake or change</p>
+          <h4 className="captured-title">{t.capturedPhotoTitle || 'Captured Photo'}</h4>
+          <p className="captured-subtitle">{t.capturedPhotoSub || 'Tap to retake or change'}</p>
         </div>
         <button 
           className="change-photo-btn"
           onClick={onRetake || onBack}
           aria-label="Change Photo"
         >
-          Change
+          {t.changeBtn || 'Change'}
         </button>
       </div>
 
       {/* Section Title */}
       <div className="category-section-header">
-        <h2 className="category-heading">What type of scrap is this?</h2>
-        <p className="category-subheading">Choose the closest category.</p>
+        <h2 className="category-heading">{t.whatTypeOfScrap || 'What type of scrap is this?'}</h2>
+        <p className="category-subheading">{t.chooseClosestCategory || 'Choose the closest category.'}</p>
       </div>
 
       {/* 8-Card Category Grid */}
@@ -198,7 +198,7 @@ export default function Step2Category({
           className="step-primary-cta-btn"
           onClick={handleContinue}
         >
-          <span>Next</span>
+          <span>{t.nextBtn || 'Next'}</span>
           <ArrowRight size={18} strokeWidth={2.5} />
         </button>
       </div>

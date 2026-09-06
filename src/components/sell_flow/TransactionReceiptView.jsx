@@ -5,7 +5,7 @@ import {
 } from 'lucide-react';
 
 export default function TransactionReceiptView({
-  t,
+  t = {},
   sellFlowData,
   onDone,
   onBack
@@ -17,8 +17,10 @@ export default function TransactionReceiptView({
   const weight = sellFlowData?.weight || 2.5;
   const rate = sellFlowData?.ratePerKg || 125;
   const total = sellFlowData?.estimatedTotal || Math.round(weight * rate);
-  const paymentMethod = sellFlowData?.paymentMethod === 'cash' ? 'Cash Settlement' : 'UPI (Google Pay)';
-  const categoryName = sellFlowData?.categoryName || 'PCB / Circuit Board';
+  const paymentMethod = sellFlowData?.paymentMethod === 'cash' 
+    ? (t.cashMethod ? `${t.cashMethod}` : 'Cash Settlement') 
+    : (t.upiMethod ? `${t.upiMethod} (Google Pay)` : 'UPI (Google Pay)');
+  const categoryName = sellFlowData?.categoryName || (t.itemPcb || 'PCB / Circuit Board');
   const buyerName = sellFlowData?.buyer?.name || 'Rohini Recycling Centre';
 
   const handleDownload = () => {
@@ -50,7 +52,7 @@ export default function TransactionReceiptView({
         <button className="receipt-back-btn" onClick={onBack || onDone} aria-label="Go Back">
           <ArrowLeft size={22} color="#101A24" strokeWidth={2.2} />
         </button>
-        <h1 className="receipt-screen-title">Receipt</h1>
+        <h1 className="receipt-screen-title">{t.receiptTitle || 'Receipt'}</h1>
         <div style={{ width: 36 }} />
       </div>
 
@@ -69,12 +71,12 @@ export default function TransactionReceiptView({
               <div className="receipt-brand-text">
                 <strong className="receipt-k2-title">K2</strong>
                 <span className="receipt-k2-name">Kabadiwala Connect</span>
-                <span className="receipt-k2-tagline">Recycle Today, Better Tomorrow</span>
+                <span className="receipt-k2-tagline">{t.recycleTagline || 'Recycle Today, Better Tomorrow'}</span>
               </div>
             </div>
 
             <div className="receipt-meta-box">
-              <span className="receipt-type-label">Transaction Receipt</span>
+              <span className="receipt-type-label">{t.transactionReceipt || 'Transaction Receipt'}</span>
               <span className="receipt-txn-num">#TXN7843291</span>
               <span className="receipt-txn-date">12 Mar 2025, 10:24 AM</span>
             </div>
@@ -84,7 +86,7 @@ export default function TransactionReceiptView({
 
           {/* Paid To Section */}
           <div className="receipt-section">
-            <span className="receipt-section-label">Paid To</span>
+            <span className="receipt-section-label">{t.paidToSection || 'Paid To'}</span>
             <div className="receipt-buyer-card">
               <div className="buyer-store-icon">
                 <Store size={20} color="#0B6B4A" strokeWidth={2.2} />
@@ -98,12 +100,12 @@ export default function TransactionReceiptView({
                   </div>
                 </div>
                 <span className="buyer-loc-text">Kabadiwala • Rohini, Delhi</span>
-                <span className="buyer-auth-code">Authorization ID: K2-DL-0891</span>
+                <span className="buyer-auth-code">{t.authIdPrefix || 'Authorization ID:'} K2-DL-0891</span>
               </div>
 
               <div className="govt-auth-pill">
                 <span className="govt-icon">🏛️</span>
-                <span>Government Authorised</span>
+                <span>{t.govtAuthorisedPill || 'Government Authorised'}</span>
               </div>
             </div>
           </div>
@@ -112,7 +114,7 @@ export default function TransactionReceiptView({
 
           {/* Item Details Section */}
           <div className="receipt-section">
-            <span className="receipt-section-label">Item Details</span>
+            <span className="receipt-section-label">{t.itemDetailsSection || 'Item Details'}</span>
             <div className="receipt-item-row">
               <div className="receipt-item-thumb-box">
                 <img 
@@ -124,26 +126,26 @@ export default function TransactionReceiptView({
 
               <div className="receipt-item-info-col">
                 <h4 className="receipt-item-heading">{categoryName}</h4>
-                <p className="receipt-item-sub">Cables, chargers, circuit board etc.</p>
+                <p className="receipt-item-sub">{t.itemDetailsSub || 'Cables, chargers, circuit board etc.'}</p>
               </div>
             </div>
 
             {/* 3-Column Valuation Stats */}
             <div className="receipt-stats-grid">
               <div className="receipt-stat-col">
-                <span className="stat-label">Total Weight</span>
+                <span className="stat-label">{t.totalWeightStat || 'Total Weight'}</span>
                 <span className="stat-value">
                   <span className="weight-bag-icon">⚖️</span> {weight} kg
                 </span>
               </div>
 
               <div className="receipt-stat-col">
-                <span className="stat-label">Rate (per kg)</span>
+                <span className="stat-label">{t.ratePerKgStat || 'Rate (per kg)'}</span>
                 <span className="stat-value">₹ {rate}</span>
               </div>
 
               <div className="receipt-stat-col total-col">
-                <span className="stat-label">Total Amount</span>
+                <span className="stat-label">{t.totalAmountStat || 'Total Amount'}</span>
                 <span className="stat-value total-highlight">₹ {total}</span>
               </div>
             </div>
@@ -153,23 +155,23 @@ export default function TransactionReceiptView({
 
           {/* Payment Details Section */}
           <div className="receipt-section">
-            <span className="receipt-section-label">Payment Details</span>
+            <span className="receipt-section-label">{t.paymentDetailsSection || 'Payment Details'}</span>
             <div className="payment-specs-list">
               <div className="payment-spec-row">
-                <span className="ps-label">Payment Method</span>
+                <span className="ps-label">{t.paymentMethodLabel || 'Payment Method'}</span>
                 <strong className="ps-val">{paymentMethod}</strong>
               </div>
 
               <div className="payment-spec-row">
-                <span className="ps-label">Transaction ID</span>
+                <span className="ps-label">{t.transactionIdLabel || 'Transaction ID'}</span>
                 <strong className="ps-val">TXN7843291</strong>
               </div>
 
               <div className="payment-spec-row">
-                <span className="ps-label">Payment Status</span>
+                <span className="ps-label">{t.paymentStatusLabel || 'Payment Status'}</span>
                 <div className="payment-received-tag">
                   <span className="received-dot" />
-                  <span>Payment Received</span>
+                  <span>{t.paymentReceivedStatus || 'Payment Received'}</span>
                 </div>
               </div>
             </div>
@@ -181,14 +183,14 @@ export default function TransactionReceiptView({
               <Leaf size={18} color="#FFFFFF" strokeWidth={2.4} />
             </div>
             <div className="impact-banner-text">
-              <h4 className="impact-title">Thank you for recycling!</h4>
-              <p className="impact-sub">You're helping build a cleaner, greener India.</p>
+              <h4 className="impact-title">{t.thankYouRecyclingTitle || 'Thank you for recycling!'}</h4>
+              <p className="impact-sub">{t.cleanerIndiaSub || "You're helping build a cleaner, greener India."}</p>
             </div>
           </div>
 
           {/* Footer Motto */}
           <div className="receipt-footer-motto">
-            <span>KEEP RECYCLING, KEEP MAKING A DIFFERENCE</span>
+            <span>{t.keepRecyclingMotto || 'KEEP RECYCLING, KEEP MAKING A DIFFERENCE'}</span>
           </div>
         </div>
 
@@ -200,7 +202,7 @@ export default function TransactionReceiptView({
             disabled={downloading}
           >
             <Download size={18} color="#0B6B4A" strokeWidth={2.2} />
-            <span>{downloadSuccess ? 'Downloaded!' : downloading ? 'Generating...' : 'Download Bill'}</span>
+            <span>{downloadSuccess ? (t.downloadedBtn || 'Downloaded!') : downloading ? (t.generatingBtn || 'Generating...') : (t.downloadBillBtn || 'Download Bill')}</span>
           </button>
 
           <button 
@@ -208,7 +210,7 @@ export default function TransactionReceiptView({
             onClick={handleShare}
           >
             <Share2 size={18} color="#0B6B4A" strokeWidth={2.2} />
-            <span>{shared ? 'Copied Link!' : 'Share Bill'}</span>
+            <span>{shared ? (t.copiedLinkBtn || 'Copied Link!') : (t.shareBillBtn || 'Share Bill')}</span>
           </button>
         </div>
 
@@ -217,7 +219,7 @@ export default function TransactionReceiptView({
           className="receipt-done-primary-btn"
           onClick={onDone}
         >
-          <span>Done</span>
+          <span>{t.doneBtn || t.done || 'Done'}</span>
         </button>
       </div>
     </div>

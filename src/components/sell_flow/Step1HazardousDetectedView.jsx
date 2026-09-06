@@ -10,11 +10,11 @@ export default function Step1HazardousDetectedView({
   const [showModal, setShowModal] = useState(true);
 
   const steps = [
-    { num: 1, label: 'Photo', active: true },
-    { num: 2, label: 'Category', active: false },
-    { num: 3, label: 'Weight', active: false },
-    { num: 4, label: 'Value', active: false },
-    { num: 5, label: 'Buyer', active: false }
+    { num: 1, label: t.stepPhoto || 'Photo', active: true },
+    { num: 2, label: t.stepCategory || 'Category', active: false },
+    { num: 3, label: t.stepWeight || 'Weight', active: false },
+    { num: 4, label: t.stepValue || 'Value', active: false },
+    { num: 5, label: t.stepBuyer || 'Buyer', active: false }
   ];
 
   const handleGotIt = () => {
@@ -25,7 +25,7 @@ export default function Step1HazardousDetectedView({
         hazardDetected: true,
         detectedType: 'Lithium-ion Battery',
         categoryId: 'car_battery',
-        categoryName: 'Car Battery'
+        categoryName: t.itemBattery || 'Car Battery'
       });
     }
   };
@@ -38,8 +38,8 @@ export default function Step1HazardousDetectedView({
           <ArrowLeft size={22} color="#101A24" strokeWidth={2.2} />
         </button>
         <div className="step-header-text">
-          <h1 className="step-title">Take a photo of your scrap</h1>
-          <p className="step-subtitle">Make sure the item is clearly visible</p>
+          <h1 className="step-title">{t.takePhotoTitle || 'Take a photo of your scrap'}</h1>
+          <p className="step-subtitle">{t.takePhotoSub || 'Make sure the item is clearly visible'}</p>
         </div>
       </div>
 
@@ -77,7 +77,7 @@ export default function Step1HazardousDetectedView({
           <div className="ai-detected-bounding-box">
             <div className="ai-battery-detected-badge">
               <span className="battery-icon-dot">🔋</span>
-              <span>Battery detected</span>
+              <span>{t.batteryDetectedBanner || 'Battery detected'}</span>
             </div>
           </div>
         </div>
@@ -89,8 +89,8 @@ export default function Step1HazardousDetectedView({
           <div className="control-icon-circle">
             <Zap size={22} color="#101A24" strokeWidth={2.2} />
           </div>
-          <span className="control-label-title">Flash</span>
-          <span className="control-label-sub">Off</span>
+          <span className="control-label-title">{t.flashLabel || 'Flash'}</span>
+          <span className="control-label-sub">{t.flashOff || 'Off'}</span>
         </button>
 
         <button 
@@ -105,14 +105,15 @@ export default function Step1HazardousDetectedView({
           <div className="control-icon-circle">
             <ImageIcon size={22} color="#101A24" strokeWidth={2.2} />
           </div>
-          <span className="control-label-title">Gallery</span>
-          <span className="control-label-sub">Choose from photos</span>
+          <span className="control-label-title">{t.galleryLabel || 'Gallery'}</span>
+          <span className="control-label-sub">{t.gallerySub || 'Choose from photos'}</span>
         </button>
       </div>
 
       {/* Hazardous Battery Bottom Sheet Modal */}
       {showModal && (
         <HazardousBatteryModal
+          t={t}
           onClose={() => setShowModal(false)}
           onGotIt={handleGotIt}
         />

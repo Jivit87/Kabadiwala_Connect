@@ -124,7 +124,7 @@ export default function HistoryTab({
         {/* Header Row */}
         <div className="history-header-row">
           <div className="history-title-block">
-            <h1 className="history-main-title">History</h1>
+            <h1 className="history-main-title">{t.historyTitle || 'History'}</h1>
             <p className="history-main-sub">Track all your scrap collection lots</p>
           </div>
 
@@ -143,7 +143,7 @@ export default function HistoryTab({
             className={`history-segment-pill ${activeSegment === 'all' ? 'active' : ''}`}
             onClick={() => setActiveSegment('all')}
           >
-            <span>All</span>
+            <span>{t.historyAll || 'All'}</span>
             <span className="segment-count">{allLots.length}</span>
           </button>
 
@@ -151,7 +151,7 @@ export default function HistoryTab({
             className={`history-segment-pill ${activeSegment === 'active' ? 'active' : ''}`}
             onClick={() => setActiveSegment('active')}
           >
-            <span>Active</span>
+            <span>{t.historyActive || 'Active'}</span>
             <span className="segment-count">
               {allLots.filter(l => l.statusType === 'active').length}
             </span>
@@ -161,7 +161,7 @@ export default function HistoryTab({
             className={`history-segment-pill ${activeSegment === 'completed' ? 'active' : ''}`}
             onClick={() => setActiveSegment('completed')}
           >
-            <span>Completed</span>
+            <span>{t.historyCompleted || 'Completed'}</span>
             <span className="segment-count">
               {allLots.filter(l => l.statusType === 'completed').length}
             </span>
@@ -244,31 +244,31 @@ export default function HistoryTab({
             {/* Receipt Summary Box */}
             <div className="history-receipt-box">
               <div className="receipt-row">
-                <span>Category:</span>
+                <span>{t.scrapCategories || 'Category'}:</span>
                 <strong>{selectedLotDetail.category}</strong>
               </div>
               <div className="receipt-row">
-                <span>Weight Collected:</span>
+                <span>{t.weight || 'Weight Collected'}:</span>
                 <strong>{selectedLotDetail.weight}</strong>
               </div>
               <div className="receipt-row">
-                <span>Unit Rate:</span>
+                <span>{t.rate || 'Unit Rate'}:</span>
                 <strong>{selectedLotDetail.rate}</strong>
               </div>
               <div className="receipt-row">
-                <span>Assigned Recycler:</span>
+                <span>{t.buyer || 'Assigned Recycler'}:</span>
                 <strong>{selectedLotDetail.buyer}</strong>
               </div>
               <div className="receipt-row">
-                <span>Payment Mode:</span>
+                <span>{t.paymentMode || 'Payment Mode'}:</span>
                 <strong>{selectedLotDetail.settlementMode}</strong>
               </div>
               <div className="receipt-row highlight-row">
-                <span>Total Payout:</span>
+                <span>{t.totalAmount || 'Total Payout'}:</span>
                 <strong className="receipt-payout-amount">₹{selectedLotDetail.amount}</strong>
               </div>
               <div className="receipt-status-row">
-                <span>Current Status:</span>
+                <span>{t.status || 'Current Status'}:</span>
                 <div className={`lot-status-pill ${selectedLotDetail.statusCode}`}>
                   {getStatusIcon(selectedLotDetail.statusCode)}
                   <span>{selectedLotDetail.status}</span>

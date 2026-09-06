@@ -6,7 +6,8 @@ import {
 import { haptics } from '../utils/haptics';
 
 export default function SafetyTipsView({
-  t,
+  t = {},
+  currentLang = 'en',
   onClose,
   onProceed,
   onBack
@@ -14,39 +15,58 @@ export default function SafetyTipsView({
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
+  const getAudioText = (id) => {
+    if (id === 1) {
+      if (currentLang === 'hi') return 'सुरक्षा सुझाव। बैटरियों को गर्मी से दूर रखें। पिकअप तक उन्हें ठंडी और सूखी जगह पर रखें।';
+      if (currentLang === 'mr') return 'सुरक्षा टीप। बॅटरी उष्णतेपासून दूर ठेवा. पिकअप होईपर्यंत त्यांना थंड आणि कोरड्या जागी ठेवा.';
+      return 'A quick safety tip. Please keep batteries away from heat. Store them in a cool, dry place until pickup.';
+    }
+    if (id === 2) {
+      if (currentLang === 'hi') return 'एसिड संपर्क से बचें। बैटरी टर्मिनल को सीधा और सूखा रखें और किसी भी लीक को छूने से बचें।';
+      if (currentLang === 'mr') return 'अ‍ॅसिड संपर्कापासून बचाव करा. बॅटरी टर्मिनल्स सरळ आणि कोरडे ठेवा.';
+      return 'Prevent acid contact. Keep battery terminals upright and avoid touching any leaked fluids.';
+    }
+    if (id === 3) {
+      if (currentLang === 'hi') return 'सुरक्षित रीसाइक्लिंग सुनिश्चित करें। बैटरियां केवल CPCB अधिकृत रीसाइक्लर को सौंपें।';
+      if (currentLang === 'mr') return 'सुरक्षित पुनर्वापर सुनिश्चित करा. बॅटरी केवळ अधिकृत रीसायकलिंग भागीदारांनाच द्या.';
+      return 'Ensure safe handover. Only give batteries to verified certified recycling partners.';
+    }
+    return '';
+  };
+
   const tips = [
     {
       id: 1,
-      badge: 'Battery Detected',
-      title: 'A quick safety tip',
-      subtitle: 'Before handing over your battery',
-      tipHeading: 'Keep batteries away from heat',
-      tipBody: 'Store them in a cool, dry place until pickup. Never expose lithium or lead-acid batteries to direct sunlight or open fire.',
-      dos: 'Cool & dry indoor area',
-      donts: 'Direct heat & flames',
-      audioText: 'A quick safety tip. Please keep batteries away from heat. Store them in a cool, dry place until pickup.'
+      badge: t.batteryDetectedBanner || 'Battery Detected',
+      title: t.safetyTipsHeading || 'A quick safety tip',
+      subtitle: t.beforeHandoverSub || 'Before handing over your battery',
+      tipHeading: t.keepAwayHeatHeading || 'Keep batteries away from heat',
+      tipBody: t.keepAwayHeatBody || 'Store them in a cool, dry place until pickup. Never expose lithium or lead-acid batteries to direct sunlight or open fire.',
+      dos: t.coolDryArea || 'Cool & dry indoor area',
+      donts: t.directHeatFlames || 'Direct heat & flames',
+      audioText: getAudioText(1)
     },
     {
       id: 2,
-      badge: 'Leakage Prevention',
-      title: 'Prevent acid contact',
-      subtitle: 'Keep terminals upright and dry',
-      tipHeading: 'Check for terminal leaks or cracks',
-      tipBody: 'Place battery in an upright position. If liquid is present on casing, avoid skin contact and keep away from paper scrap.',
-      dos: 'Upright orientation',
-      donts: 'Tilted or upside down',
-      audioText: 'Prevent acid contact. Keep battery terminals upright and avoid touching any leaked fluids.'
+      badge: t.leakPreventionTitle || 'Leakage Prevention',
+      title: t.leakPreventionTitle || 'Prevent acid contact',
+      subtitle: t.leakPreventionSub || 'Keep terminals upright and dry',
+      tipHeading: t.checkTerminalHeading || 'Check for terminal leaks or cracks',
+      tipBody: t.checkTerminalBody || 'Place battery in an upright position. If liquid is present on casing, avoid skin contact and keep away from paper scrap.',
+      dos: t.uprightOrientation || 'Upright orientation',
+      donts: t.tiltedUpsideDown || 'Tilted or upside down',
+      audioText: getAudioText(2)
     },
     {
       id: 3,
-      badge: 'Safe Handover',
-      title: 'Certified Recycling',
-      subtitle: 'Government authorized handler pickup',
-      tipHeading: 'Hand over only to verified recyclers',
-      tipBody: 'Your assigned buyer GreenCycle has CPCB certified battery handling protocol and calibrated weight scales.',
-      dos: 'CPCB Certified Buyer',
-      donts: 'Informal burning or dumping',
-      audioText: 'Ensure safe handover. Only give batteries to verified certified recycling partners.'
+      badge: t.certifiedRecyclingTitle || 'Safe Handover',
+      title: t.certifiedRecyclingTitle || 'Certified Recycling',
+      subtitle: t.govtAuthHandlerSub || 'Government authorized handler pickup',
+      tipHeading: t.handOverVerifiedHeading || 'Hand over only to verified recyclers',
+      tipBody: t.handOverVerifiedBody || 'Your assigned buyer GreenCycle has CPCB certified battery handling protocol and calibrated weight scales.',
+      dos: t.cpcbBuyer || 'CPCB Certified Buyer',
+      donts: t.informalBurning || 'Informal burning or dumping',
+      audioText: getAudioText(3)
     }
   ];
 
@@ -55,7 +75,7 @@ export default function SafetyTipsView({
   const handleSpeak = () => {
     haptics.tapTick();
     setIsPlayingAudio(true);
-    haptics.speak(currentTip.audioText, 'en', () => setIsPlayingAudio(true), () => setIsPlayingAudio(false));
+    haptics.speak(currentTip.audioText, currentLang, () => setIsPlayingAudio(true), () => setIsPlayingAudio(false));
   };
 
   const handleNextSlide = () => {
@@ -131,7 +151,7 @@ export default function SafetyTipsView({
               aria-label="Listen to safety advice"
             >
               <Volume2 size={16} color="#D97706" strokeWidth={2.4} />
-              <span>Listen</span>
+              <span>{t.listenBtn || 'Listen'}</span>
             </button>
           </div>
 
@@ -168,7 +188,7 @@ export default function SafetyTipsView({
             className="safety-primary-btn"
             onClick={handleNextSlide}
           >
-            <span>{currentSlide === tips.length - 1 ? 'Got it' : 'Next Tip'}</span>
+            <span>{currentSlide === tips.length - 1 ? (t.gotItSafetyBtn || 'Got it') : (t.nextTipBtn || 'Next Tip')}</span>
             <ArrowRight size={18} color="#FFFFFF" strokeWidth={2.4} />
           </button>
 
@@ -176,7 +196,7 @@ export default function SafetyTipsView({
             className="safety-secondary-btn"
             onClick={onClose || onBack}
           >
-            <span>Remind me later</span>
+            <span>{t.remindMeLaterBtn || 'Remind me later'}</span>
           </button>
         </div>
       </div>

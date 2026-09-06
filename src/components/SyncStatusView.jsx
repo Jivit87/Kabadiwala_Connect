@@ -85,8 +85,8 @@ export default function SyncStatusView({
         {/* Header Row */}
         <div className="sync-header-row">
           <div className="sync-title-block">
-            <h1 className="sync-main-title">Sync Status</h1>
-            <p className="sync-main-sub">Offline storage & automatic cloud sync</p>
+            <h1 className="sync-main-title">{t.syncTitle || 'Sync Status'}</h1>
+            <p className="sync-main-sub">{t.syncSubtitle || 'Offline storage & automatic cloud sync'}</p>
           </div>
 
           <div className={`sync-status-indicator-badge ${syncComplete ? 'synced' : 'offline'}`}>
@@ -95,7 +95,7 @@ export default function SyncStatusView({
             ) : (
               <WifiOff size={16} color="#D97706" strokeWidth={2.5} />
             )}
-            <span>{syncComplete ? 'Online • Synced' : `${pendingCount} Lots Waiting`}</span>
+            <span>{syncComplete ? (t.onlineSynced || 'Online • Synced') : `${pendingCount} ${t.lotsWaitingSync || 'Lots Waiting'}`}</span>
           </div>
         </div>
 
@@ -104,13 +104,13 @@ export default function SyncStatusView({
           <div className="onb-header-row">
             <div className="onb-pill">
               <span className={`pulsing-dot ${syncComplete ? 'green' : 'amber'}`} />
-              <strong>{syncComplete ? 'All Lots Synced' : `Offline • ${pendingCount} lots waiting to sync`}</strong>
+              <strong>{syncComplete ? (t.allLotsSyncedTitle || 'All Lots Synced') : `Offline • ${pendingCount} ${t.lotsWaitingSync || 'lots waiting to sync'}`}</strong>
             </div>
           </div>
           <p className="onb-description">
             {syncComplete 
-              ? 'Great news! All your saved scrap lots have been safely synced to the cloud server.' 
-              : "You're offline, but everything is saved. We'll sync automatically when you're back online."}
+              ? (t.allLotsSyncedDesc || 'Great news! All your saved scrap lots have been safely synced to the cloud server.')
+              : (t.offlineNoticeDesc || "You're offline, but everything is saved. We'll sync automatically when you're back online.")}
           </p>
         </div>
 
@@ -118,7 +118,7 @@ export default function SyncStatusView({
         <div className="sync-queue-card">
           <div className="queue-card-header">
             <h3 className="queue-header-title">
-              {syncComplete ? 'Recently Synced Lots' : `Lots Waiting to Sync (${pendingCount})`}
+              {syncComplete ? (t.recentlySyncedLots || 'Recently Synced Lots') : `${t.lotsWaitingToSync || 'Lots Waiting to Sync'} (${pendingCount})`}
             </h3>
           </div>
 
@@ -145,12 +145,12 @@ export default function SyncStatusView({
                   {lot.synced ? (
                     <div className="queue-status-badge synced">
                       <Check size={11} color="#0B6B4A" strokeWidth={3} />
-                      <span>Synced</span>
+                      <span>{t.syncedBadge || 'Synced'}</span>
                     </div>
                   ) : (
                     <div className="queue-status-badge waiting">
                       <Clock size={11} color="#D97706" strokeWidth={2.5} />
-                      <span>Waiting</span>
+                      <span>{t.waitingBadge || 'Waiting'}</span>
                     </div>
                   )}
                 </div>
@@ -164,10 +164,10 @@ export default function SyncStatusView({
           <div className="safety-card-left">
             <div className="safety-badge-title">
               <ShieldCheck size={16} color="#0B6B4A" strokeWidth={2.5} />
-              <span>Your data is safe</span>
+              <span>{t.dataSafeTitle || 'Your data is safe'}</span>
             </div>
             <p className="safety-desc">
-              All photos, GPS tags, scale readings and buyer settlements are securely cached on this device with end-to-end cryptographic integrity.
+              {t.dataSafeDesc || 'All photos, GPS tags, scale readings and buyer settlements are securely cached on this device with end-to-end cryptographic integrity.'}
             </p>
           </div>
           <div className="safety-card-right">
@@ -187,7 +187,7 @@ export default function SyncStatusView({
             disabled={isSyncing}
           >
             <RotateCw size={18} className={isSyncing ? 'spin-anim' : ''} />
-            <span>{isSyncing ? 'Syncing with Server...' : syncComplete ? 'Sync Again' : 'Try syncing again'}</span>
+            <span>{isSyncing ? (t.syncingWithServer || 'Syncing with Server...') : syncComplete ? (t.syncAgainBtn || 'Sync Again') : (t.trySyncingAgainBtn || 'Try syncing again')}</span>
           </button>
         </div>
       </div>
@@ -211,29 +211,29 @@ export default function SyncStatusView({
 
             <div className="history-receipt-box">
               <div className="receipt-row">
-                <span>Category:</span>
+                <span>{t.scrapCategories || 'Category'}:</span>
                 <strong>{selectedLotDetail.category}</strong>
               </div>
               <div className="receipt-row">
-                <span>Cached Weight:</span>
+                <span>{t.cachedWeightLabel || 'Cached Weight:'}</span>
                 <strong>{selectedLotDetail.weight}</strong>
               </div>
               <div className="receipt-row">
-                <span>Calculated Rate:</span>
+                <span>{t.calculatedRateLabel || 'Calculated Rate:'}</span>
                 <strong>{selectedLotDetail.rate}</strong>
               </div>
               <div className="receipt-row">
-                <span>Assigned Recycler:</span>
+                <span>{t.assignedRecyclerLabel || 'Assigned Recycler:'}</span>
                 <strong>{selectedLotDetail.buyer}</strong>
               </div>
               <div className="receipt-row highlight-row">
-                <span>Pending Payout:</span>
+                <span>{t.pendingPayoutLabel || 'Pending Payout:'}</span>
                 <strong className="receipt-payout-amount">₹{selectedLotDetail.amount}</strong>
               </div>
               <div className="receipt-status-row">
-                <span>Sync Status:</span>
+                <span>{t.syncStatusLabel || 'Sync Status:'}</span>
                 <span style={{ fontWeight: 700, color: selectedLotDetail.synced ? '#0B6B4A' : '#D97706' }}>
-                  {selectedLotDetail.synced ? '● Cloud Verified' : '🕒 Queued in Local Cache'}
+                  {selectedLotDetail.synced ? (t.cloudVerifiedText || '● Cloud Verified') : (t.queuedInCacheText || '🕒 Queued in Local Cache')}
                 </span>
               </div>
             </div>
@@ -242,7 +242,7 @@ export default function SyncStatusView({
               className="step-primary-cta-btn"
               onClick={() => setSelectedLotDetail(null)}
             >
-              <span>Close</span>
+              <span>{t.closeBtn || 'Close'}</span>
             </button>
           </div>
         </div>
@@ -255,7 +255,7 @@ export default function SyncStatusView({
           onClick={() => onNavigateTab ? onNavigateTab('home') : onBack && onBack()}
         >
           <Home size={22} className="tab-icon" />
-          <span>Home</span>
+          <span>{t.tabHome || 'Home'}</span>
         </button>
 
         <button 
@@ -263,7 +263,7 @@ export default function SyncStatusView({
           onClick={() => onNavigateTab ? onNavigateTab('history') : onBack && onBack()}
         >
           <Calendar size={22} className="tab-icon" />
-          <span>History</span>
+          <span>{t.tabBookings || 'Bookings'}</span>
         </button>
 
         {/* Center Floating Camera FAB */}
@@ -273,7 +273,7 @@ export default function SyncStatusView({
           aria-label="Camera Scan"
         >
           <Camera size={26} color="#FFFFFF" />
-          <span className="fab-label">Camera</span>
+          <span className="fab-label">{t.tabCamera || 'Camera'}</span>
         </button>
 
         <button 
@@ -281,7 +281,7 @@ export default function SyncStatusView({
           onClick={() => onNavigateTab ? onNavigateTab('todays_prices') : onBack && onBack()}
         >
           <Tag size={22} className="tab-icon" />
-          <span>Rates</span>
+          <span>{t.tabRates || 'Rates'}</span>
         </button>
 
         <button 
@@ -289,7 +289,7 @@ export default function SyncStatusView({
           onClick={() => onNavigateTab ? onNavigateTab('profile') : onBack && onBack()}
         >
           <User size={22} className="tab-icon" />
-          <span>Profile</span>
+          <span>{t.tabProfile || 'Profile'}</span>
         </button>
       </div>
     </div>

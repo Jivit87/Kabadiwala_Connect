@@ -50,23 +50,23 @@ export default function PaymentView({
           <ArrowLeft size={22} color="#101A24" strokeWidth={2.2} />
         </button>
         <div className="step-header-text">
-          <h1 className="step-title">Payment</h1>
+          <h1 className="step-title">{t.paymentTitle || 'Payment'}</h1>
         </div>
       </div>
 
       {/* Amount To Receive Hero Card */}
       <div className="payment-hero-card">
-        <span className="payment-hero-caption">Amount to receive</span>
+        <span className="payment-hero-caption">{t.amountToReceive || 'Amount to receive'}</span>
         <div className="payment-hero-amount">
           <span className="payment-rupee">₹</span>
           <span className="payment-number">{amount}</span>
         </div>
-        <span className="payment-hero-sub">Full payment</span>
+        <span className="payment-hero-sub">{t.fullPaymentSub || 'Full payment'}</span>
       </div>
 
       {/* Payment Method Selector */}
       <div className="payment-methods-section">
-        <h2 className="payment-methods-heading">How did you receive the payment?</h2>
+        <h2 className="payment-methods-heading">{t.howReceivedPayment || 'How did you receive the payment?'}</h2>
 
         <div className="payment-methods-grid">
           {/* Cash Card */}
@@ -91,7 +91,7 @@ export default function PaymentView({
                 className="method-artwork-img"
               />
             </div>
-            <span className="method-title">Cash</span>
+            <span className="method-title">{t.cashMethod || 'Cash'}</span>
           </div>
 
           {/* UPI Card */}
@@ -116,7 +116,7 @@ export default function PaymentView({
                 className="method-artwork-img"
               />
             </div>
-            <span className="method-title">UPI</span>
+            <span className="method-title">{t.upiMethod || 'UPI'}</span>
           </div>
         </div>
       </div>
@@ -124,8 +124,8 @@ export default function PaymentView({
       {/* Dynamic Payment Details Area */}
       {paymentMode === 'upi' ? (
         <div className="upi-qr-card">
-          <h3 className="upi-qr-title">Scan to pay</h3>
-          <p className="upi-qr-sub">Use any UPI app</p>
+          <h3 className="upi-qr-title">{t.scanToPay || 'Scan to pay'}</h3>
+          <p className="upi-qr-sub">{t.useAnyUpi || 'Use any UPI app'}</p>
 
           <div className="qr-image-container">
             <img 
@@ -146,7 +146,7 @@ export default function PaymentView({
             aria-label="Share payment request"
           >
             <Share2 size={16} color="#0B6B4A" strokeWidth={2.2} />
-            <span>{isSharing ? 'Link Copied!' : 'Share payment request'}</span>
+            <span>{isSharing ? (t.linkCopiedToast || 'Link Copied!') : (t.sharePaymentRequest || 'Share payment request')}</span>
           </button>
         </div>
       ) : (
@@ -155,15 +155,15 @@ export default function PaymentView({
             <Check size={20} color="#FFFFFF" strokeWidth={3} />
           </div>
           <div className="cash-banner-text">
-            <h4 className="cash-banner-title">Cash received</h4>
-            <p className="cash-banner-sub">Mark this after receiving the cash.</p>
+            <h4 className="cash-banner-title">{t.cashReceivedTitle || 'Cash received'}</h4>
+            <p className="cash-banner-sub">{t.markAfterCash || 'Mark this after receiving the cash.'}</p>
           </div>
         </div>
       )}
 
       {/* Payment Amount & Edit Row */}
       <div className="payment-amount-row">
-        <span className="amount-row-label">Payment amount</span>
+        <span className="amount-row-label">{t.paymentAmountLabel || 'Payment amount'}</span>
         <div className="amount-row-right">
           {isEditingAmount ? (
             <input 
@@ -181,7 +181,7 @@ export default function PaymentView({
                 className="amount-edit-btn"
                 onClick={() => setIsEditingAmount(true)}
               >
-                Edit
+                {t.editBtn || 'Edit'}
               </button>
             </>
           )}
@@ -194,10 +194,10 @@ export default function PaymentView({
           className="step-primary-cta-btn"
           onClick={handleConfirm}
         >
-          <span>Confirm Payment</span>
+          <span>{t.confirmPaymentBtn || 'Confirm Payment'}</span>
           <ArrowRight size={18} strokeWidth={2.5} />
         </button>
-        <p className="payment-warning-text">Confirm only after receiving the payment.</p>
+        <p className="payment-warning-text">{t.confirmWarning || 'Confirm only after receiving the payment.'}</p>
       </div>
     </div>
   );

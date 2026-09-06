@@ -20,8 +20,8 @@ export default function BookPickupView({
   const [bookingToast, setBookingToast] = useState(null);
 
   const dates = [
-    { label: 'Today', date: '07 Sep', isAvailable: true },
-    { label: 'Tomorrow', date: '08 Sep', isAvailable: true },
+    { label: t.todayLabel || 'Today', date: '07 Sep', isAvailable: true },
+    { label: t.tomorrowLabel || 'Tomorrow', date: '08 Sep', isAvailable: true },
     { label: 'Wed', date: '09 Sep', isAvailable: true },
     { label: 'Thu', date: '10 Sep', isAvailable: true },
     { label: 'Fri', date: '11 Sep', isAvailable: true }
@@ -108,7 +108,7 @@ export default function BookPickupView({
     <div className="book-pickup-screen page-fade-enter">
       {/* Top Bar */}
       <div className="book-pickup-top-bar">
-        <h1 className="book-pickup-title">Book a Pickup</h1>
+        <h1 className="book-pickup-title">{t.bookingsTitle || 'Book a Pickup'}</h1>
         <button 
           className="location-pill-btn"
           onClick={() => setShowLocationModal(true)}
@@ -128,17 +128,17 @@ export default function BookPickupView({
             <Truck size={20} color="#0B6B4A" strokeWidth={2.4} />
           </div>
           <div className="next-pickup-info">
-            <span className="np-label">Next Scheduled Pickup</span>
+            <span className="np-label">{t.nextScheduledPickup || 'Next Scheduled Pickup'}</span>
             <strong className="np-name">Rakesh Kumar • Today, 4:00 PM</strong>
           </div>
           <div className="np-live-tag">
-            <span>● Confirmed</span>
+            <span>● {t.confirmedStatus || 'Confirmed'}</span>
           </div>
         </div>
 
         {/* Date Selector Row */}
         <div className="date-selector-section">
-          <span className="section-sublabel">Select Pickup Date</span>
+          <span className="section-sublabel">{t.selectPickupDate || 'Select Pickup Date'}</span>
           <div className="date-chips-row">
             {dates.map((d, index) => {
               const isSelected = index === selectedDateIndex;
@@ -159,8 +159,8 @@ export default function BookPickupView({
         {/* Available Kabadiwalas Section */}
         <div className="kabadiwalas-section">
           <div className="section-header-row">
-            <h2 className="section-heading">Available Kabadiwalas</h2>
-            <span className="partners-count-badge">3 nearby</span>
+            <h2 className="section-heading">{t.availableKabadiwalas || 'Available Kabadiwalas'}</h2>
+            <span className="partners-count-badge">3 {t.nearbyBadge || 'nearby'}</span>
           </div>
 
           <div className="kabadiwalas-list">
@@ -180,7 +180,7 @@ export default function BookPickupView({
                         {k.verified && (
                           <div className="k-verified-pill" title="Verified Recycler">
                             <Check size={10} color="#FFFFFF" strokeWidth={3.5} />
-                            <span>Verified</span>
+                            <span>{t.verifiedBadge || 'Verified'}</span>
                           </div>
                         )}
                       </div>
@@ -204,7 +204,7 @@ export default function BookPickupView({
 
                   {/* Middle Row: Accepted Material Tags */}
                   <div className="k-materials-wrap">
-                    <span className="materials-label">Buys:</span>
+                    <span className="materials-label">{t.buysLabel || 'Buys:'}</span>
                     <div className="material-tags-row">
                       {k.materials.map((mat, i) => (
                         <span key={i} className="k-mat-chip">
@@ -221,7 +221,7 @@ export default function BookPickupView({
                       disabled={isBooked}
                       onClick={() => setBookingModalPartner(k)}
                     >
-                      {isBooked ? 'Fully Booked' : 'Book Pickup →'}
+                      {isBooked ? (t.fullyBooked || 'Fully Booked') : (t.bookPickupBtn || 'Book Pickup →')}
                     </button>
                   </div>
                 </div>
@@ -256,7 +256,7 @@ export default function BookPickupView({
 
             <form onSubmit={handleConfirmBooking} className="profile-form" style={{ marginTop: 12 }}>
               <div className="form-group">
-                <label>Select Time Slot</label>
+                <label>{t.selectTimeSlot || 'Select Time Slot'}</label>
                 <div className="time-slots-grid">
                   {timeSlots.map((slot, idx) => (
                     <button
@@ -273,7 +273,7 @@ export default function BookPickupView({
               </div>
 
               <div className="form-group">
-                <label>Scrap Materials for Pickup</label>
+                <label>{t.scrapMaterialsForPickup || 'Scrap Materials for Pickup'}</label>
                 <div className="material-selection-grid">
                   {allAvailableMaterials.map((mat, idx) => {
                     const isSelected = selectedMaterials.includes(mat);
@@ -293,15 +293,15 @@ export default function BookPickupView({
               </div>
 
               <div className="form-group">
-                <label>Pickup Location</label>
+                <label>{t.pickupLocation || 'Pickup Location'}</label>
                 <div className="pickup-loc-preview">
                   <MapPin size={15} color="#0B6B4A" />
-                  <span>{selectedLocation} (Default Saved Address)</span>
+                  <span>{selectedLocation} ({t.defaultSavedAddress || 'Default Saved Address'})</span>
                 </div>
               </div>
 
               <button type="submit" className="profile-save-btn" style={{ marginTop: 10 }}>
-                Confirm Doorstep Pickup
+                {t.confirmDoorstepPickup || 'Confirm Doorstep Pickup'}
               </button>
             </form>
           </div>
@@ -313,7 +313,7 @@ export default function BookPickupView({
         <div className="profile-modal-backdrop" onClick={() => setShowLocationModal(false)}>
           <div className="profile-modal-sheet" onClick={(e) => e.stopPropagation()}>
             <div className="modal-sheet-header">
-              <h3>Select Service Zone</h3>
+              <h3>{t.selectServiceZone || 'Select Service Zone'}</h3>
               <button className="modal-close-btn" onClick={() => setShowLocationModal(false)}>
                 <X size={18} color="#6B7280" />
               </button>
@@ -354,12 +354,12 @@ export default function BookPickupView({
           onClick={() => onNavigateTab ? onNavigateTab('home') : onBack && onBack()}
         >
           <Home size={22} className="tab-icon" />
-          <span>Home</span>
+          <span>{t.tabHome || 'Home'}</span>
         </button>
 
         <button className="nav-tab active">
           <Calendar size={22} className="tab-icon" />
-          <span>Bookings</span>
+          <span>{t.tabBookings || 'Bookings'}</span>
         </button>
 
         {/* Center Floating Camera FAB with Pulse Ring */}
@@ -369,7 +369,7 @@ export default function BookPickupView({
           aria-label="Camera Scan"
         >
           <Camera size={26} color="#FFFFFF" />
-          <span className="fab-label">Camera</span>
+          <span className="fab-label">{t.tabCamera || 'Camera'}</span>
         </button>
 
         <button 
@@ -377,7 +377,7 @@ export default function BookPickupView({
           onClick={() => onNavigateTab ? onNavigateTab('todays_prices') : onBack && onBack()}
         >
           <TrendingUp size={22} className="tab-icon" />
-          <span>Rates</span>
+          <span>{t.tabRates || 'Rates'}</span>
         </button>
 
         <button 
@@ -385,7 +385,7 @@ export default function BookPickupView({
           onClick={() => onNavigateTab ? onNavigateTab('profile') : onBack && onBack()}
         >
           <User size={22} className="tab-icon" />
-          <span>Profile</span>
+          <span>{t.tabProfile || 'Profile'}</span>
         </button>
       </div>
     </div>

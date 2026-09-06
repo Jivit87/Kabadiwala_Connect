@@ -6,7 +6,8 @@ import {
 import { haptics } from '../../utils/haptics';
 
 export default function MyEarningsView({ 
-  t, 
+  t = {}, 
+  currentLang = 'en',
   onBack, 
   onNavigateTab 
 }) {
@@ -81,8 +82,13 @@ export default function MyEarningsView({
   const handleSpeakEarnings = () => {
     haptics.tapTick();
     setIsPlayingAudio(true);
-    const text = `Your total earnings this week are ₹1,240, up 18 percent compared to last week. Your peak earning day was Saturday with ₹420.`;
-    haptics.speak(text, 'en', () => setIsPlayingAudio(true), () => setIsPlayingAudio(false));
+    let text = `Your total earnings this week are ₹1,240, up 18 percent compared to last week. Your peak earning day was Saturday with ₹420.`;
+    if (currentLang === 'hi') {
+      text = `इस सप्ताह आपकी कुल कमाई 1,240 रुपये है, जो पिछले सप्ताह की तुलना में 18 प्रतिशत अधिक है। शनिवार को आपकी सर्वाधिक कमाई 420 रुपये हुई।`;
+    } else if (currentLang === 'mr') {
+      text = `या आठवड्यात तुमची एकूण कमाई 1,240 रुपये आहे, जी मागील आठवड्याच्या तुलनेत 18 टक्के अधिक आहे. शनिवारी तुमची सर्वाधिक कमाई 420 रुपये झाली.`;
+    }
+    haptics.speak(text, currentLang, () => setIsPlayingAudio(true), () => setIsPlayingAudio(false));
   };
 
   return (
@@ -101,8 +107,8 @@ export default function MyEarningsView({
         {/* Title & Audio Button Header Row */}
         <div className="earnings-header-row">
           <div className="earnings-title-block">
-            <h1 className="earnings-main-title">My Earnings</h1>
-            <p className="earnings-main-sub">Track what you’ve earned from your scrap</p>
+            <h1 className="earnings-main-title">{t.myEarnings || 'My Earnings'}</h1>
+            <p className="earnings-main-sub">{t.trackEarningsDesc || 'Track what you’ve earned from your scrap'}</p>
           </div>
 
           <button 
@@ -119,7 +125,7 @@ export default function MyEarningsView({
           <div className="earnings-hero-top-row">
             <div className="earnings-hero-left">
               <div className="timeframe-selector">
-                <span>{selectedTimeframe}</span>
+                <span>{selectedTimeframe === 'This Week' ? (t.thisWeek || 'This Week') : selectedTimeframe}</span>
                 <ChevronDown size={14} color="#0B6B4A" />
               </div>
 
@@ -130,7 +136,7 @@ export default function MyEarningsView({
 
               <div className="earnings-growth-tag">
                 <ArrowUpRight size={14} color="#0B6B4A" strokeWidth={2.5} />
-                <span><strong>+18%</strong> compared to last week</span>
+                <span><strong>+18%</strong> {t.comparedToLastWeek || 'compared to last week'}</span>
               </div>
             </div>
 
@@ -173,9 +179,9 @@ export default function MyEarningsView({
 
         {/* Recent Transactions Section Header */}
         <div className="recent-tx-header">
-          <h2 className="recent-tx-title">Recent Transactions</h2>
+          <h2 className="recent-tx-title">{t.recentTransactions || 'Recent Transactions'}</h2>
           <button className="view-all-tx-link">
-            <span>View all</span>
+            <span>{t.viewAll || 'View all'}</span>
             <ChevronRight size={14} color="#0B6B4A" />
           </button>
         </div>
@@ -200,7 +206,7 @@ export default function MyEarningsView({
               <div className="tx-amount-col">
                 <span className="tx-amount-val">+₹{tx.amount}</span>
                 <span className={`tx-status-badge ${tx.status.toLowerCase()}`}>
-                  {tx.status}
+                  {tx.status === 'Received' ? (t.receivedStatus || 'Received') : tx.status === 'Pending' ? (t.pendingStatus || 'Pending') : tx.status}
                 </span>
               </div>
             </div>
@@ -211,7 +217,7 @@ export default function MyEarningsView({
         <div className="view-all-transactions-banner">
           <div className="vat-left">
             <FileText size={18} color="#0B6B4A" />
-            <span className="vat-text">View all transactions</span>
+            <span className="vat-text">{t.viewAllTransactions || 'View all transactions'}</span>
           </div>
           <ChevronRight size={18} color="#6E7782" />
         </div>
@@ -236,17 +242,17 @@ export default function MyEarningsView({
 
             <div className="sparkline-container" style={{ textAlign: 'left', padding: '14px 16px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                <span style={{ fontSize: '13px', color: '#6E7782' }}>Weight Collected:</span>
+                <span style={{ fontSize: '13px', color: '#6E7782' }}>{t.weightCollected || 'Weight Collected:'}</span>
                 <strong style={{ color: '#101A24' }}>{selectedTxDetail.weight}</strong>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                <span style={{ fontSize: '13px', color: '#6E7782' }}>Settled Payout:</span>
+                <span style={{ fontSize: '13px', color: '#6E7782' }}>{t.settledPayout || 'Settled Payout:'}</span>
                 <strong style={{ color: '#0B6B4A', fontSize: '16px' }}>₹{selectedTxDetail.amount}</strong>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ fontSize: '13px', color: '#6E7782' }}>Status:</span>
+                <span style={{ fontSize: '13px', color: '#6E7782' }}>{t.status || 'Status'}:</span>
                 <span className={`tx-status-badge ${selectedTxDetail.status.toLowerCase()}`}>
-                  {selectedTxDetail.status}
+                  {selectedTxDetail.status === 'Received' ? (t.receivedStatus || 'Received') : (t.pendingStatus || 'Pending')}
                 </span>
               </div>
             </div>
@@ -255,7 +261,7 @@ export default function MyEarningsView({
               className="step-primary-cta-btn"
               onClick={() => setSelectedTxDetail(null)}
             >
-              <span>Done</span>
+              <span>{t.done || 'Done'}</span>
             </button>
           </div>
         </div>
@@ -268,7 +274,7 @@ export default function MyEarningsView({
           onClick={() => onNavigateTab ? onNavigateTab('home') : onBack && onBack()}
         >
           <Home size={22} className="tab-icon" />
-          <span>Home</span>
+          <span>{t.tabHome || 'Home'}</span>
         </button>
 
         <button 
@@ -276,7 +282,7 @@ export default function MyEarningsView({
           onClick={() => onNavigateTab ? onNavigateTab('history') : onBack && onBack()}
         >
           <Calendar size={22} className="tab-icon" />
-          <span>Bookings</span>
+          <span>{t.tabBookings || 'Bookings'}</span>
         </button>
 
         {/* Center Floating Camera FAB */}
@@ -286,7 +292,7 @@ export default function MyEarningsView({
           aria-label="Camera Scan"
         >
           <Camera size={26} color="#FFFFFF" />
-          <span className="fab-label">Camera</span>
+          <span className="fab-label">{t.tabCamera || 'Camera'}</span>
         </button>
 
         <button 
@@ -294,7 +300,7 @@ export default function MyEarningsView({
           onClick={() => onNavigateTab ? onNavigateTab('todays_prices') : onBack && onBack()}
         >
           <Tag size={22} className="tab-icon" />
-          <span>Rates</span>
+          <span>{t.tabRates || 'Rates'}</span>
         </button>
 
         <button 
@@ -302,7 +308,7 @@ export default function MyEarningsView({
           onClick={() => onNavigateTab ? onNavigateTab('profile') : onBack && onBack()}
         >
           <User size={22} className="tab-icon" />
-          <span>Profile</span>
+          <span>{t.tabProfile || 'Profile'}</span>
         </button>
       </div>
     </div>

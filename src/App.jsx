@@ -25,6 +25,7 @@ import BookPickupView from './components/tabs/BookPickupView';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState('splash');
+  const [previousScreen, setPreviousScreen] = useState('splash');
   const [currentLang, setCurrentLang] = useState('en');
   const [user, setUser] = useState({ name: 'Rakesh', phone: '7015363695' });
   const [sellFlowData, setSellFlowData] = useState({
@@ -45,7 +46,14 @@ export default function App() {
   const t = translations[currentLang] || translations.en;
 
   const handleSplashNext = () => setCurrentScreen('language');
-  const handleLanguageNext = () => setCurrentScreen('auth');
+  const handleLanguageNext = () => {
+    // If coming from profile, go back to profile; otherwise proceed to auth
+    if (previousScreen === 'profile') {
+      setCurrentScreen('profile');
+    } else {
+      setCurrentScreen('auth');
+    }
+  };
   const handleAuthAuthenticated = (userData) => {
     setUser(prev => ({ ...prev, ...userData }));
     setCurrentScreen('location');
@@ -104,7 +112,7 @@ export default function App() {
           currentLang={currentLang} 
           setLanguage={setCurrentLang} 
           onNext={handleLanguageNext} 
-          onBack={() => setCurrentScreen('splash')}
+          onBack={() => setCurrentScreen(previousScreen === 'profile' ? 'profile' : 'splash')}
         />
       )}
 
@@ -186,6 +194,7 @@ export default function App() {
       {currentScreen === 'step4_value' && (
         <Step4EstimatedValue
           t={t}
+          currentLang={currentLang}
           sellFlowData={sellFlowData}
           onNext={handleStep4ValueNext}
           onBack={() => setCurrentScreen('step3_weight')}
@@ -238,6 +247,7 @@ export default function App() {
       {currentScreen === 'todays_prices' && (
         <TodaysPricesView
           t={t}
+          currentLang={currentLang}
           currentLocation="Rohini, Delhi"
           onBack={() => setCurrentScreen('home')}
           onSelectCategory={(categoryId) => {
@@ -257,6 +267,7 @@ export default function App() {
       {currentScreen === 'my_earnings' && (
         <MyEarningsView
           t={t}
+          currentLang={currentLang}
           onBack={() => setCurrentScreen('home')}
           onNavigateTab={(tab) => {
             if (tab === 'home') setCurrentScreen('home');
@@ -310,7 +321,7 @@ export default function App() {
             if (tab === 'my_earnings') setCurrentScreen('my_earnings');
             if (tab === 'sync_status') setCurrentScreen('sync_status');
             if (tab === 'safety_tips') setCurrentScreen('safety_tips');
-            if (tab === 'language') setCurrentScreen('language');
+            if (tab === 'language') { setPreviousScreen('profile'); setCurrentScreen('language'); }
           }}
           onBack={() => setCurrentScreen('home')}
         />
@@ -319,6 +330,7 @@ export default function App() {
       {currentScreen === 'safety_tips' && (
         <SafetyTipsView
           t={t}
+          currentLang={currentLang}
           onClose={() => setCurrentScreen('step2_category')}
           onProceed={() => setCurrentScreen('step3_weight')}
           onBack={() => setCurrentScreen('step2_category')}

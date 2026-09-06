@@ -7,7 +7,8 @@ import {
 import { haptics } from '../../utils/haptics';
 
 export default function TodaysPricesView({ 
-  t, 
+  t = {}, 
+  currentLang = 'en',
   currentLocation = 'Rohini, Delhi', 
   onBack, 
   onSelectCategory,
@@ -19,8 +20,8 @@ export default function TodaysPricesView({
   const priceItems = [
     {
       id: 'pcb',
-      title: 'PCB',
-      sub: 'Circuit Board',
+      title: t.itemPcb || 'PCB',
+      sub: t.itemPcbSub || 'Circuit Board',
       price: 128,
       trend: 'up',
       change: '12%',
@@ -29,7 +30,7 @@ export default function TodaysPricesView({
     },
     {
       id: 'cables_wires',
-      title: 'Cables & Wires',
+      title: t.itemCables || 'Cables & Wires',
       sub: null,
       price: 72,
       trend: 'down',
@@ -39,7 +40,7 @@ export default function TodaysPricesView({
     },
     {
       id: 'car_battery',
-      title: 'Car Battery',
+      title: t.itemBattery || 'Car Battery',
       sub: null,
       price: 62,
       trend: 'up',
@@ -49,7 +50,7 @@ export default function TodaysPricesView({
     },
     {
       id: 'crt_tv',
-      title: 'CRT TV',
+      title: t.itemCrtTv || 'CRT TV',
       sub: null,
       price: 18,
       trend: 'down',
@@ -59,7 +60,7 @@ export default function TodaysPricesView({
     },
     {
       id: 'lcd_display',
-      title: 'LCD Display',
+      title: t.itemLcd || 'LCD Display',
       sub: null,
       price: 42,
       trend: 'stable',
@@ -69,7 +70,7 @@ export default function TodaysPricesView({
     },
     {
       id: 'motor_magnet',
-      title: 'Motor & Magnet',
+      title: t.itemMotor || 'Motor & Magnet',
       sub: null,
       price: 95,
       trend: 'up',
@@ -82,8 +83,13 @@ export default function TodaysPricesView({
   const handleSpeakPrices = () => {
     haptics.tapTick();
     setIsPlayingAudio(true);
-    const text = `Today's scrap rates in ${currentLocation}: PCB is 128 rupees per kg, Cables are 72 rupees, Car Battery is 62 rupees, LCD Display is 42 rupees, and Motor magnet is 95 rupees per kg.`;
-    haptics.speak(text, 'en', () => setIsPlayingAudio(true), () => setIsPlayingAudio(false));
+    let text = `Today's scrap rates in ${currentLocation}: PCB is 128 rupees per kg, Cables are 72 rupees, Car Battery is 62 rupees, LCD Display is 42 rupees, and Motor magnet is 95 rupees per kg.`;
+    if (currentLang === 'hi') {
+      text = `${currentLocation} में आज के कबाड़ के भाव: PCB 128 रुपये प्रति किलो, केबल्स 72 रुपये, कार बैटरी 62 रुपये, LCD डिस्प्ले 42 रुपये, और मोटर 95 रुपये प्रति किलो है।`;
+    } else if (currentLang === 'mr') {
+      text = `${currentLocation} मध्ये आजचे भंगार दर: PCB 128 रुपये प्रति किलो, केबल्स 72 रुपये, कार बॅटरी 62 रुपये, LCD डिस्प्ले 42 रुपये, आणि मोटर 95 रुपये प्रति किलो आहे.`;
+    }
+    haptics.speak(text, currentLang, () => setIsPlayingAudio(true), () => setIsPlayingAudio(false));
   };
 
   return (
@@ -102,8 +108,8 @@ export default function TodaysPricesView({
         {/* Title & Audio Button Header Row */}
         <div className="prices-header-row">
           <div className="prices-title-block">
-            <h1 className="prices-main-title">Today’s Prices</h1>
-            <p className="prices-main-sub">Current scrap rates near you</p>
+            <h1 className="prices-main-title">{t.todayRates || 'Today’s Prices'}</h1>
+            <p className="prices-main-sub">{t.currentRatesNearYou || 'Current scrap rates near you'}</p>
           </div>
 
           <button 
@@ -125,7 +131,7 @@ export default function TodaysPricesView({
         {/* Updated Today Context Line */}
         <div className="prices-updated-meta">
           <Clock size={14} color="#6E7782" />
-          <span>Updated today • Based on recent local transactions</span>
+          <span>{t.updatedToday || 'Updated today • Based on recent local transactions'}</span>
         </div>
 
         {/* 6-Row Main Price List Card */}
@@ -165,8 +171,8 @@ export default function TodaysPricesView({
         <div className="prices-info-banner">
           <Info size={18} color="#0B6B4A" className="info-banner-icon" />
           <div className="info-banner-text">
-            <h4 className="info-banner-title">Based on the last 42 local transactions</h4>
-            <p className="info-banner-desc">Prices may vary by condition, quantity and buyer.</p>
+            <h4 className="info-banner-title">{t.basedOnLocalTx || 'Based on the last 42 local transactions'}</h4>
+            <p className="info-banner-desc">{t.pricesMayVary || 'Prices may vary by condition, quantity and buyer.'}</p>
           </div>
         </div>
       </div>
@@ -180,7 +186,7 @@ export default function TodaysPricesView({
                 <img src={selectedItemDetail.image} alt={selectedItemDetail.title} className="modal-thumb" />
                 <div>
                   <h3>{selectedItemDetail.title}</h3>
-                  <p>7-Day Market Trend • Current: ₹{selectedItemDetail.price}/kg</p>
+                  <p>{t.marketTrend7Day || '7-Day Market Trend'} • {t.currentPrice || 'Current'}: ₹{selectedItemDetail.price}/kg</p>
                 </div>
               </div>
               <button className="modal-close-btn" onClick={() => setSelectedItemDetail(null)}>
@@ -212,7 +218,7 @@ export default function TodaysPricesView({
                 if (onSelectCategory) onSelectCategory(item.id);
               }}
             >
-              <span>Sell {selectedItemDetail.title} Now →</span>
+              <span>{t.sellNowPrefix || 'Sell'} {selectedItemDetail.title} {t.sellNowSuffix || 'Now →'}</span>
             </button>
           </div>
         </div>
@@ -225,7 +231,7 @@ export default function TodaysPricesView({
           onClick={() => onNavigateTab ? onNavigateTab('home') : onBack && onBack()}
         >
           <Home size={22} className="tab-icon" />
-          <span>Home</span>
+          <span>{t.tabHome || 'Home'}</span>
         </button>
 
         <button 
@@ -233,7 +239,7 @@ export default function TodaysPricesView({
           onClick={() => onNavigateTab ? onNavigateTab('history') : onBack && onBack()}
         >
           <Calendar size={22} className="tab-icon" />
-          <span>Bookings</span>
+          <span>{t.tabBookings || 'Bookings'}</span>
         </button>
 
         {/* Center Floating Camera FAB with Pulse Ring */}
@@ -243,12 +249,12 @@ export default function TodaysPricesView({
           aria-label="Camera Scan"
         >
           <Camera size={26} color="#FFFFFF" />
-          <span className="fab-label">Camera</span>
+          <span className="fab-label">{t.tabCamera || 'Camera'}</span>
         </button>
 
         <button className="nav-tab active">
           <Tag size={22} className="tab-icon" />
-          <span>Rates</span>
+          <span>{t.tabRates || 'Rates'}</span>
         </button>
 
         <button 
@@ -256,7 +262,7 @@ export default function TodaysPricesView({
           onClick={() => onNavigateTab ? onNavigateTab('profile') : onBack && onBack()}
         >
           <User size={22} className="tab-icon" />
-          <span>Profile</span>
+          <span>{t.tabProfile || 'Profile'}</span>
         </button>
       </div>
     </div>

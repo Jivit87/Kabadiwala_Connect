@@ -3,7 +3,8 @@ import { ArrowLeft, Check, Volume2, ChevronDown, ChevronUp, ArrowUp, ArrowRight 
 import { haptics } from '../../utils/haptics';
 
 export default function Step4EstimatedValue({ 
-  t, 
+  t = {}, 
+  currentLang = 'en',
   sellFlowData, 
   onNext, 
   onBack 
@@ -20,8 +21,13 @@ export default function Step4EstimatedValue({
   const handleSpeakValue = () => {
     haptics.tapTick();
     setIsPlayingAudio(true);
-    const text = `Estimated value is ₹${estimatedTotal}, based on ${weight} kg of ${categoryName}. You are getting ₹${streetBonus} above regular street rate.`;
-    haptics.speak(text, 'en', () => setIsPlayingAudio(true), () => setIsPlayingAudio(false));
+    let text = `Estimated value is ₹${estimatedTotal}, based on ${weight} kg of ${categoryName}. You are getting ₹${streetBonus} above regular street rate.`;
+    if (currentLang === 'hi') {
+      text = `अनुमानित मूल्य ${estimatedTotal} रुपये है, ${weight} किलोग्राम ${categoryName} के आधार पर। आपको नियमित बाजार दर से ${streetBonus} रुपये अधिक मिल रहे हैं।`;
+    } else if (currentLang === 'mr') {
+      text = `अंदाजे मूल्य ${estimatedTotal} रुपये आहे, ${weight} किलोग्रॅम ${categoryName} च्या आधारे. तुम्हाला नियमित बाजारभावापेक्षा ${streetBonus} रुपये जास्त मिळत आहेत.`;
+    }
+    haptics.speak(text, currentLang, () => setIsPlayingAudio(true), () => setIsPlayingAudio(false));
   };
 
   const handleContinue = () => {
@@ -43,7 +49,7 @@ export default function Step4EstimatedValue({
           <ArrowLeft size={22} color="#101A24" strokeWidth={2.2} />
         </button>
         <div className="step-header-text">
-          <h1 className="step-title">Estimated Value</h1>
+          <h1 className="step-title">{t.estimatedValueTitle || 'Estimated Value'}</h1>
         </div>
       </div>
 
@@ -57,7 +63,7 @@ export default function Step4EstimatedValue({
             <div className="stepper-circle completed">
               <Check size={14} color="#FFFFFF" strokeWidth={3} />
             </div>
-            <span className="stepper-label active-text">Photo</span>
+            <span className="stepper-label active-text">{t.stepPhoto || 'Photo'}</span>
           </div>
 
           {/* Step 2: Category (Done) */}
@@ -65,7 +71,7 @@ export default function Step4EstimatedValue({
             <div className="stepper-circle completed">
               <Check size={14} color="#FFFFFF" strokeWidth={3} />
             </div>
-            <span className="stepper-label active-text">Category</span>
+            <span className="stepper-label active-text">{t.stepCategory || 'Category'}</span>
           </div>
 
           {/* Step 3: Weight (Done) */}
@@ -73,7 +79,7 @@ export default function Step4EstimatedValue({
             <div className="stepper-circle completed">
               <Check size={14} color="#FFFFFF" strokeWidth={3} />
             </div>
-            <span className="stepper-label active-text">Weight</span>
+            <span className="stepper-label active-text">{t.stepWeight || 'Weight'}</span>
           </div>
 
           {/* Step 4: Value (Active) */}
@@ -81,7 +87,7 @@ export default function Step4EstimatedValue({
             <div className="stepper-circle active">
               <span>4</span>
             </div>
-            <span className="stepper-label active-text">Value</span>
+            <span className="stepper-label active-text">{t.stepValue || 'Value'}</span>
           </div>
 
           {/* Step 5: Buyer */}
@@ -89,7 +95,7 @@ export default function Step4EstimatedValue({
             <div className="stepper-circle">
               <span>5</span>
             </div>
-            <span className="stepper-label">Buyer</span>
+            <span className="stepper-label">{t.stepBuyer || 'Buyer'}</span>
           </div>
         </div>
       </div>
@@ -111,7 +117,7 @@ export default function Step4EstimatedValue({
         </div>
 
         {/* Small uppercase label */}
-        <span className="value-caption-label">YOUR ESTIMATED VALUE</span>
+        <span className="value-caption-label">{t.yourEstimatedValue || 'YOUR ESTIMATED VALUE'}</span>
 
         {/* Big Rupee Number with Sparkles Accent */}
         <div className="value-price-wrapper">
@@ -137,7 +143,7 @@ export default function Step4EstimatedValue({
 
         {/* Basis text */}
         <span className="value-basis-text">
-          Based on {weight} kg of PCB
+          {t.basedOnWeightScrap || 'Based on'} {weight} kg • {categoryName}
         </span>
 
         {/* Listen to Value Button */}
@@ -147,7 +153,7 @@ export default function Step4EstimatedValue({
           aria-label="Listen to estimated value voice announcement"
         >
           <Volume2 size={18} color="#0B6B4A" strokeWidth={2.4} className={isPlayingAudio ? 'pulse-audio' : ''} />
-          <span>{isPlayingAudio ? 'Playing audio...' : 'Listen to value'}</span>
+          <span>{isPlayingAudio ? (t.playingAudio || 'Playing audio...') : (t.listenToValue || 'Listen to value')}</span>
         </button>
       </div>
 
@@ -158,7 +164,7 @@ export default function Step4EstimatedValue({
       >
         <div className="breakdown-header-row">
           <div>
-            <h3 className="breakdown-title">View breakdown</h3>
+            <h3 className="breakdown-title">{t.viewBreakdown || 'View breakdown'}</h3>
             <p className="breakdown-formula">{weight} kg × ₹{ratePerKg}/kg = ₹{estimatedTotal}</p>
           </div>
           <button className="breakdown-toggle-btn" aria-label="Toggle breakdown">
@@ -173,15 +179,15 @@ export default function Step4EstimatedValue({
         {breakdownOpen && (
           <div className="breakdown-details-drawer">
             <div className="drawer-item">
-              <span className="item-name">Base Market Rate</span>
+              <span className="item-name">{t.baseMarketRate || 'Base Market Rate'}</span>
               <span className="item-val">₹110 / kg</span>
             </div>
             <div className="drawer-item">
-              <span className="item-name">High Grade E-Waste Bonus</span>
+              <span className="item-name">{t.highGradeBonus || 'High Grade E-Waste Bonus'}</span>
               <span className="item-val bonus">+₹15 / kg</span>
             </div>
             <div className="drawer-item total">
-              <span className="item-name">Effective Verified Rate</span>
+              <span className="item-name">{t.effectiveRate || 'Effective Verified Rate'}</span>
               <span className="item-val">₹125 / kg</span>
             </div>
           </div>
@@ -194,8 +200,8 @@ export default function Step4EstimatedValue({
           <ArrowUp size={20} color="#0B6B4A" strokeWidth={3} />
         </div>
         <div className="above-rate-text-block">
-          <h4 className="above-rate-title">₹{streetBonus} above street rate</h4>
-          <p className="above-rate-subtitle">You're getting a better price!</p>
+          <h4 className="above-rate-title">₹{streetBonus} {t.aboveStreetRateTitle || 'above street rate'}</h4>
+          <p className="above-rate-subtitle">{t.gettingBetterPrice || "You're getting a better price!"}</p>
         </div>
       </div>
 
@@ -205,10 +211,10 @@ export default function Step4EstimatedValue({
           className="step-primary-cta-btn"
           onClick={handleContinue}
         >
-          <span>Find a Buyer</span>
+          <span>{t.findABuyerBtn || 'Find a Buyer'}</span>
           <ArrowRight size={18} strokeWidth={2.5} />
         </button>
-        <p className="bottom-buyer-help-text">Compare offers from verified buyers near you.</p>
+        <p className="bottom-buyer-help-text">{t.compareOffersSub || 'Compare offers from verified buyers near you.'}</p>
       </div>
     </div>
   );

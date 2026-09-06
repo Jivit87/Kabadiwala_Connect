@@ -21,37 +21,37 @@ export default function HomeView({ t, user, currentLang, onNavigate }) {
   const heroSlides = [
     {
       id: 0,
-      title: "Hassle-free\nScrap Collection",
-      subtitle: "Schedule your\npickup in seconds.",
-      btnText: "Request Pickup",
+      title: t.slide0Title || "Hassle-free\nScrap Collection",
+      subtitle: t.slide0Subtitle || "Schedule your\npickup in seconds.",
+      btnText: t.slide0Btn || "Request Pickup",
       image: "/assets/home/truck_hero.png",
-      tag: "Verified Fleet"
+      tag: t.slide0Tag || "Verified Fleet"
     },
     {
       id: 1,
-      title: "Instant AI\nRate Discovery",
-      subtitle: "Scan circuit boards &\nget fair market cash.",
-      btnText: "Scan Now",
+      title: t.slide1Title || "Instant AI\nRate Discovery",
+      subtitle: t.slide1Subtitle || "Scan circuit boards &\nget fair market cash.",
+      btnText: t.slide1Btn || "Scan Now",
       image: "/assets/home/icon_ewaste.png",
-      tag: "AI Powered"
+      tag: t.slide1Tag || "AI Powered"
     },
     {
       id: 2,
-      title: "Highest Payout\nGuaranteed",
-      subtitle: "CPCB authorized partners\nwith zero middlemen.",
-      btnText: "View Rates",
+      title: t.slide2Title || "Highest Payout\nGuaranteed",
+      subtitle: t.slide2Subtitle || "CPCB authorized partners\nwith zero middlemen.",
+      btnText: t.slide2Btn || "View Rates",
       image: "/assets/home/icon_sell_scrap.png",
-      tag: "Best Rates"
+      tag: t.slide2Tag || "Best Rates"
     }
   ];
 
   const rateList = [
-    { name: "Motherboards (Grade A)", category: "E-Waste", rate: "₹340 / kg", trend: "+4.5%", icon: "💻" },
-    { name: "Copper Wiring (Clean)", category: "Metals", rate: "₹420 / kg", trend: "+2.1%", icon: "🔌" },
-    { name: "Lithium-Ion Batteries", category: "Batteries", rate: "₹185 / kg", trend: "+1.2%", icon: "🔋" },
-    { name: "Telecom & Server PCBs", category: "High Value", rate: "₹520 / kg", trend: "+6.8%", icon: "📡" },
-    { name: "Mixed Mobile Scrap", category: "E-Waste", rate: "₹290 / kg", trend: "+0.5%", icon: "📱" },
-    { name: "Aluminium Heatsinks", category: "Metals", rate: "₹145 / kg", trend: "-1.0%", icon: "⚙️" }
+    { name: t.motherboards || "Motherboards (Grade A)", category: t.ewaste || "E-Waste", rate: "₹340 / kg", trend: "+4.5%", icon: "💻" },
+    { name: t.copperWiring || "Copper Wiring (Clean)", category: t.metals || "Metals", rate: "₹420 / kg", trend: "+2.1%", icon: "🔌" },
+    { name: t.lithiumBatteries || "Lithium-Ion Batteries", category: t.batteries || "Batteries", rate: "₹185 / kg", trend: "+1.2%", icon: "🔋" },
+    { name: t.telecomPCBs || "Telecom & Server PCBs", category: t.highValue || "High Value", rate: "₹520 / kg", trend: "+6.8%", icon: "📡" },
+    { name: t.mixedMobile || "Mixed Mobile Scrap", category: t.ewaste || "E-Waste", rate: "₹290 / kg", trend: "+0.5%", icon: "📱" },
+    { name: t.aluminium || "Aluminium Heatsinks", category: t.metals || "Metals", rate: "₹145 / kg", trend: "-1.0%", icon: "⚙️" }
   ];
 
   const bookingsList = [
@@ -127,7 +127,7 @@ export default function HomeView({ t, user, currentLang, onNavigate }) {
                   <strong className="bold-white">Kabadiwala</strong>
                   <span className="light-green"> Connect</span>
                 </div>
-                <div className="brand-tagline">Cleaner today, greener tomorrow</div>
+                <div className="brand-tagline">{t.tagline || 'Cleaner today, greener tomorrow'}</div>
               </div>
             </div>
 
@@ -155,8 +155,8 @@ export default function HomeView({ t, user, currentLang, onNavigate }) {
           {/* Greeting & Location Selector */}
           <div className="greeting-row">
             <div className="user-greeting">
-              <h1>Hi, {user?.name || 'Rakesh'}!</h1>
-              <p>Ready to make a difference today?</p>
+              <h1>{t.hiGreeting || 'Hi'}, {user?.name || 'Rakesh'}!</h1>
+              <p>{t.readyToday || 'Ready to make a difference today?'}</p>
             </div>
 
             <div 
@@ -248,8 +248,8 @@ export default function HomeView({ t, user, currentLang, onNavigate }) {
                   />
                 </div>
                 <div className="card-info">
-                  <h3>Sell Scrap</h3>
-                  <p>Get the best price</p>
+                  <h3>{t.sellScrap || 'Sell Scrap'}</h3>
+                  <p>{t.sellScrapDesc || 'Get the best price'}</p>
                 </div>
                 <div className="arrow-badge">
                   <ChevronRight size={15} color="#1C522D" />
@@ -269,8 +269,8 @@ export default function HomeView({ t, user, currentLang, onNavigate }) {
                   />
                 </div>
                 <div className="card-info">
-                  <h3>E-Waste<br />Collection</h3>
-                  <p>Pickup at your doorstep</p>
+                  <h3>{t.eWasteCollection ? t.eWasteCollection.split('\n').map((s,i)=>i===0?s:<><br key={i}/>{s}</>)  : <>{"E-Waste"}<br />{"Collection"}</>}</h3>
+                  <p>{t.eWasteDesc || 'Pickup at your doorstep'}</p>
                 </div>
                 <div className="arrow-badge">
                   <ChevronRight size={15} color="#1C522D" />
@@ -290,8 +290,8 @@ export default function HomeView({ t, user, currentLang, onNavigate }) {
                   />
                 </div>
                 <div className="card-info">
-                  <h3>My Earnings</h3>
-                  <p>Track your income</p>
+                  <h3>{t.myEarnings || 'My Earnings'}</h3>
+                  <p>{t.myEarningsDesc || 'Track your income'}</p>
                 </div>
                 <div className="arrow-badge">
                   <ChevronRight size={15} color="#1C522D" />
@@ -311,8 +311,8 @@ export default function HomeView({ t, user, currentLang, onNavigate }) {
                   />
                 </div>
                 <div className="card-info">
-                  <h3>View History</h3>
-                  <p>Track your activity</p>
+                  <h3>{t.viewHistory || 'View History'}</h3>
+                  <p>{t.viewHistoryDesc || 'Track your activity'}</p>
                 </div>
                 <div className="arrow-badge">
                   <ChevronRight size={15} color="#1C522D" />
@@ -334,8 +334,8 @@ export default function HomeView({ t, user, currentLang, onNavigate }) {
                   />
                 </div>
                 <div className="mt-text">
-                  <h3>Market Trends</h3>
-                  <p>See what's in demand today</p>
+                  <h3>{t.marketTrends || 'Market Trends'}</h3>
+                  <p>{t.marketTrendsDesc || "See what's in demand today"}</p>
                 </div>
               </div>
               <div className="arrow-badge">
@@ -670,7 +670,7 @@ export default function HomeView({ t, user, currentLang, onNavigate }) {
           onClick={() => setActiveTab('home')}
         >
           <Home size={22} className="tab-icon" />
-          <span>Home</span>
+          <span>{t.tabHome || 'Home'}</span>
         </button>
 
         <button 
@@ -678,7 +678,7 @@ export default function HomeView({ t, user, currentLang, onNavigate }) {
           onClick={() => onNavigate ? onNavigate('book_pickup') : setActiveTab('bookings')}
         >
           <Calendar size={22} className="tab-icon" />
-          <span>Bookings</span>
+          <span>{t.tabBookings || 'Bookings'}</span>
         </button>
 
         {/* Center Floating Camera FAB with Pulse Ring */}
@@ -688,7 +688,7 @@ export default function HomeView({ t, user, currentLang, onNavigate }) {
           aria-label="Camera Scan"
         >
           <Camera size={26} color="#FFFFFF" />
-          <span className="fab-label">Camera</span>
+          <span className="fab-label">{t.tabScan || 'Scan'}</span>
         </button>
 
         <button 
@@ -696,7 +696,7 @@ export default function HomeView({ t, user, currentLang, onNavigate }) {
           onClick={() => onNavigate ? onNavigate('todays_prices') : setActiveTab('rates')}
         >
           <Tag size={22} className="tab-icon" />
-          <span>Rates</span>
+          <span>{t.tabRates || 'Rates'}</span>
         </button>
 
         <button 
@@ -704,7 +704,7 @@ export default function HomeView({ t, user, currentLang, onNavigate }) {
           onClick={() => onNavigate ? onNavigate('profile') : setActiveTab('profile')}
         >
           <User size={22} className="tab-icon" />
-          <span>Profile</span>
+          <span>{t.tabProfile || 'Profile'}</span>
         </button>
       </div>
 
