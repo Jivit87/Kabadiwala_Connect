@@ -2156,6 +2156,44 @@ body {
   cursor: pointer;
 }
 
+.prices-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8DC;
+  border-radius: 14px;
+  padding: 8px 12px;
+  margin: 8px 0 4px 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.prices-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  color: #101A24;
+  font-family: inherit;
+}
+
+.prices-search-input::placeholder {
+  color: #9CA3AF;
+}
+
+.search-clear-btn {
+  background: #F3F4F6;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .prices-location-name {
   font-size: 13.5px;
   font-weight: 700;

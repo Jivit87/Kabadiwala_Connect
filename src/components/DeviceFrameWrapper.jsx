@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Smartphone, Monitor, Layers, Wifi, BatteryCharging } from 'lucide-react';
 import { haptics } from '../utils/haptics';
 
-const SCREEN_ORDER = ['splash', 'language', 'auth', 'location', 'notification', 'home', 'book_pickup', 'step1_photo', 'step1_hazardous_battery_detected', 'step2_category', 'safety_tips', 'step3_weight', 'step4_value', 'step5_buyer', 'payment', 'receipt', 'todays_prices', 'my_earnings', 'history', 'sync_status', 'profile'];
+const SCREEN_ORDER = ['splash', 'language', 'auth', 'location', 'notification', 'home', 'book_pickup', 'step1_photo', 'step1_hazardous_battery_detected', 'step2_category', 'safety_tips', 'step3_weight', 'step4_value', 'step5_buyer', 'pickup_confirmation', 'payment', 'receipt', 'todays_prices', 'my_earnings', 'history', 'sync_status', 'profile'];
 
 function StatusBar({ light, background }) {
   const [time, setTime] = useState(() => formatTime(new Date()));
@@ -130,13 +130,14 @@ export default function DeviceFrameWrapper({
     { id: 'step3_weight', label: '12. Step 3: Weight' },
     { id: 'step4_value', label: '13. Step 4: Value' },
     { id: 'step5_buyer', label: '14. Step 5: Buyer' },
-    { id: 'payment', label: '15. Payment' },
-    { id: 'receipt', label: '16. Receipt' },
-    { id: 'todays_prices', label: "17. Today's Prices" },
-    { id: 'my_earnings', label: '18. My Earnings' },
-    { id: 'history', label: '19. History' },
-    { id: 'sync_status', label: '20. Sync Status' },
-    { id: 'profile', label: '21. Profile' }
+    { id: 'pickup_confirmation', label: '15. Pickup Scheduled' },
+    { id: 'payment', label: '16. Payment' },
+    { id: 'receipt', label: '17. Receipt' },
+    { id: 'todays_prices', label: "18. Today's Prices" },
+    { id: 'my_earnings', label: '19. My Earnings' },
+    { id: 'history', label: '20. History' },
+    { id: 'sync_status', label: '21. Sync Status' },
+    { id: 'profile', label: '22. Profile' }
   ];
 
   const isDarkHeaderScreen = currentScreen === 'home';

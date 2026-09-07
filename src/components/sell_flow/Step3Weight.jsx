@@ -40,13 +40,21 @@ export default function Step3Weight({
     if (isScaleConnected) return;
     haptics.tapTick();
     setIsScaleConnecting(true);
-    setTimeout(() => {
-      setIsScaleConnecting(false);
-      setIsScaleConnected(true);
-      setWeight(4.8);
-      setSelectedQuick(null);
-      haptics.successChime();
-    }, 1200);
+    let current = 0.5;
+    const interval = setInterval(() => {
+      current += 0.8;
+      if (current >= 4.8) {
+        clearInterval(interval);
+        setWeight(4.8);
+        setIsScaleConnecting(false);
+        setIsScaleConnected(true);
+        setSelectedQuick(null);
+        haptics.successChime();
+      } else {
+        setWeight(parseFloat(current.toFixed(1)));
+        haptics.tapTick();
+      }
+    }, 180);
   };
 
   const handleContinue = () => {

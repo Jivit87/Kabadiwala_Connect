@@ -7,8 +7,9 @@ import {
 } from 'lucide-react';
 
 export default function ProfileTab({
-  t,
+  t = {},
   user = { name: 'Rakesh', phone: '7015363695' },
+  stats = { totalEarned: 1240, lotsCompleted: 4, kgRecycled: 18.3 },
   onUpdateUser,
   onNavigateTab,
   onBack
@@ -134,6 +135,22 @@ export default function ProfileTab({
               </div>
               <span>Verified Member</span>
             </div>
+          </div>
+        </div>
+
+        {/* Profile Metric Stats Grid */}
+        <div className="profile-stats-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px', marginBottom: '14px' }}>
+          <div className="p-stat-card" style={{ background: '#FFFFFF', padding: '10px 8px', borderRadius: '14px', textAlign: 'center', border: '1.5px solid #E2E8DC' }}>
+            <span style={{ fontSize: '10px', color: '#6B7280', fontWeight: 600, display: 'block' }}>{t.totalEarned || 'Total Earned'}</span>
+            <strong style={{ fontSize: '15px', color: '#0B6B4A', fontWeight: 800 }}>₹{stats?.totalEarned || 1240}</strong>
+          </div>
+          <div className="p-stat-card" style={{ background: '#FFFFFF', padding: '10px 8px', borderRadius: '14px', textAlign: 'center', border: '1.5px solid #E2E8DC' }}>
+            <span style={{ fontSize: '10px', color: '#6B7280', fontWeight: 600, display: 'block' }}>{t.lotsCompleted || 'Lots Done'}</span>
+            <strong style={{ fontSize: '15px', color: '#101A24', fontWeight: 800 }}>{stats?.lotsCompleted || 4}</strong>
+          </div>
+          <div className="p-stat-card" style={{ background: '#FFFFFF', padding: '10px 8px', borderRadius: '14px', textAlign: 'center', border: '1.5px solid #E2E8DC' }}>
+            <span style={{ fontSize: '10px', color: '#6B7280', fontWeight: 600, display: 'block' }}>{t.kgRecycled || 'Recycled'}</span>
+            <strong style={{ fontSize: '15px', color: '#101A24', fontWeight: 800 }}>{stats?.kgRecycled || 18.3} kg</strong>
           </div>
         </div>
 

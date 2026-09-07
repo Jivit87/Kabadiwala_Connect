@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { 
   ArrowLeft, SlidersHorizontal, ChevronRight, Home, Calendar, 
   Camera, Tag, User, X, CheckCircle2, Clock, AlertCircle, TrendingUp,
-  PackageCheck, HelpCircle, Download
+  PackageCheck, HelpCircle, Download, Search
 } from 'lucide-react';
 
 export default function HistoryTab({
-  t,
+  t = {},
+  lots = null,
   onBack,
   onNavigateTab
 }) {
@@ -14,8 +15,9 @@ export default function HistoryTab({
   const [selectedLotDetail, setSelectedLotDetail] = useState(null);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const allLots = [
+  const defaultLots = [
     {
       id: 'lot_1',
       lotNumber: 'Lot #A7F2K9',
@@ -86,10 +88,19 @@ export default function HistoryTab({
     }
   ];
 
+  const allLots = lots || defaultLots;
+
   const filteredLots = allLots.filter((lot) => {
     if (activeSegment === 'active' && lot.statusType !== 'active') return false;
     if (activeSegment === 'completed' && lot.statusType !== 'completed') return false;
     if (categoryFilter !== 'All' && lot.category !== categoryFilter) return false;
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      const matchTitle = lot.title.toLowerCase().includes(q);
+      const matchLotNum = lot.lotNumber.toLowerCase().includes(q);
+      const matchBuyer = lot.buyer.toLowerCase().includes(q);
+      if (!matchTitle && !matchLotNum && !matchBuyer) return false;
+    }
     return true;
   });
 
@@ -98,13 +109,13 @@ export default function HistoryTab({
       case 'completed':
         return <CheckCircle2 size={12} color="#0B6B4A" strokeWidth={2.5} />;
       case 'handed_over':
-        return <PackageCheck size={12} color="#0A4D9B" strokeWidth={2.5} />;
-      case 'listed':
         return <Clock size={12} color="#D97706" strokeWidth={2.5} />;
+      case 'listed':
+        return <PackageCheck size={12} color="#0B6B4A" strokeWidth={2.5} />;
       case 'disputed':
         return <AlertCircle size={12} color="#DC2626" strokeWidth={2.5} />;
       default:
-        return null;
+        return <Clock size={12} color="#6E7782" strokeWidth={2.5} />;
     }
   };
 
@@ -135,6 +146,23 @@ export default function HistoryTab({
           >
             <SlidersHorizontal size={20} color="#101A24" strokeWidth={2.2} />
           </button>
+        </div>
+
+        {/* Instant Search Bar */}
+        <div className="prices-search-box" style={{ margin: '0 0 12px 0' }}>
+          <Search size={16} color="#6B7280" />
+          <input 
+            type="text"
+            className="prices-search-input"
+            placeholder={t.searchHistoryPlaceholder || 'Search by lot # or buyer...'}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          {searchQuery && (
+            <button className="search-clear-btn" onClick={() => setSearchQuery('')}>
+              <X size={14} color="#6B7280" />
+            </button>
+          )}
         </div>
 
         {/* Segmented Filter Pills */}

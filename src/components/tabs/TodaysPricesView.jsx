@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   ArrowLeft, Volume2, MapPin, ChevronDown, Clock, 
   ChevronRight, ArrowUpRight, ArrowDownRight, Minus, 
-  Info, Home, Calendar, Camera, Tag, User, X
+  Info, Home, Calendar, Camera, Tag, User, X, Search
 } from 'lucide-react';
 import { haptics } from '../../utils/haptics';
 
@@ -16,6 +16,7 @@ export default function TodaysPricesView({
 }) {
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [selectedItemDetail, setSelectedItemDetail] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const priceItems = [
     {
@@ -80,6 +81,12 @@ export default function TodaysPricesView({
     }
   ];
 
+  const filteredItems = priceItems.filter(item => {
+    const q = searchQuery.toLowerCase().trim();
+    if (!q) return true;
+    return item.title.toLowerCase().includes(q) || (item.sub && item.sub.toLowerCase().includes(q));
+  });
+
   const handleSpeakPrices = () => {
     haptics.tapTick();
     setIsPlayingAudio(true);
@@ -128,6 +135,23 @@ export default function TodaysPricesView({
           <ChevronDown size={14} color="#101A24" />
         </div>
 
+        {/* Instant Search Input */}
+        <div className="prices-search-box">
+          <Search size={16} color="#6B7280" />
+          <input 
+            type="text"
+            className="prices-search-input"
+            placeholder={t.searchScrapPlaceholder || 'Search scrap category or metal...'}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          {searchQuery && (
+            <button className="search-clear-btn" onClick={() => setSearchQuery('')}>
+              <X size={14} color="#6B7280" />
+            </button>
+          )}
+        </div>
+
         {/* Updated Today Context Line */}
         <div className="prices-updated-meta">
           <Clock size={14} color="#6E7782" />
@@ -136,7 +160,7 @@ export default function TodaysPricesView({
 
         {/* 6-Row Main Price List Card */}
         <div className="prices-list-card">
-          {priceItems.map((item) => (
+          {filteredItems.map((item) => (
             <div 
               key={item.id} 
               className="price-list-row"
@@ -165,6 +189,11 @@ export default function TodaysPricesView({
               <ChevronRight size={18} color="#CBD5E1" className="price-row-arrow" />
             </div>
           ))}
+          {filteredItems.length === 0 && (
+            <div style={{ padding: '24px 16px', textAlign: 'center', color: '#6E7782', fontSize: '13px' }}>
+              No scrap items match "{searchQuery}"
+            </div>
+          )}
         </div>
 
         {/* Info Disclaimer Banner */}

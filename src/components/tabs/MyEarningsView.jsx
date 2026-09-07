@@ -8,6 +8,7 @@ import { haptics } from '../../utils/haptics';
 export default function MyEarningsView({ 
   t = {}, 
   currentLang = 'en',
+  transactionsList = null,
   onBack, 
   onNavigateTab 
 }) {
@@ -26,7 +27,7 @@ export default function MyEarningsView({
     { day: 'Sun', amount: 140, height: 32 }
   ];
 
-  const transactions = [
+  const defaultTransactions = [
     {
       id: 'tx_1',
       title: 'PCB',
@@ -78,6 +79,8 @@ export default function MyEarningsView({
       weight: '3.8 kg'
     }
   ];
+
+  const transactions = transactionsList || defaultTransactions;
 
   const handleSpeakEarnings = () => {
     haptics.tapTick();

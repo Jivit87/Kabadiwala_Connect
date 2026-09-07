@@ -45,11 +45,34 @@ export default function TransactionReceiptView({
     }
   };
 
+  const handleDoneClick = () => {
+    if (onDone) {
+      onDone({
+        id: `tx_${Date.now()}`,
+        lotNumber: `Lot #TXN${Math.floor(100000 + Math.random() * 900000)}`,
+        title: categoryName,
+        category: categoryName.includes('PCB') ? 'E-Waste' : categoryName.includes('Battery') ? 'Batteries' : 'Metals',
+        date: 'Today',
+        weight: `${weight} kg`,
+        weightNum: Number(weight) || 2.5,
+        rate: `₹${rate}/kg`,
+        amount: total,
+        status: 'Completed',
+        statusType: 'completed',
+        statusCode: 'completed',
+        image: sellFlowData?.photoUrl || '/assets/Kabadiwala_Connect_History_UI_Asset_Pack/app/crops/pcb_thumbnail.png',
+        buyer: buyerName,
+        settlementMode: paymentMethod,
+        notes: 'Handed over and verified at doorstep with CPCB partner.'
+      });
+    }
+  };
+
   return (
     <div className="receipt-screen-wrapper page-fade-enter">
       {/* Top Header */}
       <div className="receipt-top-header">
-        <button className="receipt-back-btn" onClick={onBack || onDone} aria-label="Go Back">
+        <button className="receipt-back-btn" onClick={onBack || handleDoneClick} aria-label="Go Back">
           <ArrowLeft size={22} color="#101A24" strokeWidth={2.2} />
         </button>
         <h1 className="receipt-screen-title">{t.receiptTitle || 'Receipt'}</h1>
@@ -217,7 +240,7 @@ export default function TransactionReceiptView({
         {/* Primary Done Button */}
         <button 
           className="receipt-done-primary-btn"
-          onClick={onDone}
+          onClick={handleDoneClick}
         >
           <span>{t.doneBtn || t.done || 'Done'}</span>
         </button>

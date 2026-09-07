@@ -12,6 +12,7 @@ import Step2Category from './components/sell_flow/Step2Category';
 import Step3Weight from './components/sell_flow/Step3Weight';
 import Step4EstimatedValue from './components/sell_flow/Step4EstimatedValue';
 import Step5ChooseBuyer from './components/sell_flow/Step5ChooseBuyer';
+import PickupConfirmationView from './components/sell_flow/PickupConfirmationView';
 import PaymentView from './components/sell_flow/PaymentView';
 import TodaysPricesView from './components/tabs/TodaysPricesView';
 import MyEarningsView from './components/tabs/MyEarningsView';
@@ -28,6 +29,87 @@ export default function App() {
   const [previousScreen, setPreviousScreen] = useState('splash');
   const [currentLang, setCurrentLang] = useState('en');
   const [user, setUser] = useState({ name: 'Rakesh', phone: '7015363695' });
+  const [stats, setStats] = useState({
+    totalEarned: 1240,
+    lotsCompleted: 4,
+    kgRecycled: 18.3
+  });
+
+  const [transactionsList, setTransactionsList] = useState([
+    {
+      id: 'tx_1',
+      lotNumber: 'Lot #A7F2K9',
+      title: 'PCB / Circuit Board',
+      category: 'E-Waste',
+      date: '3 Sep 2026',
+      weight: '2.5 kg',
+      weightNum: 2.5,
+      rate: '₹125/kg',
+      amount: 312,
+      status: 'Completed',
+      statusType: 'completed',
+      statusCode: 'completed',
+      image: '/assets/Kabadiwala_Connect_History_UI_Asset_Pack/app/crops/pcb_thumbnail.png',
+      buyer: 'GreenCycle Recycling',
+      settlementMode: 'UPI (Google Pay)',
+      notes: 'Inspected Grade A circuit boards with full copper recovery trace.'
+    },
+    {
+      id: 'tx_2',
+      lotNumber: 'Lot #B3D9L1',
+      title: 'Cables & Wires',
+      category: 'Metals',
+      date: '1 Sep 2026',
+      weight: '4.0 kg',
+      weightNum: 4.0,
+      rate: '₹70/kg',
+      amount: 280,
+      status: 'Handed Over',
+      statusType: 'active',
+      statusCode: 'handed_over',
+      image: '/assets/Kabadiwala_Connect_History_UI_Asset_Pack/app/crops/cables_thumbnail.png',
+      buyer: 'EcoScrap Solutions',
+      settlementMode: 'Cash Settlement',
+      notes: 'Driver picked up from Rohini Sector 7. Awaiting final recycler depot weigh-in.'
+    },
+    {
+      id: 'tx_3',
+      lotNumber: 'Lot #C6H4P0',
+      title: 'Car Battery',
+      category: 'Batteries',
+      date: '29 Aug 2026',
+      weight: '8.2 kg',
+      weightNum: 8.2,
+      rate: '₹62/kg',
+      amount: 510,
+      status: 'Listed',
+      statusType: 'active',
+      statusCode: 'listed',
+      image: '/assets/Kabadiwala_Connect_History_UI_Asset_Pack/app/crops/battery_thumbnail.png',
+      buyer: 'Awaiting Buyer Match',
+      settlementMode: 'Direct Settlement',
+      notes: 'Listed on buyer exchange with verified dry-cell certificate.'
+    },
+    {
+      id: 'tx_4',
+      lotNumber: 'Lot #E9V2M8',
+      title: 'LCD Display',
+      category: 'E-Waste',
+      date: '24 Aug 2026',
+      weight: '3.1 kg',
+      weightNum: 3.1,
+      rate: '₹61/kg',
+      amount: 190,
+      status: 'Disputed',
+      statusType: 'disputed',
+      statusCode: 'disputed',
+      image: '/assets/Kabadiwala_Connect_History_UI_Asset_Pack/app/crops/lcd_thumbnail.png',
+      buyer: 'TechRecycle Delhi',
+      settlementMode: 'Review Pending',
+      notes: 'Minor tare weight variation recorded at hub scale (-0.4 kg). Dispute under review.'
+    }
+  ]);
+
   const [sellFlowData, setSellFlowData] = useState({
     photoUrl: '/assets/Kabadiwala_Connect_Step1_TakePhoto_UI_Asset_Pack/01_camera_illustration/scrap_photo_reference.jpg',
     categoryId: 'pcb',
@@ -63,7 +145,11 @@ export default function App() {
 
   const handleStep1PhotoNext = (photoData) => {
     setSellFlowData(prev => ({ ...prev, ...photoData }));
-    setCurrentScreen('step1_hazardous_battery_detected');
+    if (photoData.isHazardous) {
+      setCurrentScreen('step1_hazardous_battery_detected');
+    } else {
+      setCurrentScreen('step2_category');
+    }
   };
 
   const handleStep2CategoryNext = (catData) => {
@@ -87,12 +173,28 @@ export default function App() {
 
   const handleStep5BuyerNext = (buyerData) => {
     setSellFlowData(prev => ({ ...prev, ...buyerData }));
+    setCurrentScreen('pickup_confirmation');
+  };
+
+  const handlePickupProceedToPayment = () => {
     setCurrentScreen('payment');
   };
 
   const handlePaymentConfirmed = (paymentData) => {
     setSellFlowData(prev => ({ ...prev, ...paymentData }));
     setCurrentScreen('receipt');
+  };
+
+  const handleTransactionDone = (completedSale) => {
+    if (completedSale) {
+      setTransactionsList(prev => [completedSale, ...prev]);
+      setStats(prev => ({
+        totalEarned: prev.totalEarned + (completedSale.amount || 0),
+        lotsCompleted: prev.lotsCompleted + 1,
+        kgRecycled: parseFloat((prev.kgRecycled + (completedSale.weightNum || 0)).toFixed(1))
+      }));
+    }
+    setCurrentScreen('home');
   };
 
   return (
@@ -145,6 +247,7 @@ export default function App() {
         <HomeView 
           t={t} 
           user={user}
+          stats={stats}
           currentLang={currentLang}
           onNavigate={(screen) => setCurrentScreen(screen)}
         />
@@ -210,12 +313,22 @@ export default function App() {
         />
       )}
 
+      {currentScreen === 'pickup_confirmation' && (
+        <PickupConfirmationView
+          t={t}
+          sellFlowData={sellFlowData}
+          onProceedToPayment={handlePickupProceedToPayment}
+          onBack={() => setCurrentScreen('step5_buyer')}
+          onCancel={() => setCurrentScreen('home')}
+        />
+      )}
+
       {currentScreen === 'payment' && (
         <PaymentView
           t={t}
           sellFlowData={sellFlowData}
           onNext={handlePaymentConfirmed}
-          onBack={() => setCurrentScreen('step5_buyer')}
+          onBack={() => setCurrentScreen('pickup_confirmation')}
         />
       )}
 
@@ -223,7 +336,7 @@ export default function App() {
         <TransactionReceiptView
           t={t}
           sellFlowData={sellFlowData}
-          onDone={() => setCurrentScreen('home')}
+          onDone={handleTransactionDone}
           onBack={() => setCurrentScreen('payment')}
         />
       )}
@@ -268,6 +381,7 @@ export default function App() {
         <MyEarningsView
           t={t}
           currentLang={currentLang}
+          transactionsList={transactionsList}
           onBack={() => setCurrentScreen('home')}
           onNavigateTab={(tab) => {
             if (tab === 'home') setCurrentScreen('home');
@@ -282,6 +396,7 @@ export default function App() {
       {currentScreen === 'history' && (
         <HistoryTab
           t={t}
+          lots={transactionsList}
           onBack={() => setCurrentScreen('home')}
           onNavigateTab={(tab) => {
             if (tab === 'home') setCurrentScreen('home');
@@ -312,6 +427,7 @@ export default function App() {
         <ProfileTab
           t={t}
           user={user}
+          stats={stats}
           onUpdateUser={(updated) => setUser(prev => ({ ...prev, ...updated }))}
           onNavigateTab={(tab) => {
             if (tab === 'home') setCurrentScreen('home');
