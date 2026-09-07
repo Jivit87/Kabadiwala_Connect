@@ -145,11 +145,7 @@ export default function App() {
 
   const handleStep1PhotoNext = (photoData) => {
     setSellFlowData(prev => ({ ...prev, ...photoData }));
-    if (photoData.isHazardous) {
-      setCurrentScreen('step1_hazardous_battery_detected');
-    } else {
-      setCurrentScreen('step2_category');
-    }
+    setCurrentScreen('step1_hazardous_battery_detected');
   };
 
   const handleStep2CategoryNext = (catData) => {
